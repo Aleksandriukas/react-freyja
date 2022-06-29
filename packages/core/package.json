@@ -11,7 +11,7 @@
     "src/"
   ],
   "scripts": {
-    "prepare": "bob build"
+    "build": "bob build"
   },
   "keywords": [],
   "author": "",
