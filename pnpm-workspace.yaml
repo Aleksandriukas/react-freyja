@@ -1,4 +1,3 @@
 packages:
-  - 'packages/*'
-  - 'examples/*'
-hoist: false
+    - "packages/*"
+    - "examples/*"
