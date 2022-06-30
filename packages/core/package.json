@@ -22,14 +22,10 @@
         "@babel/runtime": "^7.12.5",
         "@types/react": "^18.0.14",
         "@types/react-native": "^0.69.1",
-        "react": "^18.0.0",
-        "react-native": "^0.69.0",
+        "react": "18.0.0",
+        "react-native": "0.69.0",
         "react-native-builder-bob": "^0.18.3",
         "typescript": "^4.7.4"
-    },
-    "peerDependencies": {
-        "react": "^18.0.0",
-        "react-native": "^0.69.0"
     },
     "react-native-builder-bob": {
         "source": "src",
@@ -39,6 +35,9 @@
             "module",
             "typescript"
         ]
+    },
+    "peerDependencies": {
+        "react": "18.0.0",
+        "react-native": "0.69.0"
     }
 }
-

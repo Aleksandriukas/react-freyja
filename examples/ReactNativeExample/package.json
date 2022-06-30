@@ -10,7 +10,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
-    "@react-freyja/core": "workspace:^1.0.0",
+    "@react-freyja/core": "workspace:*",
     "jsc-android": "^250230.2.1",
     "react": "18.0.0",
     "react-native": "0.69.0"
