@@ -1,0 +1,26 @@
+{
+    "name": "react-freyja",
+    "version": "1.0.0",
+    "description": "React component framework",
+    "private": true,
+    "files": [
+        "dist"
+    ],
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Aleksandriukas/react-freyja.git"
+    },
+    "keywords": [],
+    "author": "Aleksandras Bogdanovas",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Aleksandriukas/react-freyja/issues"
+    },
+    "homepage": "https://github.com/Aleksandriukas/react-freyja#readme",
+    "workspaces": [
+        "packages/*",
+        "examples/*"
+    ]
+}
+
