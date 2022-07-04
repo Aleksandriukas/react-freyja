@@ -1,7 +1,7 @@
 const {makeMetroConfig} = require('@rnx-kit/metro-config');
 const MetroSymlinksResolver = require('@rnx-kit/metro-resolver-symlinks');
 
-module.exports = makeMetroConfig({
+const config = makeMetroConfig({
   transformer: {
     getTransformOptions: async () => ({
       transform: {
@@ -15,3 +15,5 @@ module.exports = makeMetroConfig({
     resolveRequest: MetroSymlinksResolver(),
   },
 });
+
+module.exports = config;

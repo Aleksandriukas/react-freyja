@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import {Button} from '../../../packages/core/src/index';
+import {Button} from '@react-freyja/core';
 
 const App = () => {
   return (
