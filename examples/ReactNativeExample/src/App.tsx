@@ -1,11 +1,13 @@
 import React from 'react';
 import {View} from 'react-native';
-import {Button} from '@react-freyja/core';
+import {Button} from '../../../packages/core/src/index';
 
-export const App = () => {
+const App = () => {
   return (
     <View>
       <Button />
     </View>
   );
 };
+
+export default App;
