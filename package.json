@@ -20,7 +20,8 @@
     "homepage": "https://github.com/Aleksandriukas/react-freyja#readme",
     "workspaces": [
         "packages/*",
-        "examples/*"
+        "examples/*",
+        "docs/*"
     ]
 }
 

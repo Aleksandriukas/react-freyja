@@ -1,11 +1,11 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Button as NativeButton, ButtonProps as NativeButtonProps } from "react-native";
 
-export const Button = () => {
+export type ButtonProps = NativeButtonProps;
+
+export const Button: React.FC<ButtonProps> = (props) => {
     return (
-        <View>
-            <Text>button from lib</Text>
-        </View>
+        <NativeButton {...props} />
     );
 };
 
