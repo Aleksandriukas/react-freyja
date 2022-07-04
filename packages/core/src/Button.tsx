@@ -1,11 +1,13 @@
-import React from "react";
-import { TouchableHighlight } from "react-native";
+import React, { PropsWithChildren } from "react";
+import { View, Text } from "react-native";
 
-export type ButtonProps = React.PropsWithChildren<{
-    onPress: () => void;
-}>;
+export type ButtonProps = PropsWithChildren<{}> 
 
-export const Button = ({ children, onPress }: ButtonProps) => {
-    return <TouchableHighlight onPress={onPress}>{children}</TouchableHighlight>;
+export const Button = ({children}: ButtonProps) => {
+    return (
+        <View>
+            {children}
+        </View>
+    );
 };
 
