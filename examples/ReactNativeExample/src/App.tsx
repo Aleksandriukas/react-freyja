@@ -5,7 +5,7 @@ import {Button} from '@react-freyja/core';
 const App = () => {
   return (
     <View>
-      <Button />
+      <Button title='button' />
     </View>
   );
 };

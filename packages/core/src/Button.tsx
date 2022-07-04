@@ -1,13 +1,11 @@
-import React, { PropsWithChildren } from "react";
-import { View, Text } from "react-native";
+import React from "react";
+import { Button as NativeButton, ButtonProps as NativeButtonProps } from "react-native";
 
-export type ButtonProps = PropsWithChildren<{}> 
+export type ButtonProps = NativeButtonProps;
 
-export const Button = ({children}: ButtonProps) => {
+export const Button: React.FC<ButtonProps> = (props) => {
     return (
-        <View>
-            {children}
-        </View>
+        <NativeButton {...props} />
     );
 };
 

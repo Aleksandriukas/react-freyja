@@ -8,4 +8,5 @@
 
 // AppRegistry.registerComponent(appName, () => App);
 
+// FIXME npm run storybook does not work
 export {default} from './storybook';
