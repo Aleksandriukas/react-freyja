@@ -39,6 +39,8 @@
     "peerDependencies": {
         "react": ">=18.0.0",
         "react-native": ">=0.69.0"
+    },
+    "dependencies": {
+        "tiny-invariant": "^1.2.0"
     }
 }
-
