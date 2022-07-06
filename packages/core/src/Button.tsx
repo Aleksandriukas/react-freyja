@@ -1,11 +1,18 @@
-import React from "react";
-import { Button as NativeButton, ButtonProps as NativeButtonProps } from "react-native";
+import React, { useContext, createContext } from "react";
+import { View, Text } from "react-native";
+import { useThemeContext } from "./useThemeContext";
 
-export type ButtonProps = NativeButtonProps;
+export type ButtonProps = {
+    //
+};
 
 export const Button: React.FC<ButtonProps> = (props) => {
+    const theme = useThemeContext()
+
     return (
-        <NativeButton {...props} />
+        <View style={theme.components.Button.style}>
+            <Text>hello</Text>
+            </View>
     );
 };
 

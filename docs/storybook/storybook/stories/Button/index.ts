@@ -1,3 +1,3 @@
-import {Button} from '@react-freyja/core';
+import {Button, ThemeContextProvider} from '@react-freyja/core';
 
-export default Button;
+export {Button, ThemeContextProvider};
