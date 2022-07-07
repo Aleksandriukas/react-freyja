@@ -1,0 +1,15 @@
+{
+    "extends": ["@sirse-dev/eslint-config"],
+    "overrides": [
+        {
+            "files": ["src/*"],
+            "rules": {
+                "@typescript-eslint/no-unused-vars": [
+                    "error",
+                    { "varsIgnorePattern": "React" }
+                ],
+                "@typescript-eslint/naming-convention": "off"
+            }
+        }
+    ]
+}
