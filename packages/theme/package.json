@@ -1,3 +1,20 @@
 {
-    "name": "@react-freyja/theme"
+    "name": "@react-freyja/theme",
+    "main": "./dist/index.js",
+    "types": "./dist/theme.d.ts",
+    "module": "./dist/theme.esm.js",
+    "scripts": {
+        "build": "aqu build",
+        "start": "aqu watch"
+    },
+    "devDependencies": {
+        "@sirse-dev/eslint-config": "^1.0.9",
+        "aqu": "^0.3.2",
+        "eslint": "^8.19.0",
+        "prettier": "^2.7.1",
+        "typescript": "^4.7.4"
+    },
+    "dependencies": {
+        "@sirse-dev/safe-context": "^0.2.0"
+    }
 }
