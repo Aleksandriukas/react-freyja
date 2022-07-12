@@ -10,13 +10,6 @@ export const useComponentStyle = (component: 'Button', customProps: SharedButton
     }
 
     return {
-        ...theme.components[component].variants[customProps.variant ?? 'underlined'],
-        ...(theme.components.Button.tokens?.reduce((acc, value) => {
-            return {
-                ...value,
-                ...acc,
-            };
-        }, {}) ?? {}),
-        color: theme.components.Button.colors[customProps.color],
+        ...theme.components.Button.propModifiers.variant(customProps.variant),
     };
 };

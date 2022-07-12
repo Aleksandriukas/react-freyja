@@ -6,7 +6,7 @@ const theme = createTheme({
     },
     tokens: (definitions, variables) => ({
         buttonOutlined: {
-            backgroundColor: variables.color,
+            backgroundColor: variables.$color,
         },
         primary: {
             $color: definitions.palette.color,
