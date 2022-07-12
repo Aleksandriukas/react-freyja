@@ -1,10 +1,5 @@
-import { useContext } from "react";
-import { ThemeContext } from "./ThemeContext";
-import invariant from "tiny-invariant";
+import { ThemeContext } from './ThemeContext';
+import { useSafeContext } from '@sirse-dev/safe-context';
 export const useThemeContext = () => {
-    const theme = useContext(ThemeContext);
-
-    invariant(theme, "Error message")
-
-    return theme;
-}
+    return useSafeContext(ThemeContext);
+};

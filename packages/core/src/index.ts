@@ -1,3 +1,2 @@
-export * from './Button';
-export * from './ThemeContextProvider'
-import * as colors  from './colors';
+export * from './components/Button/Button.native';
+export * from './ThemeContextProvider';
