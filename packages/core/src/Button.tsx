@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 export const Button = () => {
 
     return (
-        <View >
-            <Text>hello</Text>
+        <View>
+            <Text>Submit</Text>
         </View>
     );
 };
