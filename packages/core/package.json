@@ -21,7 +21,7 @@
         "@babel/core": "7.0.0",
         "@babel/preset-env": "7.2.0",
         "@babel/runtime": "^7.12.5",
-        "@sirse-dev/eslint-config": "^1.0.6",
+        "@sirse-dev/eslint-config": "^1.0.12",
         "@types/react": "^18.0.14",
         "@types/react-native": "^0.69.1",
         "eslint": "^8.19.0",
