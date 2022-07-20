@@ -23,6 +23,8 @@ export type ThemeComponents<C extends string> = Record<
     (props: object) => ThemeComponent
 >;
 
+export type Variables = Record<string, unknown>
+
 export type ThemeSource<
     C extends string,
     T extends string,
@@ -30,5 +32,6 @@ export type ThemeSource<
 > = {
     definitions: D;
     tokens: (definitions: D) => ThemeTokens<T>;
+    variables: (definitions: D) => Variables;
     components: (tokens: ThemeTokens<T>) => ThemeComponents<C>;
 };

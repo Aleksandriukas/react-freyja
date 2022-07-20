@@ -1,0 +1,18 @@
+{
+    "name": "@react-freyja/material",
+    "main": "./dist/index.js",
+    "types": "./dist/material.d.ts",
+    "module": "./dist/material.esm.js",
+    "scripts": {
+        "build": "aqu build",
+        "start": "aqu watch"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.18.9",
+        "@react-freyja/eslint-config": "workspace:*",
+        "aqu": "^0.3.2"
+    },
+    "dependencies": {
+        "@react-freyja/theme": "workspace:*"
+    }
+}
