@@ -11,8 +11,9 @@ export const createTheme = <
 ): Theme<C> => {
     const tokens = source.tokens(source.definitions);
     const components = source.components(tokens);
+    const variables = source.variables(source.definitions);
 
     return {
-        components: getThemeComponents(components),
+        components: getThemeComponents(components, variables),
     };
 };

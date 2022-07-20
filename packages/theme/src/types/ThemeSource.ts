@@ -3,27 +3,20 @@ import { StyleProperties } from "./Theme";
 export type ThemeToken = {
     [K in keyof StyleProperties]:
         | StyleProperties[K]
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        | ((variables: Record<string, any>) => StyleProperties[K]);
+        | ((variables: Record<string, string | number>) => StyleProperties[K]);
 };
 
-export type VariableToken = Record<`$${string}`, unknown>;
+export type VariableToken = Record<`$${string}`, number | string>;
+export type Variables = Record<string, VariableToken>;
 
-export type ThemeTokens<T extends string> = Record<
-    T,
-    ThemeToken | VariableToken
->;
+export type ThemeTokens<T extends string> = Record<T, ThemeToken>;
 
 export type ThemeComponent = {
     tokens: ThemeToken[];
+    propsToTokensMap: Record<string, Record<string, ThemeToken>>;
 };
 
-export type ThemeComponents<C extends string> = Record<
-    C,
-    (props: object) => ThemeComponent
->;
-
-export type Variables = Record<string, unknown>
+export type ThemeComponents<C extends string> = Record<C, ThemeComponent>;
 
 export type ThemeSource<
     C extends string,

@@ -8,21 +8,34 @@ export const exampleTheme = createTheme({
             error: "red",
         },
     },
-    tokens: (definitions) => ({
-        buttonText: {
-            color: (variables) => variables.$color,
-        },
-        buttonOutlined: {
-            color: (variables) => variables.$color,
-            borderStyle: "solid",
-            borderColor: "black",
-            borderWidth: 2,
-        },
+    variables: (definitions) => ({
         primaryColor: {
             $color: definitions.palette.primary,
         },
         secondaryColor: {
             $color: definitions.palette.secondary,
+        },
+    }),
+    tokens: () => ({
+        buttonText: {
+            color: (variables) => variables.$color as string,
+        },
+        buttonOutlined: {
+            color: (variables) => variables.$color as string,
+            borderStyle: "solid",
+            borderColor: "black",
+            borderWidth: 2,
+        },
+    }),
+    components: (tokens) => ({
+        Button: {
+            tokens: [tokens.buttonText],
+            propsToTokensMap: {
+                variant: {
+                    text: tokens.buttonText,
+                    outlined: tokens.buttonOutlined,
+                },
+            },
         },
     }),
 });
