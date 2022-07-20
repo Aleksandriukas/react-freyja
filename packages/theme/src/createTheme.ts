@@ -1,6 +1,6 @@
 import { Theme } from "./types/Theme";
 import { ThemeSource } from "./types/ThemeSource";
-import { getThemeComponents } from "./utils";
+import { getThemeComponents, getVariables } from "./utils";
 
 export const createTheme = <
     C extends string,
@@ -11,7 +11,7 @@ export const createTheme = <
 ): Theme<C> => {
     const tokens = source.tokens(source.definitions);
     const components = source.components(tokens);
-    const variables = source.variables(source.definitions);
+    const variables = getVariables(source.tokens)
 
     return {
         components: getThemeComponents(components, variables),

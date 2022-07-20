@@ -3,18 +3,20 @@ import { StyleProperties } from "./Theme";
 export type ThemeToken = {
     [K in keyof StyleProperties]:
         | StyleProperties[K]
-        | ((variables: Record<string, string | number>) => StyleProperties[K]);
+        | ((variables: VariableToken) => StyleProperties[K]);
 };
 
-export type VariableToken = Record<`$${string}`, number | string>;
-export type Variables = Record<string, VariableToken>;
+export type VariableValue = number | string;
+export type VariableToken = Record<`$${string}`, VariableValue>;
 
-export type ThemeTokens<T extends string> = Record<T, ThemeToken>;
+export type Token = ThemeToken | VariableToken;
+export type ThemeTokens<T extends string> = Record<T, Token>;
+export type Modifiers = Record<string, Record<string, Token>>;
 
 export type ThemeComponent = {
-    tokens: ThemeToken[];
-    propsToTokensMap: Record<string, Record<string, ThemeToken>>;
-};
+    tokens: Token[];
+    modifiers: Modifiers;
+}
 
 export type ThemeComponents<C extends string> = Record<C, ThemeComponent>;
 
@@ -25,6 +27,5 @@ export type ThemeSource<
 > = {
     definitions: D;
     tokens: (definitions: D) => ThemeTokens<T>;
-    variables: (definitions: D) => Variables;
     components: (tokens: ThemeTokens<T>) => ThemeComponents<C>;
 };

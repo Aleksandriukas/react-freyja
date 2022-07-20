@@ -8,15 +8,10 @@ export const materialTheme = createTheme({
             error: "red",
         },
     },
-    variables: (definitions) => ({
+    tokens: (definitions) => ({
         primaryColor: {
             $color: definitions.palette.primary,
         },
-        secondaryColor: {
-            $color: definitions.palette.secondary,
-        },
-    }),
-    tokens: () => ({
         buttonText: {
             color: (variables) => variables.$color as string,
         },
@@ -30,11 +25,19 @@ export const materialTheme = createTheme({
     components: (tokens) => ({
         Button: {
             tokens: [tokens.buttonText],
-            propsToTokensMap: {
+            modifiers: {
                 variant: {
                     text: tokens.buttonText,
                     outlined: tokens.buttonOutlined,
                 },
+                color: {
+                    primary: tokens.primaryColor
+                },
+                // state: {
+                //     hovered: tokens.hovered,
+                //     pressed: tokens.pressed,
+                //     focused: tokens.focused,
+                // }
             },
         },
     }),

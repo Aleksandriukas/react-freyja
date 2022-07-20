@@ -1,80 +1,94 @@
-import { StyleProperties } from "./types/Theme";
+import { ParsedComponents, StyleProperties } from "./types/Theme";
 import {
     ThemeComponents,
     ThemeComponent,
-    Variables,
     ThemeToken,
+    VariableValue,
+    ThemeTokens,
+    VariableToken,
+    Token,
+    Modifiers,
 } from "./types/ThemeSource";
 
-const parseVariables = (
-    sourceVariables: Variables
-): Record<string, string | number> => {
-    const result: Record<string, string | number> = {};
+const isVariableToken = (token: ThemeToken | VariableToken): token is VariableToken => Object.keys(token).some((key) => key.startsWith('$'));
 
-    for (const variableGroup in sourceVariables) {
-        for (const [property, value] of Object.entries(
-            sourceVariables[variableGroup]
-        )) {
-            result[property] = value;
-        }
-    }
+export const getVariables = <T extends string>(tokens: ThemeTokens<T>): VariableToken => {
+    const result: VariableToken = {};
 
-    return result;
-};
-
-const convertTokensToStyles = (
-    tokens: ThemeToken[],
-    variables: Variables
-): StyleProperties => {
-    const styles: Partial<Record<keyof StyleProperties, unknown>> = {};
-
-    for (const token of tokens) {
-        for (const property in token) {
-            const value = token[property as keyof StyleProperties];
-
-            if (typeof value === "function") {
-                styles[property as keyof StyleProperties] = value(
-                    parseVariables(variables)
-                );
-            } else {
-                styles[property as keyof StyleProperties] = value;
+    for (const _token of Object.values(tokens)) {
+        const token = _token as ThemeToken | VariableToken;
+        if (isVariableToken(token)) {
+            for (const [key, value] of Object.entries(token)) {
+                if (key.startsWith('$')) {
+                    result[key as `$${string}`] = value as VariableValue;
+                }
             }
         }
     }
 
-    return styles as StyleProperties;
-};
+    return result;
+}
 
-const getComponentStyles = (
-    component: ThemeComponent,
-    variables: Variables,
-    props: object
-): StyleProperties => {
-    const tokens = [...component.tokens];
+const getPropsKey = (props: string[]) => props.sort().reduce((acc, currentValue) => {
+    acc += currentValue + ';'
+    return acc;
+}, '');
 
-    for (const [key, value] of Object.entries(props)) {
-        if (
-            component.propsToTokensMap[key] &&
-            component.propsToTokensMap[key][value]
-        ) {
-            tokens.push(component.propsToTokensMap[key][value]);
+const parseModifiers = (modifiers: Modifiers): string[][] => {
+    const keys = Object.keys(modifiers);
+    const possibleValues: string[][] = [...new Array(keys.length)].map(() => []);
+
+    for (let i = 0; i < keys.length; i++) {
+        for (const value of Object.keys(modifiers[keys[i]])) {
+            possibleValues[i].push(value);
         }
     }
 
-    return convertTokensToStyles(tokens, variables);
-};
+    possibleValues.sort((a, b) => b.length - a.length);
+
+    const resultLength = possibleValues.map((arr) => arr.length).reduce((acc, currentValue) => {
+        acc *= currentValue;
+        return acc;
+    }, 1);
+    // TODO add check for large lenth of this array
+    const result: string[][] = [...new Array(resultLength)].map(() => []);
+
+    for (let i = 0; i < resultLength; i++) {
+        // TODO
+    }
+}
+
+const generateStylePermutations = (component: ThemeComponent, variables: VariableToken): Record<string, StyleProperties> => {
+    const result: Record<string, StyleProperties> = {};
+
+    const parsedModifiers = parseModifiers(component.modifiers);
+    const permutationArray: string[][] = [];
+
+    for (const asdf of parsedModifiers[0]) {
+
+    }
+
+    // Permutate over components.modifiers
+    /**
+     * {variant: {v1: 1, v2: 2}, color: {c1: 2, c2: 3, c3: 4}} ->
+     * [[v1, v2], [c1, c2, c3]] ->
+     * ['v1;c1', 'v1;c2', 'v1;c3', 'v2;c1', 'v2;c2', 'v2;c3']
+     */
+
+    return result;
+}
 
 export const getThemeComponents = <C extends string>(
     components: ThemeComponents<C>,
-    variables: Variables
-): Record<C, (props: object) => StyleProperties> => {
-    const themeComponents: Record<C, (props: object) => StyleProperties> =
-        {} as Record<C, (props: object) => StyleProperties>;
+    variables: VariableToken
+): ParsedComponents<C> => {
+    const result: ParsedComponents<C> =
+        {} as ParsedComponents<C>
 
-    for (const [name, component] of Object.entries(components)) {
-        themeComponents[name as C] = (props: object) =>
-            getComponentStyles(component as ThemeComponent, variables, props);
+    for (const [name, _component] of Object.entries(components)) {
+        const component = _component as ThemeComponent;
+        result[name as C] = generateStylePermutations(component, variables);
     }
 
-    return themeComponents;
+    return result;
 };

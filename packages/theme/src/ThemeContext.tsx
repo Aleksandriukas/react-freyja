@@ -1,5 +1,5 @@
 import { createSafeContext, useSafeContext } from "@sirse-dev/safe-context";
-import { PropsWithChildren } from "react";
+import React, { PropsWithChildren } from "react";
 import { Theme } from "./types/Theme";
 
 const ThemeContext = createSafeContext<Theme<string>>();
