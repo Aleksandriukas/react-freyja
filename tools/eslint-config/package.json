@@ -1,0 +1,11 @@
+{
+    "name": "@react-freyja/eslint-config",
+    "private": true,
+    "main": ".eslintrc",
+    "dependencies": {
+        "@sirse-dev/eslint-config": "^1.0.12",
+        "eslint": "^8.20.0",
+        "prettier": "^2.7.1",
+        "typescript": "^4.7.4"
+    }
+}

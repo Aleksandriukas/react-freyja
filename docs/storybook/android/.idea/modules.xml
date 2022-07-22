@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1725366234/react-native-gradle-plugin.iml" filepath="$PROJECT_DIR$/.idea/modules/-1725366234/react-native-gradle-plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1725366234/react-native-gradle-plugin.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1725366234/react-native-gradle-plugin.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1725366234/react-native-gradle-plugin.test.iml" filepath="$PROJECT_DIR$/.idea/modules/-1725366234/react-native-gradle-plugin.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/storybook.iml" filepath="$PROJECT_DIR$/.idea/modules/storybook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/storybook.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/storybook.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/storybook.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/storybook.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/storybook.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/storybook.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/storybook.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/storybook.app.unitTest.iml" />
+    </modules>
+  </component>
+</project>

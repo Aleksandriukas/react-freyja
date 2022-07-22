@@ -1,8 +1,8 @@
-import React from 'react';
 import {Button} from '@react-freyja/core';
+import React from 'react';
 
 const App = () => {
-  return <Button />;
+    return <Button />;
 };
 
 export default App;

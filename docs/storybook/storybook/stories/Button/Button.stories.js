@@ -1,5 +1,13 @@
+import {Button} from '@react-freyja/core';
+import {materialTheme} from '@react-freyja/material';
+import {ThemeContextProvider} from '@react-freyja/theme';
 import {storiesOf} from '@storybook/react-native';
 import React from 'react';
-import {Button} from '@react-freyja/core';
 
-storiesOf('Button', module).add('with text', () => <Button />);
+storiesOf('Button', module)
+    .addDecorator(story => (
+        <ThemeContextProvider theme={materialTheme}>
+            {story()}
+        </ThemeContextProvider>
+    ))
+    .add('with text', () => <Button />);

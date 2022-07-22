@@ -1,0 +1,14 @@
+{
+    "extends": ["@react-freyja/eslint-config"],
+    "overrides": [
+        {
+            "files": ["storybook/**"],
+            "rules": {
+                "unicorn/prefer-module": "off",
+            },
+            "env": {
+                "node": true
+            }
+        }
+    ]
+}
