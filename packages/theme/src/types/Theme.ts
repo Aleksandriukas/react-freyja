@@ -6,7 +6,7 @@ export type StyleProperties = {
     borderWidth?: number;
 };
 
-// For each permutation of props generate different StyleProperties object
+// For each combination of props generate different StyleProperties object
 export type ParsedComponents<C extends string> = Record<C, Record<string, StyleProperties>>;
 
 export type Theme<C extends string> = {

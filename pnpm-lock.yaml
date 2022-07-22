@@ -185,6 +185,7 @@ importers:
       '@babel/runtime': ^7.18.9
       '@react-freyja/eslint-config': workspace:*
       '@sirse-dev/safe-context': ^0.3.0
+      '@types/jest': ^26.0.23
       '@types/react': ^18.0.14
       aqu: ^0.3.2
       react: 18.0.0
@@ -192,6 +193,7 @@ importers:
     dependencies:
       '@babel/runtime': 7.18.9
       '@sirse-dev/safe-context': 0.3.0_react@18.0.0
+      '@types/jest': 26.0.24
     devDependencies:
       '@babel/core': 7.18.9
       '@react-freyja/eslint-config': link:../../tools/eslint-config
@@ -5012,7 +5014,6 @@ packages:
     dependencies:
       jest-diff: 26.6.2
       pretty-format: 26.6.2
-    dev: true
 
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
@@ -7885,7 +7886,6 @@ packages:
   /diff-sequences/26.6.2:
     resolution: {integrity: sha512-Mv/TDa3nZ9sbc5soK+OoA74BsS3mL37yixCvUAQkiuA4Wz6YtwP/K47n2rv2ovzHZvoiQeA5FTQOschKkEwB0Q==}
     engines: {node: '>= 10.14.2'}
-    dev: true
 
   /diffie-hellman/5.0.3:
     resolution: {integrity: sha512-kqag/Nl+f3GwyK25fhUMYj81BUOrZ9IuJsjIcDE5icNM9FJHAVm3VcUDxdLPoQtTuUylWm6ZIknYJwwaPxsUzg==}
@@ -10775,7 +10775,6 @@ packages:
       diff-sequences: 26.6.2
       jest-get-type: 26.3.0
       pretty-format: 26.6.2
-    dev: true
 
   /jest-docblock/26.0.0:
     resolution: {integrity: sha512-RDZ4Iz3QbtRWycd8bUEPxQsTlYazfYn/h5R65Fc6gOfwozFhoImx+affzky/FFBuqISPTqjXomoIGJVKBWoo0w==}
