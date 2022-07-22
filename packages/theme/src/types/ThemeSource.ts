@@ -16,7 +16,7 @@ export type Modifiers = Record<string, Record<string, Token>>;
 export type ThemeComponent = {
     tokens: Token[];
     modifiers: Modifiers;
-}
+};
 
 export type ThemeComponents<C extends string> = Record<C, ThemeComponent>;
 

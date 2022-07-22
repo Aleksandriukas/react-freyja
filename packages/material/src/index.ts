@@ -31,12 +31,12 @@ export const materialTheme = createTheme({
                     outlined: tokens.buttonOutlined,
                 },
                 color: {
-                    primary: tokens.primaryColor
+                    primary: tokens.primaryColor,
                 },
-                // state: {
-                //     hovered: tokens.hovered,
-                //     pressed: tokens.pressed,
-                //     focused: tokens.focused,
+                // State: {
+                //     Hovered: tokens.hovered,
+                //     Pressed: tokens.pressed,
+                //     Focused: tokens.focused,
                 // }
             },
         },

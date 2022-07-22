@@ -7,7 +7,10 @@ export type StyleProperties = {
 };
 
 // For each combination of props generate different StyleProperties object
-export type ParsedComponents<C extends string> = Record<C, Record<string, StyleProperties>>;
+export type ParsedComponents<C extends string> = Record<
+    C,
+    Record<string, StyleProperties>
+>;
 
 export type Theme<C extends string> = {
     components: ParsedComponents<C>;
