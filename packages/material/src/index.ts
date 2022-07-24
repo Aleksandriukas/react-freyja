@@ -10,10 +10,10 @@ export const materialTheme = createTheme({
     },
     tokens: (definitions) => ({
         primaryColor: {
-            $color: definitions.palette.primary,
+            $color: 'asdf'
         },
         buttonText: {
-            color: (variables) => variables.$color as string,
+            color: (variables) => variables.color as string,
         },
         buttonOutlined: {
             color: (variables) => variables.$color as string,

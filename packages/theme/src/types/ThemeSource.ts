@@ -1,31 +1,32 @@
 import { StyleProperties } from "./Theme";
 
-export type ThemeToken = {
-    [K in keyof StyleProperties]:
+export type ThemeToken<TVariables extends Record<string, string>> = {
+    [K in keyof StyleProperties]?:
         | StyleProperties[K]
-        | ((variables: VariableToken) => StyleProperties[K]);
+        | ((variables: TVariables) => StyleProperties[K]);
 };
 
-export type VariableValue = number | string;
-export type VariableToken = Record<`$${string}`, VariableValue>;
+type OnlyStringKeys<T> = {
+    [K in keyof T]: K extends symbol ? never : K;
+}[keyof T];
 
-export type Token = ThemeToken | VariableToken;
-export type ThemeTokens<T extends string> = Record<T, Token>;
-export type Modifiers = Record<string, Record<string, Token>>;
+export type VariableToken<TVariables extends Record<string, string>> = Record<`$${OnlyStringKeys<TVariables>}`, string>;
 
-export type ThemeComponent = {
-    tokens: Token[];
-    modifiers: Modifiers;
+export type Token<TVariables extends Record<string, string>> = ThemeToken<TVariables> | VariableToken<TVariables>;
+export type Modifiers<TVariables extends Record<string, string>> = Record<string, Record<string, TVariables>>;
+
+export type ThemeComponent<TVariables extends Record<string, string>, TModifiers extends Modifiers<TVariables>> = {
+    tokens: Token<TVariables>[];
+    modifiers: TModifiers;
 };
-
-export type ThemeComponents<C extends string> = Record<C, ThemeComponent>;
 
 export type ThemeSource<
-    C extends string,
-    T extends string,
-    D extends object
+    TVariables extends Record<string, string>,
+    TComponents extends Record<string, ThemeComponent<TVariables, Modifiers<TVariables>>>,
+    TTokens extends Record<string, Token<TVariables>>,
+    TDefinitions extends object
 > = {
-    definitions: D;
-    tokens: (definitions: D) => ThemeTokens<T>;
-    components: (tokens: ThemeTokens<T>) => ThemeComponents<C>;
+    definitions: TDefinitions;
+    tokens: (definitions: TDefinitions) => TTokens;
+    components: (tokens: TTokens) => TComponents;
 };

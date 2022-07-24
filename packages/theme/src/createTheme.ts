@@ -1,19 +1,19 @@
 import { Theme } from "./types/Theme";
-import { ThemeSource } from "./types/ThemeSource";
-import { getThemeComponents, getVariables } from "./utils";
+import { Modifiers, ThemeComponent, ThemeSource, Token } from "./types/ThemeSource";
 
 export const createTheme = <
-    C extends string,
-    T extends string,
-    D extends object
+TComponents extends Record<string, ThemeComponent<Modifiers>>,
+TVariables extends Record<string, string>,
+TTokens extends Record<string, Token<TVariables>>,
+TDefinitions extends object
 >(
-    source: ThemeSource<C, T, D>
-): Theme<C> => {
+    source: ThemeSource<TComponents, TVariables, TTokens, TDefinitions>
+): Theme<TComponents> => {
     const tokens = source.tokens(source.definitions);
     const components = source.components(tokens);
-    const variables = getVariables(source.tokens);
+    // const variables = getVariables(source.tokens);
 
     return {
-        components: getThemeComponents(components, variables),
-    };
+        // components: getThemeComponents(components, variables),
+    } as Theme<TComponents>;
 };

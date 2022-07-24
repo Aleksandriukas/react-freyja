@@ -1,6 +1,3 @@
 {
-    "extends": ["@sirse-dev/eslint-config"],
-    "rules": {
-        "@typescript-eslint/naming-convention": "off"
-    }
+    "extends": ["@sirse-dev/eslint-config"]
 }
