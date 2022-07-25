@@ -1,13 +1,13 @@
 import { Theme } from "./types/Theme";
-import { ThemeSource, Tokens } from "./types/ThemeSource";
+import { Modifiers, ThemeSource, Token } from "./types/ThemeSource";
 
 export const createTheme = <
     TDefinitions extends Record<string, unknown>,
-    TVariableGenerator extends (definitions: TDefinitions) => unknown,
-    TTokens extends Tokens<ReturnType<TVariableGenerator>>,
+    TModifiers extends Modifiers,
+    TTokens extends Record<string, Token<TModifiers>>,
     TComponents extends Record<string, any>
 >(
-    source: ThemeSource<TDefinitions, TVariableGenerator, TTokens, TComponents>
+    source: ThemeSource<TDefinitions, TModifiers, TTokens, TComponents>
 ): Theme => {
     return {} as Theme;
 };

@@ -1,4 +1,4 @@
-import { createTheme, ExtractVariables } from "@react-freyja/theme";
+import { createTheme } from "@react-freyja/theme";
 
 export const materialTheme = createTheme({
     // const
@@ -27,9 +27,9 @@ export const materialTheme = createTheme({
             },
         }),
         // Static tokens refet to defintions and can take properties from modifiers
-        static: (definitions, useModifier) => ({
+        static: (definitions) => ({
             buttonText: {
-                color: useModifier('color'),
+                color: (variables) => variables.$color,
             },
         }),
     },

@@ -1,22 +1,28 @@
-import { ExtractVariables } from "./ExtractVariables";
 import { StyleProperties } from "./Theme";
 
-export type Tokens<TVariables> = Record<string, Token<TVariables>>;
-
-export type Token<TVariables> = {
+export type Token<TModifiers> = {
     [K in keyof StyleProperties]?:
         | StyleProperties[K]
-        | ((variables: ExtractVariables<TVariables>) => StyleProperties[K]);
+        | ExtractModifiersProperties<TModifiers>;
 };
+export type Modifiers = Record<string, Record<string, unknown>>;
+
+export type ExtractModifiersProperties<TModifiers> = {
+    [TModifierName in keyof TModifiers]: {
+        [TPropertyName in keyof TModifiers[TModifierName]]: TPropertyName;
+    }[keyof TModifiers[TModifierName]];
+}[keyof TModifiers];
 
 export type ThemeSource<
     TDefinitions extends Record<string, unknown>,
-    TVariableGenerator extends (definitions: TDefinitions) => unknown,
-    TTokens extends Tokens<ReturnType<TVariableGenerator>>,
+    TModifiers extends Modifiers,
+    TTokens extends Record<string, Token<TModifiers>>,
     TComponents extends Record<string, any>
 > = {
     definitions: TDefinitions;
-    variables: TVariableGenerator;
-    tokens: (definitions: TDefinitions) => TTokens;
+    tokens: {
+        modifiers: (definitions: TDefinitions) => TModifiers;
+        static: (definitions: TDefinitions) => TTokens;
+    };
     components: (tokens: TTokens) => TComponents;
 };
