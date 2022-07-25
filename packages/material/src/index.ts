@@ -1,44 +1,77 @@
-import { createTheme } from "@react-freyja/theme";
+import { createTheme, ExtractVariables } from "@react-freyja/theme";
 
 export const materialTheme = createTheme({
+    // const
     definitions: {
         palette: {
-            primary: "blue",
-            secondary: "green",
-            error: "red",
+            primary: "#dad",
+            secondary: "#add",
+        },
+        numbers: {
+            lg: 10,
+            md: 5,
+            xs: 2,
         },
     },
-    tokens: (definitions) => ({
-        primaryColor: {
-            $color: 'asdf'
-        },
-        buttonText: {
-            color: (variables) => variables.color as string,
-        },
-        buttonOutlined: {
-            color: (variables) => variables.$color as string,
-            borderStyle: "solid",
-            borderColor: "black",
-            borderWidth: 2,
-        },
-    }),
+    tokens: {
+        // Modifiers must only contain properties that could change (variables)
+        modifiers: (definitions) => ({
+            primaryColor: {
+                $color: definitions.palette.primary,
+            },
+            secondaryColor: {
+                $color: definitions.numbers.lg,
+            },
+            fakeScenario: {
+                $fontSize: definitions.numbers.lg,
+            },
+        }),
+        // Static tokens refet to defintions and can take properties from modifiers
+        static: (definitions, useModifier) => ({
+            buttonText: {
+                color: useModifier('color'),
+            },
+        }),
+    },
     components: (tokens) => ({
         Button: {
-            tokens: [tokens.buttonText],
-            modifiers: {
+            tokens: [tokens.outlinedButton],
+            props: (modifiers) => ({
                 variant: {
-                    text: tokens.buttonText,
-                    outlined: tokens.buttonOutlined,
+                    text: tokens.textHello,
+                    outlined: tokens.outlinedHello,
                 },
                 color: {
-                    primary: tokens.primaryColor,
+                    primary: modifiers.primaryColor,
+                    secondary: modifiers.secondaryColor,
                 },
-                // State: {
-                //     Hovered: tokens.hovered,
-                //     Pressed: tokens.pressed,
-                //     Focused: tokens.focused,
-                // }
-            },
+            }),
         },
     }),
 });
+
+const useComponentStyles = (component: 'Button', props) => {
+    const { getPlatformSpecificStyles, theme, getAllTokensFromComponent } = useContext()
+
+    const tokens = getAllTokensFromComponent(theme.components[component], props);
+
+    /**
+     * Some tokens refer only to modifiers ($propName) and some refer to static tokens
+     * 
+     */
+
+    const defaultStyles = getPlatformSpecificStyles(tokens);
+
+    return {
+        ...defaultStyles,
+        ...props.styles
+    }
+}
+
+const Button = () => {
+    const styles = useComponentStyles('Button');
+
+    return (
+        // ...
+    )
+}
