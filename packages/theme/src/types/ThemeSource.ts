@@ -1,28 +1,34 @@
+import { ExtractVariables } from "./ExtractVariables";
 import { StyleProperties } from "./Theme";
 
-export type Token<TModifiers> = {
-    [K in keyof StyleProperties]?:
-        | StyleProperties[K]
-        | ExtractModifiersProperties<TModifiers>;
-};
-export type Modifiers = Record<string, Record<string, unknown>>;
+export type Token<TModifiers> = (
+    variables: ExtractVariables<TModifiers>
+) => Partial<StyleProperties>;
+export type Modifiers = Record<string, Record<`$${string}`, unknown>>;
 
-export type ExtractModifiersProperties<TModifiers> = {
-    [TModifierName in keyof TModifiers]: {
-        [TPropertyName in keyof TModifiers[TModifierName]]: TPropertyName;
-    }[keyof TModifiers[TModifierName]];
-}[keyof TModifiers];
+export type FreyjaComponent<TModifiers> = {
+    tokens: symbol[];
+    // TODO rename it
+    propsModifiers: (
+        modifierTokens: Record<keyof TModifiers, symbol>
+    ) => Record<string, Record<string, symbol>>;
+};
+
+export type ConvertTokensType<TTokens> = Record<keyof TTokens, symbol>;
 
 export type ThemeSource<
     TDefinitions extends Record<string, unknown>,
-    TModifiers extends Modifiers,
-    TTokens extends Record<string, Token<TModifiers>>,
-    TComponents extends Record<string, any>
+    TModifiersGenerator extends (definitions: TDefinitions) => Modifiers,
+    TTokens extends Record<string, Token<ReturnType<TModifiersGenerator>>>,
+    TComponents extends Record<
+        string,
+        FreyjaComponent<ReturnType<TModifiersGenerator>>
+    >
 > = {
     definitions: TDefinitions;
     tokens: {
-        modifiers: (definitions: TDefinitions) => TModifiers;
+        modifiers: TModifiersGenerator;
         static: (definitions: TDefinitions) => TTokens;
     };
-    components: (tokens: TTokens) => TComponents;
+    components: (tokens: ConvertTokensType<TTokens>) => TComponents;
 };

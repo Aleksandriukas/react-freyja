@@ -4,6 +4,7 @@ export type StyleProperties = {
     borderStyle: "solid" | "dotted" | "dashed";
     borderColor: string;
     borderWidth: number;
+    fontSize: number;
 };
 
 export type Theme = {

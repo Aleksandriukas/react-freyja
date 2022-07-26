@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { createTheme } from "@react-freyja/theme";
 
 export const materialTheme = createTheme({
-    // const
     definitions: {
         palette: {
             primary: "#dad",
@@ -14,32 +14,37 @@ export const materialTheme = createTheme({
         },
     },
     tokens: {
-        // Modifiers must only contain properties that could change (variables)
         modifiers: (definitions) => ({
             primaryColor: {
                 $color: definitions.palette.primary,
             },
             secondaryColor: {
-                $color: definitions.numbers.lg,
+                $color: definitions.palette.secondary,
             },
             fakeScenario: {
                 $fontSize: definitions.numbers.lg,
             },
         }),
-        // Static tokens refet to defintions and can take properties from modifiers
         static: (definitions) => ({
-            buttonText: {
-                color: (variables) => variables.$color,
-            },
+            buttonText: (variables) => ({
+                color: variables.color,
+                borderWidth: definitions.numbers.lg,
+            }),
+            buttonOutlined: (variables) => ({
+                color: variables.color,
+                borderColor: variables.color,
+                fontSize: variables.fontSize,
+                borderWidth: definitions.numbers.md,
+            }),
         }),
     },
     components: (tokens) => ({
         Button: {
-            tokens: [tokens.outlinedButton],
-            props: (modifiers) => ({
+            tokens: [tokens.buttonText],
+            propsModifiers: (modifiers) => ({
                 variant: {
-                    text: tokens.textHello,
-                    outlined: tokens.outlinedHello,
+                    text: tokens.buttonText,
+                    outlined: tokens.buttonOutlined,
                 },
                 color: {
                     primary: modifiers.primaryColor,
@@ -49,29 +54,3 @@ export const materialTheme = createTheme({
         },
     }),
 });
-
-const useComponentStyles = (component: 'Button', props) => {
-    const { getPlatformSpecificStyles, theme, getAllTokensFromComponent } = useContext()
-
-    const tokens = getAllTokensFromComponent(theme.components[component], props);
-
-    /**
-     * Some tokens refer only to modifiers ($propName) and some refer to static tokens
-     * 
-     */
-
-    const defaultStyles = getPlatformSpecificStyles(tokens);
-
-    return {
-        ...defaultStyles,
-        ...props.styles
-    }
-}
-
-const Button = () => {
-    const styles = useComponentStyles('Button');
-
-    return (
-        // ...
-    )
-}
