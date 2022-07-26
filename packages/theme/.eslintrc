@@ -1,13 +1,4 @@
 {
     "extends": ["@react-freyja/eslint-config"],
-    "rules": {
-        "unicorn/prevent-abbreviations": [
-            "error",
-            {
-                "replacements": {
-                    "props": false
-                }
-            }
-        ]
-    }
+    "root": false
 }
