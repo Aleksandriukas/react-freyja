@@ -17,5 +17,5 @@ export const createTheme = <
 >(
     source: ThemeSource<TDefinitions, TModifiersGenerator, TTokens, TComponents>
 ): Theme => {
-    return {} as Theme;
+    return source as unknown as Theme;
 };

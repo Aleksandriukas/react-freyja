@@ -2,14 +2,12 @@ import { createSafeContext, useSafeContext } from "@sirse-dev/safe-context";
 import React, { PropsWithChildren } from "react";
 import { Theme } from "./types/Theme";
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 const ThemeContext = createSafeContext<Theme>();
 
 export type ThemeContextProviderProps = PropsWithChildren<{
     theme: Theme;
 }>;
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export const ThemeContextProvider = ({
     theme,
     children,
