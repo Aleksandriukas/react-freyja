@@ -27,8 +27,8 @@ export type ThemeSource<
 > = {
     definitions: TDefinitions;
     tokens: {
-        modifiers: TModifiersGenerator;
-        static: (definitions: TDefinitions) => TTokens;
+        modifierTokens: TModifiersGenerator;
+        staticTokens: (definitions: TDefinitions) => TTokens;
     };
     components: (tokens: ConvertTokensType<TTokens>) => TComponents;
 };

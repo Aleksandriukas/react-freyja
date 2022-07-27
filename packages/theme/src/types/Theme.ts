@@ -7,6 +7,6 @@ export type StyleProperties = {
     fontSize: number;
 };
 
-export type Theme = {
-    components: any;
+export type Theme<TComponents> = {
+    components: TComponents;
 };
