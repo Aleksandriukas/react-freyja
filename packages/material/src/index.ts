@@ -14,7 +14,7 @@ export const materialTheme = createTheme({
         },
     },
     tokens: {
-        modifiers: (definitions) => ({
+        modifierTokens: (definitions) => ({
             primaryColor: {
                 $color: definitions.palette.primary,
             },
@@ -25,7 +25,7 @@ export const materialTheme = createTheme({
                 $fontSize: definitions.numbers.lg,
             },
         }),
-        static: (definitions) => ({
+        staticTokens: (definitions) => ({
             buttonText: (variables) => ({
                 color: variables.color,
                 borderWidth: definitions.numbers.lg,

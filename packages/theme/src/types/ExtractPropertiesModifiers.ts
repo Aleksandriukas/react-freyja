@@ -2,9 +2,9 @@
 type AnyFunction = (...arguments_: any[]) => any;
 
 export type ExtractPropertiesModifiers<TComponents> = {
-    [TComponentKey in keyof TComponents]: {
-        [TKey in keyof TComponents[TComponentKey]]: TComponents[TComponentKey][TKey] extends AnyFunction
-            ? ReturnType<TComponents[TComponentKey][TKey]>
-            : TComponents[TComponentKey][TKey];
+    [TComponentName in keyof TComponents]: {
+        [TKey in keyof TComponents[TComponentName]]: TComponents[TComponentName][TKey] extends AnyFunction
+            ? ReturnType<TComponents[TComponentName][TKey]>
+            : TComponents[TComponentName][TKey];
     };
 };
