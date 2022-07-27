@@ -1,3 +1,4 @@
+import { ExtractPropertiesModifiers } from "./types/ExtractPropertiesModifiers";
 import { Theme } from "./types/Theme";
 import {
     FreyjaComponent,
@@ -16,6 +17,7 @@ export const createTheme = <
     >
 >(
     source: ThemeSource<TDefinitions, TModifiersGenerator, TTokens, TComponents>
-): Theme => {
-    return source as unknown as Theme;
+): Theme<ExtractPropertiesModifiers<TComponents>> => {
+    // TODO
+    return source as unknown as Theme<ExtractPropertiesModifiers<TComponents>>;
 };
