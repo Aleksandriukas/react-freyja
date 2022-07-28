@@ -38,17 +38,17 @@ export const materialTheme = createTheme({
             }),
         }),
     },
-    components: (tokens) => ({
+    components: (staticTokens) => ({
         Button: {
-            tokens: [tokens.buttonText],
-            propsModifiers: (modifiers) => ({
+            tokens: [staticTokens.buttonText],
+            propsModifiers: (modifierTokens) => ({
                 variant: {
-                    text: tokens.buttonText,
-                    outlined: tokens.buttonOutlined,
+                    text: staticTokens.buttonText,
+                    outlined: staticTokens.buttonOutlined,
                 },
                 color: {
-                    primary: modifiers.primaryColor,
-                    secondary: modifiers.secondaryColor,
+                    primary: modifierTokens.primaryColor,
+                    secondary: modifierTokens.secondaryColor,
                 },
             }),
         },

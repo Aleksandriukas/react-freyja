@@ -1,25 +1,34 @@
-import { ExtractVariables } from "./ExtractVariables";
+import { ExtractTokenReturnTypes } from "./ExtractReturnTypes";
+import { ConvertAllVariableNames, ExtractVariables } from "./ExtractVariables";
 import { StyleProperties } from "./Theme";
 
-export type Token<TModifiers> = (
-    variables: ExtractVariables<TModifiers>
+export type Token<TVariables> = (
+    variables: TVariables
 ) => Partial<StyleProperties>;
+
 export type Modifiers = Record<string, Record<`$${string}`, unknown>>;
 
-export type FreyjaComponent<TModifiers> = {
-    tokens: symbol[];
+export type FreyjaComponent<TModifiers extends Modifiers> = {
+    tokens: Partial<StyleProperties>[];
     // TODO rename it
     propsModifiers: (
-        modifierTokens: Record<keyof TModifiers, symbol>
-    ) => Record<string, Record<string, symbol>>;
+        modifierTokens: ConvertAllVariableNames<TModifiers>
+    ) => Record<
+        string,
+        Record<
+            string,
+            Partial<StyleProperties> | Partial<ExtractVariables<TModifiers>>
+        >
+    >;
 };
-
-export type ConvertTokensType<TTokens> = Record<keyof TTokens, symbol>;
 
 export type ThemeSource<
     TDefinitions extends Record<string, unknown>,
     TModifiersGenerator extends (definitions: TDefinitions) => Modifiers,
-    TTokens extends Record<string, Token<ReturnType<TModifiersGenerator>>>,
+    TTokens extends Record<
+        string,
+        Token<ExtractVariables<ReturnType<TModifiersGenerator>>>
+    >,
     TComponents extends Record<
         string,
         FreyjaComponent<ReturnType<TModifiersGenerator>>
@@ -30,5 +39,5 @@ export type ThemeSource<
         modifierTokens: TModifiersGenerator;
         staticTokens: (definitions: TDefinitions) => TTokens;
     };
-    components: (tokens: ConvertTokensType<TTokens>) => TComponents;
+    components: (tokens: ExtractTokenReturnTypes<TTokens>) => TComponents;
 };
