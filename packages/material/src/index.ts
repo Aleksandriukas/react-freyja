@@ -26,6 +26,8 @@ export const materialTheme = createTheme({
             },
         }),
         staticTokens: (definitions) => ({
+            // TODO These tokens will be executed in runtime - performance issue.
+            // Possible solution: mutate properties in object, remaining reference to that object in token.
             buttonText: (variables) => ({
                 color: variables.color,
                 borderWidth: definitions.numbers.lg,
