@@ -22,15 +22,16 @@ export type Components<
     TModifiersGenerator extends ModifiersGenerator<TDefinitions>
 > = Record<string, FreyjaComponent<ReturnType<TModifiersGenerator>>>;
 
+export type FreyjaComponentModifier<TModifiers> =
+    | Token
+    | Partial<ExtractVariables<TModifiers>>;
+
 export type FreyjaComponent<TModifiers extends Modifiers> = {
     tokens: Token[];
     // TODO rename it **sync in ./Theme.ts**
     propsModifiers: (
         modifierTokens: ConvertAllVariableNames<TModifiers>
-    ) => Record<
-        string,
-        Record<string, Token | Partial<ExtractVariables<TModifiers>>>
-    >;
+    ) => Record<string, Record<string, FreyjaComponentModifier<TModifiers>>>;
 };
 
 export type ThemeSource<

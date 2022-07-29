@@ -40,5 +40,7 @@ export type ConvertAllVariableNames<TModifiers extends Modifiers> = {
         >]: TPropertyKey extends string
             ? TModifiers[TTokenKey][`$${TPropertyKey}`]
             : never;
+    } & {
+        _type: "modifier";
     };
 };
