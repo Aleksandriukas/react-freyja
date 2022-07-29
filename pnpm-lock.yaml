@@ -188,14 +188,15 @@ importers:
       '@react-freyja/eslint-config': workspace:*
       '@react-freyja/theme': workspace:*
       '@types/jest': ^26.0.23
+      '@types/react-native': ^0.69.1
       aqu: ^0.3.2
       typescript: ^4.7.4
-    dependencies:
-      '@react-freyja/theme': link:../theme
     devDependencies:
       '@babel/core': 7.18.9
       '@react-freyja/eslint-config': link:../../tools/eslint-config
+      '@react-freyja/theme': link:../theme
       '@types/jest': 26.0.24
+      '@types/react-native': 0.69.3
       aqu: 0.3.2_@babel+core@7.18.9
       typescript: 4.7.4
 
