@@ -9,7 +9,7 @@ import {
 export const createTheme = <
     TDefinitions extends Record<string, unknown>,
     TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
-    TTokens extends Tokens<TDefinitions, TModifiersGenerator>,
+    TTokens extends Tokens<ReturnType<TModifiersGenerator>>,
     TComponents extends Components<TDefinitions, TModifiersGenerator>
 >(
     themeSource: ThemeSource<

@@ -10,12 +10,9 @@ export type ModifiersGenerator<TDefinitions> = (
     definitions: TDefinitions
 ) => Modifiers;
 
-export type Tokens<
-    TDefinitions,
-    TModifiersGenerator extends ModifiersGenerator<TDefinitions>
-> = Record<
+export type Tokens<TModifiers> = Record<
     string,
-    TokenGenerator<ExtractVariables<ReturnType<TModifiersGenerator>>>
+    TokenGenerator<ExtractVariables<TModifiers>> | Token
 >;
 export type Components<
     TDefinitions,
@@ -29,21 +26,25 @@ export type FreyjaComponentModifier<TModifiers> =
 export type FreyjaComponent<TModifiers extends Modifiers> = {
     tokens: Token[];
     // TODO rename it **sync in ./Theme.ts**
-    propsModifiers: (
-        modifierTokens: ConvertAllVariableNames<TModifiers>
-    ) => Record<string, Record<string, FreyjaComponentModifier<TModifiers>>>;
+    propsModifiers: Record<
+        string,
+        Record<string, FreyjaComponentModifier<TModifiers>>
+    >;
 };
 
 export type ThemeSource<
     TDefinitions extends Record<string, unknown>,
     TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
-    TTokens extends Tokens<TDefinitions, TModifiersGenerator>,
+    TTokens extends Tokens<ReturnType<TModifiersGenerator>>,
     TComponents extends Components<TDefinitions, TModifiersGenerator>
 > = {
     definitions: TDefinitions;
     tokens: {
-        modifierTokens: TModifiersGenerator;
+        modifiers: TModifiersGenerator;
         staticTokens: (definitions: TDefinitions) => TTokens;
     };
-    components: (tokens: ExtractTokenReturnTypes<TTokens>) => TComponents;
+    components: (
+        tokens: ExtractTokenReturnTypes<TTokens>,
+        modifiers: ConvertAllVariableNames<ReturnType<TModifiersGenerator>>
+    ) => TComponents;
 };

@@ -14,7 +14,7 @@ export const materialTheme = createTheme({
         },
     },
     tokens: {
-        modifierTokens: (definitions) => ({
+        modifiers: (definitions) => ({
             primaryColor: {
                 $color: definitions.palette.primary,
             },
@@ -26,8 +26,6 @@ export const materialTheme = createTheme({
             },
         }),
         staticTokens: (definitions) => ({
-            // TODO These tokens will be executed in runtime - performance issue.
-            // Possible solution: mutate properties in object, remaining reference to that object in token.
             buttonText: (variables) => ({
                 color: variables.color,
                 borderWidth: definitions.numbers.lg,
@@ -38,21 +36,25 @@ export const materialTheme = createTheme({
                 fontSize: variables.fontSize,
                 borderWidth: definitions.numbers.md,
             }),
+            buttonStatic: {
+                color: definitions.palette.primary,
+                fontSize: definitions.numbers.lg,
+            },
         }),
     },
-    components: (tokens) => ({
+    components: (staticTokens, modifiers) => ({
         Button: {
-            tokens: [tokens.buttonText],
-            propsModifiers: (modifiers) => ({
+            tokens: [staticTokens.buttonText],
+            propsModifiers: {
                 variant: {
-                    text: tokens.buttonText,
-                    outlined: tokens.buttonOutlined,
+                    text: staticTokens.buttonText,
+                    outlined: staticTokens.buttonOutlined,
                 },
                 color: {
                     primary: modifiers.primaryColor,
                     secondary: modifiers.secondaryColor,
                 },
-            }),
+            },
         },
     }),
 });
