@@ -25,8 +25,7 @@ export type FreyjaComponentModifier<TModifiers> =
 
 export type FreyjaComponent<TModifiers extends Modifiers> = {
     tokens: Token[];
-    // TODO rename it **sync in ./Theme.ts**
-    propsModifiers: Record<
+    modifiersMap: Record<
         string,
         Record<string, FreyjaComponentModifier<TModifiers>>
     >;
@@ -41,7 +40,7 @@ export type ThemeSource<
     definitions: TDefinitions;
     tokens: {
         modifiers: TModifiersGenerator;
-        staticTokens: (definitions: TDefinitions) => TTokens;
+        constant: (definitions: TDefinitions) => TTokens;
     };
     components: (
         tokens: ExtractTokenReturnTypes<TTokens>,

@@ -1,4 +1,4 @@
-import { Theme } from "./types/Theme";
+import { ComputedComponent, Theme } from "./types/Theme";
 import {
     Components,
     ModifiersGenerator,
@@ -18,6 +18,6 @@ export const createTheme = <
         TTokens,
         TComponents
     >
-): Theme<unknown> => {
-    return themeSource as Theme<unknown>;
+): TComponents => {
+    return themeSource as unknown as TComponents;
 };

@@ -2,15 +2,16 @@ import { ViewStyle, ImageStyle, TextStyle } from "react-native";
 
 export type RNStyles = ViewStyle | ImageStyle | TextStyle;
 
-export type StyleProperties = {
-    backgroundColor: string;
-    color: string;
-    borderStyle: "solid" | "dotted" | "dashed";
-    borderColor: string;
-    borderWidth: number;
-    fontSize: number;
+export type ComputedComponent<TComputedToken> = {
+    staticStyles: TComputedToken;
+    modifiersMap: Record<string, Record<string, TComputedToken>>;
 };
 
-export type Theme<T> = {
-    components: T;
+export type ThemeComponents<TComputedToken> = Record<
+    string,
+    ComputedComponent<TComputedToken>
+>;
+
+export type Theme<TComponents extends ThemeComponents> = {
+    components: TComponents;
 };

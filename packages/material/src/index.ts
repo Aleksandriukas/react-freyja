@@ -25,7 +25,7 @@ export const materialTheme = createTheme({
                 $fontSize: definitions.numbers.lg,
             },
         }),
-        staticTokens: (definitions) => ({
+        constant: (definitions) => ({
             buttonText: (variables) => ({
                 color: variables.color,
                 borderWidth: definitions.numbers.lg,
@@ -45,7 +45,7 @@ export const materialTheme = createTheme({
     components: (staticTokens, modifiers) => ({
         Button: {
             tokens: [staticTokens.buttonText],
-            propsModifiers: {
+            modifiersMap: {
                 variant: {
                     text: staticTokens.buttonText,
                     outlined: staticTokens.buttonOutlined,
