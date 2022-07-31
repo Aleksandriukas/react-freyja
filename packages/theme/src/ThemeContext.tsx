@@ -11,7 +11,7 @@ const ThemeContext = createSafeContext<UnknownComponents>();
 export type ThemeContextProviderProps<
     TDefinitions extends Record<string, unknown>,
     TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
-    TComponents extends Components<TDefinitions, TModifiersGenerator>
+    TComponents extends Components<ReturnType<TModifiersGenerator>>
 > = PropsWithChildren<{
     theme: TComponents;
 }>;
@@ -19,7 +19,7 @@ export type ThemeContextProviderProps<
 export const ThemeContextProvider = <
     TDefinitions extends Record<string, unknown>,
     TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
-    TComponents extends Components<TDefinitions, TModifiersGenerator>
+    TComponents extends Components<ReturnType<TModifiersGenerator>>
 >({
     theme,
     children,
@@ -38,7 +38,7 @@ export const ThemeContextProvider = <
 export const useThemeContext = <
     TDefinitions extends Record<string, unknown>,
     TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
-    TComponents extends Components<TDefinitions, TModifiersGenerator>
+    TComponents extends Components<ReturnType<TModifiersGenerator>>
 >(): TComponents => {
     return useSafeContext(ThemeContext) as TComponents;
 };

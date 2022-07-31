@@ -1,4 +1,4 @@
-import { StyleProperties } from "./Theme";
+import { StyleProperties } from "./StyleProperties";
 import { Modifiers } from "./ThemeSource";
 
 type ExtractPropertyName<K extends string | number | symbol> =

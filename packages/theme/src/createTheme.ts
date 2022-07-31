@@ -1,3 +1,5 @@
+import { convertVariableNames } from "./convertVariableNames";
+import { ConvertAllVariableNames } from "./types/ExtractVariables";
 import {
     Components,
     ModifiersGenerator,
@@ -9,7 +11,7 @@ export const createTheme = <
     TDefinitions extends Record<string, unknown>,
     TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
     TTokens extends Tokens<ReturnType<TModifiersGenerator>>,
-    TComponents extends Components<TDefinitions, TModifiersGenerator>
+    TComponents extends Components<ReturnType<TModifiersGenerator>>
 >(
     themeSource: ThemeSource<
         TDefinitions,
@@ -18,5 +20,17 @@ export const createTheme = <
         TComponents
     >
 ): TComponents => {
-    return themeSource as unknown as TComponents;
+    const { definitions, components, tokens } = themeSource;
+
+    const modifiers = tokens.modifiers(definitions);
+    const constant = tokens.constant(definitions);
+
+    const computedComponents = components(
+        constant,
+        convertVariableNames(modifiers) as ConvertAllVariableNames<
+            ReturnType<TModifiersGenerator>
+        >
+    );
+
+    return computedComponents;
 };
