@@ -1,34 +1,52 @@
-import { ExtractVariables } from "./ExtractVariables";
-import { StyleProperties } from "./Theme";
+import { ConvertAllVariableNames, ExtractVariables } from "./ExtractVariables";
+import { StyleProperties } from "./StyleProperties";
 
-export type Token<TModifiers> = (
-    variables: ExtractVariables<TModifiers>
-) => Partial<StyleProperties>;
+export type Token = Partial<StyleProperties>;
 export type Modifiers = Record<string, Record<`$${string}`, unknown>>;
 
-export type FreyjaComponent<TModifiers> = {
-    tokens: symbol[];
-    // TODO rename it
-    propsModifiers: (
-        modifierTokens: Record<keyof TModifiers, symbol>
-    ) => Record<string, Record<string, symbol>>;
-};
+export type TokenGenerator<TModifiers> = (
+    variables: ExtractVariables<TModifiers>
+) => Token;
+export type ModifiersGenerator<TDefinitions> = (
+    definitions: TDefinitions
+) => Modifiers;
 
-export type ConvertTokensType<TTokens> = Record<keyof TTokens, symbol>;
+export type Tokens<TModifiers> = Record<
+    string,
+    TokenGenerator<TModifiers> | Token
+>;
+export type Components<TModifiers> = Record<
+    string,
+    FreyjaComponent<TModifiers>
+>;
+
+export type UnknownComponents = Components<Modifiers>;
+
+export type FreyjaComponentModifier<TModifiers> =
+    | TokenGenerator<TModifiers>
+    | Partial<ExtractVariables<TModifiers>>;
+
+export type FreyjaComponent<TModifiers> = {
+    tokens: TokenGenerator<TModifiers>[];
+    modifiersMap: Record<
+        string,
+        Record<string, FreyjaComponentModifier<TModifiers>>
+    >;
+};
 
 export type ThemeSource<
     TDefinitions extends Record<string, unknown>,
-    TModifiersGenerator extends (definitions: TDefinitions) => Modifiers,
-    TTokens extends Record<string, Token<ReturnType<TModifiersGenerator>>>,
-    TComponents extends Record<
-        string,
-        FreyjaComponent<ReturnType<TModifiersGenerator>>
-    >
+    TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
+    TTokens extends Tokens<ReturnType<TModifiersGenerator>>,
+    TComponents extends Components<ReturnType<TModifiersGenerator>>
 > = {
     definitions: TDefinitions;
     tokens: {
-        modifierTokens: TModifiersGenerator;
-        staticTokens: (definitions: TDefinitions) => TTokens;
+        modifiers: TModifiersGenerator;
+        constant: (definitions: TDefinitions) => TTokens;
     };
-    components: (tokens: ConvertTokensType<TTokens>) => TComponents;
+    components: (
+        constantTokens: TTokens,
+        modifierTokens: ConvertAllVariableNames<ReturnType<TModifiersGenerator>>
+    ) => TComponents;
 };

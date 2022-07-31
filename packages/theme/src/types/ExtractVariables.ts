@@ -1,29 +1,44 @@
-import { StyleProperties } from "./Theme";
+import { StyleProperties } from "./StyleProperties";
+import { Modifiers } from "./ThemeSource";
 
 type ExtractPropertyName<K extends string | number | symbol> =
     K extends `$${infer T}` ? T : K;
 
-type ExtractAllVariableNames<TTokens> = {
-    [TTokenKey in keyof TTokens]: {
-        [TPropertyKey in keyof TTokens[TTokenKey]]: TPropertyKey extends keyof StyleProperties
-            ? never
-            : ExtractPropertyName<TPropertyKey>;
-    }[keyof TTokens[TTokenKey]];
-}[keyof TTokens];
+type ExtractVariableNamesFromToken<TToken> = {
+    [TPropertyKey in keyof TToken]: TPropertyKey extends keyof StyleProperties
+        ? never
+        : ExtractPropertyName<TPropertyKey>;
+}[keyof TToken];
 
-type ExtractAllVariableTypes<TTokens, TKey> = TKey extends string
+type ExtractAllVariableNames<TModifiers> = {
+    [TTokenKey in keyof TModifiers]: ExtractVariableNamesFromToken<
+        TModifiers[TTokenKey]
+    >;
+}[keyof TModifiers];
+
+type ExtractAllVariableTypes<TModifiers, TKey> = TKey extends string
     ? {
-          [TTokenKey in keyof TTokens]: {
-              [TPropertyKey in keyof TTokens[TTokenKey]]: TPropertyKey extends `$${TKey}`
-                  ? TTokens[TTokenKey][TPropertyKey]
+          [TTokenKey in keyof TModifiers]: {
+              [TPropertyKey in keyof TModifiers[TTokenKey]]: TPropertyKey extends `$${TKey}`
+                  ? TModifiers[TTokenKey][TPropertyKey]
                   : never;
-          }[keyof TTokens[TTokenKey]];
-      }[keyof TTokens]
+          }[keyof TModifiers[TTokenKey]];
+      }[keyof TModifiers]
     : never;
 
-export type ExtractVariables<TTokens> = {
-    [TKey in ExtractAllVariableNames<TTokens>]: ExtractAllVariableTypes<
-        TTokens,
+export type ExtractVariables<TModifiers> = {
+    [TKey in ExtractAllVariableNames<TModifiers>]: ExtractAllVariableTypes<
+        TModifiers,
         TKey
     >;
+};
+
+export type ConvertAllVariableNames<TModifiers extends Modifiers> = {
+    [TTokenKey in keyof TModifiers]: {
+        [TPropertyKey in ExtractVariableNamesFromToken<
+            TModifiers[TTokenKey]
+        >]: TPropertyKey extends string
+            ? TModifiers[TTokenKey][`$${TPropertyKey}`]
+            : never;
+    };
 };

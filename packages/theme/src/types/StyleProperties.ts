@@ -6,7 +6,3 @@ export type StyleProperties = {
     borderWidth: number;
     fontSize: number;
 };
-
-export type Theme<TComponents> = {
-    components: TComponents;
-};

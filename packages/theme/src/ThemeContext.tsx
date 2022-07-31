@@ -1,24 +1,44 @@
 import { createSafeContext, useSafeContext } from "@sirse-dev/safe-context";
 import React, { PropsWithChildren } from "react";
-import { Theme } from "./types/Theme";
+import {
+    Components,
+    ModifiersGenerator,
+    UnknownComponents,
+} from "./types/ThemeSource";
 
-const ThemeContext = createSafeContext<Theme<unknown>>();
+const ThemeContext = createSafeContext<UnknownComponents>();
 
-export type ThemeContextProviderProps<TComponents> = PropsWithChildren<{
-    theme: Theme<TComponents>;
+export type ThemeContextProviderProps<
+    TDefinitions extends Record<string, unknown>,
+    TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
+    TComponents extends Components<ReturnType<TModifiersGenerator>>
+> = PropsWithChildren<{
+    theme: TComponents;
 }>;
 
-export const ThemeContextProvider = <TComponents,>({
+export const ThemeContextProvider = <
+    TDefinitions extends Record<string, unknown>,
+    TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
+    TComponents extends Components<ReturnType<TModifiersGenerator>>
+>({
     theme,
     children,
-}: ThemeContextProviderProps<TComponents>) => {
+}: ThemeContextProviderProps<
+    TDefinitions,
+    TModifiersGenerator,
+    TComponents
+>) => {
     return (
-        <ThemeContext.Provider value={theme as Theme<unknown>}>
+        <ThemeContext.Provider value={theme as UnknownComponents}>
             {children}
         </ThemeContext.Provider>
     );
 };
 
-export const useThemeContext = <TComponents,>(): Theme<TComponents> => {
-    return useSafeContext(ThemeContext) as Theme<TComponents>;
+export const useThemeContext = <
+    TDefinitions extends Record<string, unknown>,
+    TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
+    TComponents extends Components<ReturnType<TModifiersGenerator>>
+>(): TComponents => {
+    return useSafeContext(ThemeContext) as TComponents;
 };

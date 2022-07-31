@@ -1,3 +1,1 @@
-export const main = () => {
-    // TODO
-};
+export * from "./tokenToStyles";
