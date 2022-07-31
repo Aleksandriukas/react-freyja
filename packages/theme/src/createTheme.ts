@@ -1,4 +1,3 @@
-import { ComputedComponent, Theme } from "./types/Theme";
 import {
     Components,
     ModifiersGenerator,

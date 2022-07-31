@@ -1,6 +1,6 @@
 import { ExtractTokenReturnTypes } from "./ExtractReturnTypes";
 import { ConvertAllVariableNames, ExtractVariables } from "./ExtractVariables";
-import { StyleProperties } from "./Theme";
+import { StyleProperties } from "./StyleProperties";
 
 export type Token = Partial<StyleProperties>;
 export type Modifiers = Record<string, Record<`$${string}`, unknown>>;
@@ -18,6 +18,8 @@ export type Components<
     TDefinitions,
     TModifiersGenerator extends ModifiersGenerator<TDefinitions>
 > = Record<string, FreyjaComponent<ReturnType<TModifiersGenerator>>>;
+
+export type UnknownComponents = Components<object, ModifiersGenerator<object>>;
 
 export type FreyjaComponentModifier<TModifiers> =
     | Token
