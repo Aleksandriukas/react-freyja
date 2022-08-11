@@ -20,11 +20,10 @@ export type Components<TModifiers> = Record<
     FreyjaComponent<TModifiers>
 >;
 
-export type UnknownComponents = Components<Modifiers>;
-
 export type FreyjaComponentModifier<TModifiers> =
     | TokenGenerator<TModifiers>
-    | Partial<ExtractVariables<TModifiers>>;
+    | Token
+    | ExtractVariables<TModifiers>;
 
 export type FreyjaComponent<TModifiers> = {
     tokens: TokenGenerator<TModifiers>[];
@@ -50,3 +49,10 @@ export type ThemeSource<
         modifierTokens: ConvertAllVariableNames<ReturnType<TModifiersGenerator>>
     ) => TComponents;
 };
+
+export type UnknownThemeSource = ThemeSource<
+    Record<string, unknown>,
+    ModifiersGenerator<Record<string, unknown>>,
+    Tokens<ReturnType<ModifiersGenerator<Record<string, unknown>>>>,
+    Components<ReturnType<ModifiersGenerator<Record<string, unknown>>>>
+>;

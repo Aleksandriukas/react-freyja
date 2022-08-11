@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.18.9",
+        "@react-freyja/style-engine": "workspace:*",
         "@sirse-dev/safe-context": "^0.3.0",
         "@types/jest": "^26.0.23"
     }

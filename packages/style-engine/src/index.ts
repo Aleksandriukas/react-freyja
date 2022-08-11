@@ -1,1 +1,1 @@
-export * from "./tokenToStyles";
+export { getNativeTheme } from "./getNativeTheme";
