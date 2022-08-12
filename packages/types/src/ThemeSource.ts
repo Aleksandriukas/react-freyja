@@ -2,23 +2,18 @@ import { ConvertAllVariableNames, ExtractVariables } from "./ExtractVariables";
 import { StyleProperties } from "./StyleProperties";
 
 export type Token = Partial<StyleProperties>;
-export type Modifiers = Record<string, Record<`$${string}`, unknown>>;
-
 export type TokenGenerator<TModifiers> = (
     variables: ExtractVariables<TModifiers>
 ) => Token;
-export type ModifiersGenerator<TDefinitions> = (
-    definitions: TDefinitions
-) => Modifiers;
-
 export type Tokens<TModifiers> = Record<
     string,
     TokenGenerator<TModifiers> | Token
 >;
-export type Components<TModifiers> = Record<
-    string,
-    FreyjaComponent<TModifiers>
->;
+
+export type Modifiers = Record<string, Record<`$${string}`, unknown>>;
+export type ModifiersGenerator<TDefinitions> = (
+    definitions: TDefinitions
+) => Modifiers;
 
 export type FreyjaComponentModifier<TModifiers> =
     | TokenGenerator<TModifiers>
@@ -32,6 +27,10 @@ export type FreyjaComponent<TModifiers> = {
         Record<string, FreyjaComponentModifier<TModifiers>>
     >;
 };
+export type Components<TModifiers> = Record<
+    string,
+    FreyjaComponent<TModifiers>
+>;
 
 export type ThemeSource<
     TDefinitions extends Record<string, unknown>,

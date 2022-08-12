@@ -1,5 +1,4 @@
-import { ConvertAllVariableNames } from "./types/ExtractVariables";
-import { Modifiers } from "./types/ThemeSource";
+import type { Modifiers, ConvertAllVariableNames } from "@react-freyja/types";
 
 export const convertVariableNames = (
     modifiers: Modifiers

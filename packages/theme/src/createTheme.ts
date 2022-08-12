@@ -1,12 +1,12 @@
 import { convertVariableNames } from "./convertVariableNames";
-import { ConvertAllVariableNames } from "./types/ExtractVariables";
-import { Theme } from "./types/Theme";
-import {
-    Components,
+import type {
     ModifiersGenerator,
-    ThemeSource,
     Tokens,
-} from "./types/ThemeSource";
+    Components,
+    ThemeSource,
+    Theme,
+    ConvertAllVariableNames,
+} from "@react-freyja/types";
 
 export const createTheme = <
     TDefinitions extends Record<string, unknown>,

@@ -28,7 +28,9 @@ export const materialTheme = createTheme({
         constant: (definitions) => ({
             buttonText: (variables) => ({
                 color: variables.color,
-                borderWidth: definitions.numbers.lg,
+                borderWidth: definitions.numbers.xs,
+                borderStyle: "dashed",
+                fontSize: 36,
             }),
             buttonOutlined: (variables) => ({
                 color: variables.color,

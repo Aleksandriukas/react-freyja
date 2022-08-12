@@ -1,4 +1,6 @@
+export * from "./ThemeContextProvider";
 export * from "./ThemeContext";
 export * from "./createTheme";
 
-export * from "./types/ThemeSource";
+// Hooks
+export * from "./hooks/useThemeContext";

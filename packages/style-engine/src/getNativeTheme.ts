@@ -7,7 +7,7 @@ import type {
     Modifiers,
     FreyjaComponentModifier,
     Theme,
-} from "@react-freyja/theme";
+} from "@react-freyja/types";
 
 const extractVariables = <TModifiers extends Modifiers>(
     modifierTokens: ConvertAllVariableNames<TModifiers>
@@ -89,12 +89,15 @@ export const getNativeTheme = <
     TModifiersGenerator,
     TComponents
 >): UknownThemeContextType => {
-    const result: UknownThemeContextType = {};
     const variables = extractVariables(modifierTokens);
+    const result: UknownThemeContextType = {
+        components: {},
+        variables: {},
+    };
     const mockVariables = getMockVariables(variables);
 
     for (const [name, component] of Object.entries(components)) {
-        result[name] = {
+        result.components[name] = {
             tokens: component.tokens.map((token) => {
                 if (typeof token !== "function") {
                     return token;
