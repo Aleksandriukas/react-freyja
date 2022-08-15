@@ -8,7 +8,6 @@ export type ThemeComponents<TCompiledToken> = Record<
     ThemeComponent<TCompiledToken>
 >;
 
-// TODO pass variables here
 export type ThemeContextType<
     TCompiledToken,
     TComponents extends ThemeComponents<TCompiledToken>

@@ -6,6 +6,7 @@ import type {
     Modifiers,
     ModifiersGenerator,
     Theme,
+    UknownThemeContextType,
 } from "@react-freyja/types";
 
 export type ThemeContextProviderProps<
@@ -39,7 +40,9 @@ export const ThemeContextProvider = <
     );
 
     return (
-        <ThemeContext.Provider value={compiledTheme.current}>
+        <ThemeContext.Provider
+            value={compiledTheme.current as unknown as UknownThemeContextType}
+        >
             {children}
         </ThemeContext.Provider>
     );

@@ -90,14 +90,11 @@ export const getNativeTheme = <
     TComponents
 >): UknownThemeContextType => {
     const variables = extractVariables(modifierTokens);
-    const result: UknownThemeContextType = {
-        components: {},
-        variables: {},
-    };
+    const result: UknownThemeContextType = {};
     const mockVariables = getMockVariables(variables);
 
     for (const [name, component] of Object.entries(components)) {
-        result.components[name] = {
+        result[name] = {
             tokens: component.tokens.map((token) => {
                 if (typeof token !== "function") {
                     return token;

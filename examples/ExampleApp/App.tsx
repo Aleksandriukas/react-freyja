@@ -1,8 +1,10 @@
 import {Button} from '@react-freyja/core';
-import {materialTheme} from '@react-freyja/material';
+import {extendMaterialTheme} from '@react-freyja/material';
 import {ThemeContextProvider} from '@react-freyja/theme';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
+
+const materialTheme = extendMaterialTheme();
 
 const App = () => {
     return (

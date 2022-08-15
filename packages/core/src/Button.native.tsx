@@ -46,7 +46,7 @@ const injectVariables = (
 };
 
 const useButton = (props: ButtonProps) => {
-    const { components, variables } = useThemeContext();
+    const components = useThemeContext();
     const buttonComponent = components.Button;
 
     const rawStyles = collectStyles(
@@ -54,12 +54,11 @@ const useButton = (props: ButtonProps) => {
         props
     );
 
-    console.log(rawStyles, variables);
-
-    const style = injectVariables(rawStyles, variables);
+    // TODO inject variables in styles
+    // Const style = injectVariables(rawStyles, variables);
 
     return {
-        style,
+        style: rawStyles,
     };
 };
 
