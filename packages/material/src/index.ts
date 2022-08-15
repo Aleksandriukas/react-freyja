@@ -20,6 +20,18 @@ type MaterialDefinitions = {
     };
 };
 
+type MaterialModifiers = {
+    primaryColor: {
+        $color: string;
+    };
+    secondaryColor: {
+        $color: string;
+    };
+    fakeToken: {
+        $asdf: number;
+    };
+};
+
 export const extendMaterialTheme = <
     TDefinitions extends Record<string, unknown>,
     TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
@@ -53,21 +65,22 @@ export const extendMaterialTheme = <
                 secondaryColor: {
                     $color: definitions.palette.secondary,
                 },
-                fakeScenario: {
-                    $fontSize: definitions.numbers.lg,
+                fakeToken: {
+                    $asdf: 123,
                 },
             }),
             constant: (definitions) => ({
                 buttonText: (variables) => ({
-                    color: variables.color,
+                    color: variables.$color,
                     borderWidth: definitions.numbers.xs,
                     borderStyle: "dashed",
                     fontSize: 36,
                 }),
                 buttonOutlined: (variables) => ({
-                    color: variables.color,
-                    borderColor: variables.color,
-                    fontSize: variables.fontSize,
+                    color: variables,
+                    // TODO variable type does not infer
+                    borderColor: variables.$color,
+                    fontSize: variables.$color,
                     borderWidth: definitions.numbers.md,
                 }),
                 buttonStatic: {
@@ -93,9 +106,9 @@ export const extendMaterialTheme = <
         }),
     } as ThemeSource<
         MaterialDefinitions,
-        ModifiersGenerator<MaterialDefinitions>,
-        Tokens<ReturnType<ModifiersGenerator<MaterialDefinitions>>>,
-        Components<ReturnType<ModifiersGenerator<MaterialDefinitions>>>
+        (definitions: MaterialDefinitions) => MaterialModifiers,
+        Tokens<MaterialModifiers>,
+        Components<MaterialModifiers>
     >;
 
     const mergedTheme = merge(materialTheme, customTheme);

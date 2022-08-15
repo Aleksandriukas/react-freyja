@@ -1,4 +1,4 @@
-import { ConvertAllVariableNames, ExtractVariables } from "./ExtractVariables";
+import { ExtractVariables } from "./ExtractVariables";
 import { StyleProperties } from "./StyleProperties";
 
 export type Token = Partial<StyleProperties>;
@@ -18,7 +18,7 @@ export type ModifiersGenerator<TDefinitions> = (
 export type FreyjaComponentModifier<TModifiers> =
     | TokenGenerator<TModifiers>
     | Token
-    | ExtractVariables<TModifiers>;
+    | Partial<ExtractVariables<TModifiers>>;
 
 export type FreyjaComponent<TModifiers> = {
     tokens: TokenGenerator<TModifiers>[];
@@ -45,7 +45,7 @@ export type ThemeSource<
     };
     components: (
         constantTokens: TTokens,
-        modifierTokens: ConvertAllVariableNames<ReturnType<TModifiersGenerator>>
+        modifierTokens: ReturnType<TModifiersGenerator>
     ) => TComponents;
 };
 

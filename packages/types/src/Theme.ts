@@ -1,4 +1,3 @@
-import { ConvertAllVariableNames } from "./ExtractVariables";
 import { ModifiersGenerator, Components } from "./ThemeSource";
 
 export type Theme<
@@ -7,5 +6,5 @@ export type Theme<
     TComponents extends Components<ReturnType<TModifiersGenerator>>
 > = {
     components: TComponents;
-    modifierTokens: ConvertAllVariableNames<ReturnType<TModifiersGenerator>>;
+    modifierTokens: ReturnType<TModifiersGenerator>;
 };

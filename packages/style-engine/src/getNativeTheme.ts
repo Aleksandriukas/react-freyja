@@ -3,14 +3,13 @@ import type {
     ModifiersGenerator,
     Components,
     ExtractVariables,
-    ConvertAllVariableNames,
     Modifiers,
     FreyjaComponentModifier,
     Theme,
 } from "@react-freyja/types";
 
 const extractVariables = <TModifiers extends Modifiers>(
-    modifierTokens: ConvertAllVariableNames<TModifiers>
+    modifierTokens: TModifiers
 ): ExtractVariables<TModifiers> => {
     const result: ExtractVariables<TModifiers> =
         {} as ExtractVariables<TModifiers>;

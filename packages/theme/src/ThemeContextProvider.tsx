@@ -3,7 +3,6 @@ import React, { PropsWithChildren, useRef } from "react";
 import { ThemeContext } from "./ThemeContext";
 import type {
     Components,
-    Modifiers,
     ModifiersGenerator,
     Theme,
     UknownThemeContextType,
@@ -30,13 +29,7 @@ export const ThemeContextProvider = <
     TComponents
 >) => {
     const compiledTheme = useRef(
-        getNativeTheme(
-            theme as Theme<
-                Record<string, unknown>,
-                ModifiersGenerator<Record<string, unknown>>,
-                Components<Modifiers>
-            >
-        )
+        getNativeTheme<TDefinitions, TModifiersGenerator, TComponents>(theme)
     );
 
     return (

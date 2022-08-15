@@ -49,6 +49,8 @@ const useButton = (props: ButtonProps) => {
     const components = useThemeContext();
     const buttonComponent = components.Button;
 
+    getVariables(buttonComponent.modifiersMap, props);
+
     const rawStyles = collectStyles(
         buttonComponent as ThemeComponent<object>,
         props
@@ -69,6 +71,8 @@ export type ButtonProps = {
 
 export const Button = (props: ButtonProps) => {
     const { style } = useButton(props);
+
+    console.log(style);
 
     return <Text style={style}>hello</Text>;
 };
