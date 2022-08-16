@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import {
-    Components,
+    FreyjaComponents,
     createTheme,
     ModifiersGenerator,
     ThemeSource,
@@ -36,7 +36,7 @@ export const extendMaterialTheme = <
     TDefinitions extends Record<string, unknown>,
     TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
     TTokens extends Tokens<ReturnType<TModifiersGenerator>>,
-    TComponents extends Components<ReturnType<TModifiersGenerator>>
+    TComponents extends FreyjaComponents<ReturnType<TModifiersGenerator>>
 >(
     customTheme?: ThemeSource<
         TDefinitions,
@@ -71,16 +71,15 @@ export const extendMaterialTheme = <
             }),
             constant: (definitions) => ({
                 buttonText: (variables) => ({
-                    color: variables.$color,
+                    color: variables.color,
                     borderWidth: definitions.numbers.xs,
                     borderStyle: "dashed",
                     fontSize: 36,
                 }),
                 buttonOutlined: (variables) => ({
                     color: variables,
-                    // TODO variable type does not infer
-                    borderColor: variables.$color,
-                    fontSize: variables.$color,
+                    borderColor: variables.color,
+                    fontSize: variables.color,
                     borderWidth: definitions.numbers.md,
                 }),
                 buttonStatic: {
@@ -108,7 +107,7 @@ export const extendMaterialTheme = <
         MaterialDefinitions,
         (definitions: MaterialDefinitions) => MaterialModifiers,
         Tokens<MaterialModifiers>,
-        Components<MaterialModifiers>
+        FreyjaComponents<MaterialModifiers>
     >;
 
     const mergedTheme = merge(materialTheme, customTheme);

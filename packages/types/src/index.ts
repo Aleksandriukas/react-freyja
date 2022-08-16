@@ -1,3 +1,5 @@
 export * from "./ThemeSource";
-export * from "./Theme";
+export * from "./ExecutedTheme";
 export * from "./ThemeContextType";
+
+export * from "./StyleProperties";

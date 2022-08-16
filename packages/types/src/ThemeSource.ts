@@ -10,10 +10,10 @@ export type Tokens<TModifiers> = Record<
     TokenGenerator<TModifiers> | Token
 >;
 
-export type Modifiers = Record<string, Record<`$${string}`, unknown>>;
+export type SourceModifiers = Record<string, Record<`$${string}`, unknown>>;
 export type ModifiersGenerator<TDefinitions> = (
     definitions: TDefinitions
-) => Modifiers;
+) => SourceModifiers;
 
 export type FreyjaComponentModifier<TModifiers> =
     | TokenGenerator<TModifiers>
@@ -21,13 +21,13 @@ export type FreyjaComponentModifier<TModifiers> =
     | Partial<ExtractVariables<TModifiers>>;
 
 export type FreyjaComponent<TModifiers> = {
-    tokens: TokenGenerator<TModifiers>[];
+    tokens: (TokenGenerator<TModifiers> | Token)[];
     modifiersMap: Record<
         string,
         Record<string, FreyjaComponentModifier<TModifiers>>
     >;
 };
-export type Components<TModifiers> = Record<
+export type FreyjaComponents<TModifiers> = Record<
     string,
     FreyjaComponent<TModifiers>
 >;
@@ -36,7 +36,7 @@ export type ThemeSource<
     TDefinitions extends Record<string, unknown>,
     TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
     TTokens extends Tokens<ReturnType<TModifiersGenerator>>,
-    TComponents extends Components<ReturnType<TModifiersGenerator>>
+    TComponents extends FreyjaComponents<ReturnType<TModifiersGenerator>>
 > = {
     definitions: TDefinitions;
     tokens: {
@@ -53,5 +53,5 @@ export type UnknownThemeSource = ThemeSource<
     Record<string, unknown>,
     ModifiersGenerator<Record<string, unknown>>,
     Tokens<ReturnType<ModifiersGenerator<Record<string, unknown>>>>,
-    Components<ReturnType<ModifiersGenerator<Record<string, unknown>>>>
+    FreyjaComponents<ReturnType<ModifiersGenerator<Record<string, unknown>>>>
 >;

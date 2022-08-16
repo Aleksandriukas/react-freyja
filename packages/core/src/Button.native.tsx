@@ -6,6 +6,8 @@ const collectStyles = (
     component: ThemeComponent<object>,
     props: Record<string, unknown>
 ) => {
+    console.log(component.modifiersMap);
+    console.log(props);
     const tokens = [];
 
     for (const key of Object.keys(props)) {
@@ -23,7 +25,7 @@ const collectStyles = (
 
     // eslint-disable-next-line unicorn/no-array-reduce
     return tokens.reduce(
-        (accumulator, currentValue) => ({ ...accumulator, ...currentValue }),
+        (accumulator, token) => ({ ...accumulator, ...token }),
         {}
     );
 };
@@ -49,8 +51,6 @@ const useButton = (props: ButtonProps) => {
     const components = useThemeContext();
     const buttonComponent = components.Button;
 
-    getVariables(buttonComponent.modifiersMap, props);
-
     const rawStyles = collectStyles(
         buttonComponent as ThemeComponent<object>,
         props
@@ -71,8 +71,6 @@ export type ButtonProps = {
 
 export const Button = (props: ButtonProps) => {
     const { style } = useButton(props);
-
-    console.log(style);
 
     return <Text style={style}>hello</Text>;
 };

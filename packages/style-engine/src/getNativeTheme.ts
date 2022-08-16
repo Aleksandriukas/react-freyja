@@ -1,14 +1,17 @@
 import type {
     UknownThemeContextType,
     ModifiersGenerator,
-    Components,
+    ThemeComponents,
     ExtractVariables,
-    Modifiers,
+    SourceModifiers,
     FreyjaComponentModifier,
-    Theme,
+    ExecutedTheme,
+    StyleProperties,
 } from "@react-freyja/types";
 
-const extractVariables = <TModifiers extends Modifiers>(
+type CompiledToken = Partial<StyleProperties> | 
+
+const extractVariables = <TModifiers extends SourceModifiers>(
     modifierTokens: TModifiers
 ): ExtractVariables<TModifiers> => {
     const result: ExtractVariables<TModifiers> =
@@ -23,7 +26,7 @@ const extractVariables = <TModifiers extends Modifiers>(
     return result;
 };
 
-const getMockVariables = <TModifiers extends Modifiers>(
+const getMockVariables = <TModifiers extends SourceModifiers>(
     variables: ExtractVariables<TModifiers>
 ) => {
     const result: Record<string, symbol> = {};
@@ -42,7 +45,7 @@ type ParseModifiersMapType<TModifiersMap> = {
 };
 
 const parseModifiersMap = <
-    TModifiers extends Modifiers,
+    TModifiers extends SourceModifiers,
     TModifiersMap extends Record<
         string,
         Record<string, FreyjaComponentModifier<TModifiers>>
@@ -79,7 +82,7 @@ const parseModifiersMap = <
 export const getNativeTheme = <
     TDefinitions extends Record<string, unknown>,
     TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
-    TComponents extends Components<ReturnType<TModifiersGenerator>>
+    TComponents extends ThemeComponents<ReturnType<TModifiersGenerator>>
 >({
     components,
     modifierTokens,
