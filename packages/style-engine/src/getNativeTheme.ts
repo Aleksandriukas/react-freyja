@@ -1,15 +1,12 @@
 import type {
     UknownThemeContextType,
-    ModifiersGenerator,
-    ThemeComponents,
     ExtractVariables,
     SourceModifiers,
     FreyjaComponentModifier,
     ExecutedTheme,
-    StyleProperties,
+    Modifiers,
+    ExecutedThemeComponents,
 } from "@react-freyja/types";
-
-type CompiledToken = Partial<StyleProperties> | 
 
 const extractVariables = <TModifiers extends SourceModifiers>(
     modifierTokens: TModifiers
@@ -80,48 +77,43 @@ const parseModifiersMap = <
 };
 
 export const getNativeTheme = <
-    TDefinitions extends Record<string, unknown>,
-    TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
-    TComponents extends ThemeComponents<ReturnType<TModifiersGenerator>>
+    TModifiers extends Modifiers,
+    TComponents extends ExecutedThemeComponents<TModifiers>
 >({
     components,
-    modifierTokens,
-}: Theme<
-    TDefinitions,
-    TModifiersGenerator,
-    TComponents
->): UknownThemeContextType => {
-    const variables = extractVariables(modifierTokens);
+    modifiers,
+}: ExecutedTheme<TModifiers, TComponents>): UknownThemeContextType => {
+    const variables = extractVariables(modifiers);
     const result: UknownThemeContextType = {};
     const mockVariables = getMockVariables(variables);
 
-    for (const [name, component] of Object.entries(components)) {
-        result[name] = {
-            tokens: component.tokens.map((token) => {
-                if (typeof token !== "function") {
-                    return token;
-                }
+    // For (const [name, component] of Object.entries(components)) {
+    //     Result[name] = {
+    //         Tokens: component.tokens.map((token) => {
+    //             If (typeof token !== "function") {
+    //                 Return token;
+    //             }
 
-                const computedToken = token(
-                    mockVariables as ExtractVariables<
-                        ReturnType<TModifiersGenerator>
-                    >
-                );
+    //             Const computedToken = token(
+    //                 MockVariables as ExtractVariables<
+    //                     ReturnType<TModifiersGenerator>
+    //                 >
+    //             );
 
-                return computedToken;
-            }),
-            modifiersMap: parseModifiersMap<
-                ReturnType<TModifiersGenerator>,
-                Record<
-                    string,
-                    Record<
-                        string,
-                        FreyjaComponentModifier<ReturnType<TModifiersGenerator>>
-                    >
-                >
-            >(component.modifiersMap, mockVariables),
-        };
-    }
+    //             Return computedToken;
+    //         }),
+    //         ModifiersMap: parseModifiersMap<
+    //             ReturnType<TModifiersGenerator>,
+    //             Record<
+    //                 String,
+    //                 Record<
+    //                     String,
+    //                     FreyjaComponentModifier<ReturnType<TModifiersGenerator>>
+    //                 >
+    //             >
+    //         >(component.modifiersMap, mockVariables),
+    //     };
+    // }
 
     return result;
 };

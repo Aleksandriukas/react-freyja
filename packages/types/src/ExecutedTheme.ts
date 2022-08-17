@@ -8,7 +8,7 @@ export type ModifierToken<TModifiers> = {
 } & Partial<ExtractVariables<TModifiers>>;
 
 export type ExecutedThemeComponent<TModifiers> = {
-    tokens: (Token | ModifierToken<TModifiers>)[];
+    tokens: Token[];
     modifiersMap: Record<
         string,
         Record<string, Token | ModifierToken<TModifiers>>
@@ -23,10 +23,7 @@ export type ExecutedThemeComponents<TModifiers> = Record<
 export type ExecutedTheme<
     TModifiers extends Modifiers,
     TComponents extends ExecutedThemeComponents<TModifiers>
-> = {
-    components: TComponents;
-    modifiers: TModifiers;
-};
+> = TComponents;
 
 export type UnknownExecutedTheme = ExecutedTheme<
     Modifiers,

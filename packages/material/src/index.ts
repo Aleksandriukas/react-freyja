@@ -114,3 +114,28 @@ export const extendMaterialTheme = <
 
     return createTheme(mergedTheme);
 };
+
+// Const theme = {
+//     Button: {
+//         Tokens: [{color: Symbol('color')}, {...}],
+//         ModifiersMap: {
+//             Variant: {
+//                 Text: {
+//                     Color: Symbol('color')
+//                 }
+//             },
+//             Color: {
+//                 Primary: {
+//                     _type: 'modifier',
+//                     Color: '#fff'
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// Const variables = {
+//     Color: '#fff'
+// }
+
+// Const tokens = [...injectVariables(defaultTokens, variables), ...injectVariables(modifierTokens, variables)]

@@ -1,14 +1,14 @@
 import { ExtractVariables } from "./ExtractVariables";
 import { StyleProperties } from "./StyleProperties";
 
-export type Token = Partial<StyleProperties>;
+export type Token = {
+    [K in keyof StyleProperties]: StyleProperties[K] | symbol;
+};
 export type TokenGenerator<TModifiers> = (
     variables: ExtractVariables<TModifiers>
 ) => Token;
-export type Tokens<TModifiers> = Record<
-    string,
-    TokenGenerator<TModifiers> | Token
->;
+export type AnyToken<TModifiers> = Token | TokenGenerator<TModifiers>;
+export type Tokens<TModifiers> = Record<string, AnyToken<TModifiers>>;
 
 export type SourceModifiers = Record<string, Record<`$${string}`, unknown>>;
 export type ModifiersGenerator<TDefinitions> = (
@@ -16,12 +16,11 @@ export type ModifiersGenerator<TDefinitions> = (
 ) => SourceModifiers;
 
 export type FreyjaComponentModifier<TModifiers> =
-    | TokenGenerator<TModifiers>
-    | Token
+    | AnyToken<TModifiers>
     | Partial<ExtractVariables<TModifiers>>;
 
 export type FreyjaComponent<TModifiers> = {
-    tokens: (TokenGenerator<TModifiers> | Token)[];
+    tokens: AnyToken<TModifiers>[];
     modifiersMap: Record<
         string,
         Record<string, FreyjaComponentModifier<TModifiers>>
