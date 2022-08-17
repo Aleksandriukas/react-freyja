@@ -3,9 +3,7 @@ import { Token } from "./ThemeSource";
 
 export type Modifiers = Record<string, Record<string, unknown>>;
 
-export type ModifierToken<TModifiers> = {
-    _type: "modifier";
-} & Partial<ExtractVariables<TModifiers>>;
+export type ModifierToken<TModifiers> = Partial<ExtractVariables<TModifiers>>;
 
 export type ExecutedThemeComponent<TModifiers> = {
     tokens: Token[];

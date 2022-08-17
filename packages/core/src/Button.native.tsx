@@ -6,8 +6,6 @@ const collectStyles = (
     component: ThemeComponent<object>,
     props: Record<string, unknown>
 ) => {
-    console.log(component.modifiersMap);
-    console.log(props);
     const tokens = [];
 
     for (const key of Object.keys(props)) {

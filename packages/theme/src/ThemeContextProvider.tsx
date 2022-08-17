@@ -1,9 +1,7 @@
-import { getNativeTheme } from "@react-freyja/style-engine";
 import React, { PropsWithChildren, useRef } from "react";
 import { ThemeContext } from "./ThemeContext";
 import type {
     ExecutedTheme,
-    UknownThemeContextType,
     ExecutedThemeComponents,
     Modifiers,
 } from "@react-freyja/types";
@@ -22,14 +20,11 @@ export const ThemeContextProvider = <
     theme,
     children,
 }: ThemeContextProviderProps<TModifiers, TComponents>) => {
-    const compiledTheme = useRef(
-        getNativeTheme<TModifiers, TComponents>(theme)
-    );
+    // TODO handle first compilation step (Token -> CompiledToken)
+    const compiledTheme = useRef(theme);
 
     return (
-        <ThemeContext.Provider
-            value={compiledTheme.current as unknown as UknownThemeContextType}
-        >
+        <ThemeContext.Provider value={compiledTheme.current}>
             {children}
         </ThemeContext.Provider>
     );

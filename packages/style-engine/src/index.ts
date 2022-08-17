@@ -1,1 +1,1 @@
-export { getNativeTheme } from "./getNativeTheme";
+export {};

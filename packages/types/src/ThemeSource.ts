@@ -1,8 +1,8 @@
-import { ExtractVariables } from "./ExtractVariables";
+import { ConvertAllVariableNames, ExtractVariables } from "./ExtractVariables";
 import { StyleProperties } from "./StyleProperties";
 
 export type Token = {
-    [K in keyof StyleProperties]: StyleProperties[K] | symbol;
+    [K in keyof StyleProperties]?: StyleProperties[K] | symbol;
 };
 export type TokenGenerator<TModifiers> = (
     variables: ExtractVariables<TModifiers>
@@ -44,7 +44,7 @@ export type ThemeSource<
     };
     components: (
         constantTokens: TTokens,
-        modifierTokens: ReturnType<TModifiersGenerator>
+        modifierTokens: ConvertAllVariableNames<ReturnType<TModifiersGenerator>>
     ) => TComponents;
 };
 
