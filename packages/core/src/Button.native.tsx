@@ -28,23 +28,6 @@ const collectStyles = (
     );
 };
 
-const injectVariables = (
-    rawStyles: object,
-    variables: Record<string, unknown>
-) => {
-    const result: Record<string, unknown> = {};
-
-    for (const [key, value] of Object.entries(rawStyles)) {
-        if (typeof value === "symbol") {
-            result[key] = variables[key];
-        } else {
-            result[key] = value;
-        }
-    }
-
-    return result;
-};
-
 const useButton = (props: ButtonProps) => {
     const components = useThemeContext();
     const buttonComponent = components.Button;

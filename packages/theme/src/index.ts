@@ -1,5 +1,4 @@
 export * from "./ThemeContextProvider";
-export * from "./ThemeContext";
 export * from "./createTheme";
 
 // Hooks

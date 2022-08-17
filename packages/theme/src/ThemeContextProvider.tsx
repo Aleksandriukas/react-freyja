@@ -1,10 +1,13 @@
+import { createSafeContext } from "@sirse-dev/safe-context";
 import React, { PropsWithChildren, useRef } from "react";
-import { ThemeContext } from "./ThemeContext";
 import type {
     ExecutedTheme,
     ExecutedThemeComponents,
     Modifiers,
+    UknownThemeContextType,
 } from "@react-freyja/types";
+
+export const ThemeContext = createSafeContext<UknownThemeContextType>();
 
 export type ThemeContextProviderProps<
     TModifiers extends Modifiers,

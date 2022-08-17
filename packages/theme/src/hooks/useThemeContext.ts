@@ -1,5 +1,5 @@
 import { useSafeContext } from "@sirse-dev/safe-context";
-import { ThemeContext } from "../ThemeContext";
+import { ThemeContext } from "../ThemeContextProvider";
 import type { ThemeComponents, ThemeContextType } from "@react-freyja/types";
 
 export const useThemeContext = <

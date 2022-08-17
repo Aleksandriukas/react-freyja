@@ -180,16 +180,12 @@ importers:
       '@babel/core': ^7.18.9
       '@react-freyja/eslint-config': workspace:*
       '@react-freyja/theme': workspace:*
-      '@types/lodash': ^4.14.182
       aqu: ^0.3.2
-      lodash: ^4.17.21
     dependencies:
       '@react-freyja/theme': link:../theme
-      lodash: 4.17.21
     devDependencies:
       '@babel/core': 7.18.9
       '@react-freyja/eslint-config': link:../../tools/eslint-config
-      '@types/lodash': 4.14.182
       aqu: 0.3.2_@babel+core@7.18.9
 
   packages/style-engine:
