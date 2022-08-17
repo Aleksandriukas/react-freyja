@@ -1,1 +1,1 @@
-export * from "./tokenToStyles";
+export {};

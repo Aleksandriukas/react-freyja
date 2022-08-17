@@ -1,44 +1,41 @@
 import { ConvertAllVariableNames, ExtractVariables } from "./ExtractVariables";
 import { StyleProperties } from "./StyleProperties";
 
-export type Token = Partial<StyleProperties>;
-export type Modifiers = Record<string, Record<`$${string}`, unknown>>;
-
+export type Token = {
+    [K in keyof StyleProperties]?: StyleProperties[K] | symbol;
+};
 export type TokenGenerator<TModifiers> = (
     variables: ExtractVariables<TModifiers>
 ) => Token;
+export type AnyToken<TModifiers> = Token | TokenGenerator<TModifiers>;
+export type Tokens<TModifiers> = Record<string, AnyToken<TModifiers>>;
+
+export type SourceModifiers = Record<string, Record<`$${string}`, unknown>>;
 export type ModifiersGenerator<TDefinitions> = (
     definitions: TDefinitions
-) => Modifiers;
-
-export type Tokens<TModifiers> = Record<
-    string,
-    TokenGenerator<TModifiers> | Token
->;
-export type Components<TModifiers> = Record<
-    string,
-    FreyjaComponent<TModifiers>
->;
-
-export type UnknownComponents = Components<Modifiers>;
+) => SourceModifiers;
 
 export type FreyjaComponentModifier<TModifiers> =
-    | TokenGenerator<TModifiers>
+    | AnyToken<TModifiers>
     | Partial<ExtractVariables<TModifiers>>;
 
 export type FreyjaComponent<TModifiers> = {
-    tokens: TokenGenerator<TModifiers>[];
+    tokens: AnyToken<TModifiers>[];
     modifiersMap: Record<
         string,
         Record<string, FreyjaComponentModifier<TModifiers>>
     >;
 };
+export type FreyjaComponents<TModifiers> = Record<
+    string,
+    FreyjaComponent<TModifiers>
+>;
 
 export type ThemeSource<
     TDefinitions extends Record<string, unknown>,
     TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
     TTokens extends Tokens<ReturnType<TModifiersGenerator>>,
-    TComponents extends Components<ReturnType<TModifiersGenerator>>
+    TComponents extends FreyjaComponents<ReturnType<TModifiersGenerator>>
 > = {
     definitions: TDefinitions;
     tokens: {
@@ -50,3 +47,10 @@ export type ThemeSource<
         modifierTokens: ConvertAllVariableNames<ReturnType<TModifiersGenerator>>
     ) => TComponents;
 };
+
+export type UnknownThemeSource = ThemeSource<
+    Record<string, unknown>,
+    ModifiersGenerator<Record<string, unknown>>,
+    Tokens<ReturnType<ModifiersGenerator<Record<string, unknown>>>>,
+    FreyjaComponents<ReturnType<ModifiersGenerator<Record<string, unknown>>>>
+>;

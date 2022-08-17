@@ -21,19 +21,21 @@ export const materialTheme = createTheme({
             secondaryColor: {
                 $color: definitions.palette.secondary,
             },
-            fakeScenario: {
-                $fontSize: definitions.numbers.lg,
+            fakeToken: {
+                $asdf: 123,
             },
         }),
         constant: (definitions) => ({
             buttonText: (variables) => ({
                 color: variables.color,
-                borderWidth: definitions.numbers.lg,
+                borderWidth: definitions.numbers.xs,
+                borderStyle: "dashed",
+                fontSize: 36,
             }),
             buttonOutlined: (variables) => ({
                 color: variables.color,
                 borderColor: variables.color,
-                fontSize: variables.fontSize,
+                fontSize: variables.color,
                 borderWidth: definitions.numbers.md,
             }),
             buttonStatic: {

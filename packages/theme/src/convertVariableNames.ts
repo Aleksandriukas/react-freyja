@@ -1,18 +1,15 @@
-import { ConvertAllVariableNames } from "./types/ExtractVariables";
-import { Modifiers } from "./types/ThemeSource";
+import { ConvertAllVariableNames, SourceModifiers } from "@react-freyja/types";
 
-export const convertVariableNames = (
-    modifiers: Modifiers
-): ConvertAllVariableNames<Modifiers> => {
-    const result = {} as ConvertAllVariableNames<Modifiers>;
+export const convertVariableNames = (modifiers: SourceModifiers) => {
+    const result = {} as ConvertAllVariableNames<SourceModifiers>;
 
-    for (const [name, token] of Object.entries(modifiers)) {
-        for (const [variable, value] of Object.entries(token)) {
-            if (!result[name]) {
-                result[name] = {};
-            }
+    for (const modifierName of Object.keys(modifiers)) {
+        result[modifierName] = {};
 
-            result[name][variable.slice(1)] = value;
+        for (const [property, value] of Object.entries(
+            modifiers[modifierName]
+        )) {
+            result[modifierName][property.slice(1)] = value;
         }
     }
 
