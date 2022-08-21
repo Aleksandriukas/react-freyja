@@ -30,12 +30,10 @@ export class RNStyleEngine<
         theme: ExecutedTheme<TModifiers, TComponents>
     ): StyleEngineResult<RNStyles> {
         // Prepare theme be merged with props
+
         const getComponentStyles = (component: string, variant: object) => {
             const { tokens, variants } = theme[component];
 
-            console.log(tokens);
-            console.log(variants);
-            console.log(variant);
             // Inject props in styles
 
             return {

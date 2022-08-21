@@ -32,6 +32,7 @@ export const createTheme = <
 
     const modifiers = tokens.modifiers(definitions);
     const convertedModifiers = convertVariableNames(modifiers);
+
     const constant = tokens.constant(definitions);
 
     const executedComponents = components(
@@ -41,7 +42,7 @@ export const createTheme = <
         >
     );
 
-    const variables = getAllVariables(modifiers);
+    const variables = getAllVariables(convertedModifiers);
 
     const computedComponents = computeComponents(
         executedComponents as Components<Modifiers>,
