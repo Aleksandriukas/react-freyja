@@ -13,7 +13,7 @@ export type ThemeContextType<
     TComponents extends ThemeComponents<TCompiledToken>
 > = TComponents;
 
-export type UknownThemeContextType = ThemeContextType<
+export type UnknownThemeContextType = ThemeContextType<
     unknown,
     ThemeComponents<unknown>
 >;

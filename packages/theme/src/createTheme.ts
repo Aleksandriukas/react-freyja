@@ -4,7 +4,7 @@ import { getAllVariables } from "./getAllVariables";
 import type {
     ModifiersGenerator,
     Tokens,
-    FreyjaComponents,
+    Components,
     ThemeSource,
     ExecutedTheme,
     ExecutedThemeComponents,
@@ -16,7 +16,7 @@ export const createTheme = <
     TDefinitions extends Record<string, unknown>,
     TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
     TTokens extends Tokens<ReturnType<TModifiersGenerator>>,
-    TComponents extends FreyjaComponents<ReturnType<TModifiersGenerator>>
+    TComponents extends Components<ReturnType<TModifiersGenerator>>
 >(
     themeSource: ThemeSource<
         TDefinitions,
@@ -44,7 +44,7 @@ export const createTheme = <
     const variables = getAllVariables(modifiers);
 
     const computedComponents = computeComponents(
-        executedComponents as FreyjaComponents<Modifiers>,
+        executedComponents as Components<Modifiers>,
         variables
     );
 

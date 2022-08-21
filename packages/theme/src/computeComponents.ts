@@ -1,13 +1,13 @@
 import {
     ExecutedThemeComponents,
     ExtractVariables,
-    FreyjaComponents,
+    Components,
     Modifiers,
 } from "@react-freyja/types";
 
 const replaceTokens = (
     result: ExecutedThemeComponents<Modifiers>,
-    components: FreyjaComponents<Modifiers>,
+    components: Components<Modifiers>,
     componentName: string,
     variables: ExtractVariables<Modifiers>
 ) => {
@@ -24,26 +24,26 @@ const replaceTokens = (
 
 const replaceModifiers = (
     result: ExecutedThemeComponents<Modifiers>,
-    components: FreyjaComponents<Modifiers>,
+    components: Components<Modifiers>,
     componentName: string,
     variables: ExtractVariables<Modifiers>
 ) => {
     const component = components[componentName];
     for (const [propertyName, propertyValues] of Object.entries(
-        component.modifiersMap
+        component.variants
     )) {
-        result[componentName].modifiersMap[propertyName] = {};
+        result[componentName].variants[propertyName] = {};
         for (const [propertyValue, modifier] of Object.entries(
             propertyValues
         )) {
-            result[componentName].modifiersMap[propertyName][propertyValue] =
+            result[componentName].variants[propertyName][propertyValue] =
                 typeof modifier === "function" ? modifier(variables) : modifier;
         }
     }
 };
 
 export const computeComponents = (
-    components: FreyjaComponents<Modifiers>,
+    components: Components<Modifiers>,
     variables: ExtractVariables<Modifiers>
 ): ExecutedThemeComponents<Modifiers> => {
     const result = {} as ExecutedThemeComponents<Modifiers>;
@@ -51,7 +51,7 @@ export const computeComponents = (
     for (const [componentName, component] of Object.entries(components)) {
         result[componentName] = {
             tokens: Array.from({ length: component.tokens.length }),
-            modifiersMap: {},
+            variants: {},
         };
 
         replaceTokens(result, components, componentName, variables);

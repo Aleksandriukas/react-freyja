@@ -1,41 +1,42 @@
 import { ConvertAllVariableNames, ExtractVariables } from "./ExtractVariables";
 import { StyleProperties } from "./StyleProperties";
 
+// Single token unit - defines styles of a component
 export type Token = {
     [K in keyof StyleProperties]?: StyleProperties[K] | symbol;
 };
+// Function to generate token
 export type TokenGenerator<TModifiers> = (
     variables: ExtractVariables<TModifiers>
 ) => Token;
+// Token or function to get token
 export type AnyToken<TModifiers> = Token | TokenGenerator<TModifiers>;
+// All defined tokens in theme
 export type Tokens<TModifiers> = Record<string, AnyToken<TModifiers>>;
 
+// All defined modifiers in theme
 export type SourceModifiers = Record<string, Record<`$${string}`, unknown>>;
+// Function to generate all modifiers
 export type ModifiersGenerator<TDefinitions> = (
     definitions: TDefinitions
 ) => SourceModifiers;
 
-export type FreyjaComponentModifier<TModifiers> =
+// Modifier for single prop value
+export type VariantModifier<TModifiers> =
     | AnyToken<TModifiers>
     | Partial<ExtractVariables<TModifiers>>;
 
-export type FreyjaComponent<TModifiers> = {
+export type Component<TModifiers> = {
     tokens: AnyToken<TModifiers>[];
-    modifiersMap: Record<
-        string,
-        Record<string, FreyjaComponentModifier<TModifiers>>
-    >;
+    variants: Record<string, Record<string, VariantModifier<TModifiers>>>;
 };
-export type FreyjaComponents<TModifiers> = Record<
-    string,
-    FreyjaComponent<TModifiers>
->;
+export type Components<TModifiers> = Record<string, Component<TModifiers>>;
 
 export type ThemeSource<
     TDefinitions extends Record<string, unknown>,
     TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
     TTokens extends Tokens<ReturnType<TModifiersGenerator>>,
-    TComponents extends FreyjaComponents<ReturnType<TModifiersGenerator>>
+    TComponents extends Components<ReturnType<TModifiersGenerator>>
 > = {
     definitions: TDefinitions;
     tokens: {
@@ -52,5 +53,5 @@ export type UnknownThemeSource = ThemeSource<
     Record<string, unknown>,
     ModifiersGenerator<Record<string, unknown>>,
     Tokens<ReturnType<ModifiersGenerator<Record<string, unknown>>>>,
-    FreyjaComponents<ReturnType<ModifiersGenerator<Record<string, unknown>>>>
+    Components<ReturnType<ModifiersGenerator<Record<string, unknown>>>>
 >;
