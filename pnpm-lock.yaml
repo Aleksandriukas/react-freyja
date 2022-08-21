@@ -90,9 +90,9 @@ importers:
       '@babel/core': ^7.18.6
       '@babel/preset-env': 7.2.0
       '@babel/runtime': ^7.18.6
-      '@react-freyja/core': workspace:*
       '@react-freyja/eslint-config': workspace:*
       '@react-freyja/material': workspace:*
+      '@react-freyja/style-engine': workspace:*
       '@react-freyja/theme': workspace:*
       '@react-native-community/cli-platform-android': ^8.0.2
       '@react-native-community/eslint-config': ^2.0.0
@@ -117,8 +117,8 @@ importers:
       react-test-renderer: 18.0.0
       typescript: ^4.4.4
     dependencies:
-      '@react-freyja/core': link:../../packages/core
       '@react-freyja/material': link:../../packages/material
+      '@react-freyja/style-engine': link:../../packages/style-engine
       '@react-freyja/theme': link:../../packages/theme
       react: 18.0.0
       react-native: 0.69.1_f3g6srt7aunn2hudwc7awv5rly

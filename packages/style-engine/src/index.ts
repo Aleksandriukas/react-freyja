@@ -3,10 +3,10 @@ import type {
     ExecutedThemeComponents,
     Modifiers,
 } from "@react-freyja/types";
-import type { StyleSheet } from "react-native";
+import type { ImageStyle, TextStyle, ViewStyle } from "react-native";
 
 export interface StyleEngineResult<TCompiledStyles> {
-    get: (component: string, variant: object) => TCompiledStyles;
+    (component: string, variant: object): TCompiledStyles;
 }
 
 export interface StyleEngine<
@@ -19,17 +19,35 @@ export interface StyleEngine<
     ) => StyleEngineResult<TCompiledStyles>;
 }
 
-export class RNStyleEngine
-    implements
-        StyleEngine<
-            StyleSheet.NamedStyles<unknown>,
-            Modifiers,
-            ExecutedThemeComponents<Modifiers>
-        >
+export type RNStyles = ViewStyle | TextStyle | ImageStyle;
+
+export class RNStyleEngine<
+    TModifiers extends Modifiers,
+    TComponents extends ExecutedThemeComponents<TModifiers>
+> implements StyleEngine<RNStyles, TModifiers, TComponents>
 {
-    compile() {
-        return {
-            get: () => ({}),
+    compile(
+        theme: ExecutedTheme<TModifiers, TComponents>
+    ): StyleEngineResult<RNStyles> {
+        // Prepare theme be merged with props
+        const getComponentStyles = (component: string, variant: object) => {
+            const { tokens, variants } = theme[component];
+
+            console.log(tokens);
+            console.log(variants);
+            console.log(variant);
+            // Inject props in styles
+
+            return {
+                borderColor: "black",
+                borderWidth: 1,
+                borderRadius: 5,
+                width: 50,
+                height: 50,
+                margin: 10,
+            };
         };
+
+        return getComponentStyles;
     }
 }

@@ -10,8 +10,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
-    "@react-freyja/core": "workspace:*",
     "@react-freyja/material": "workspace:*",
+    "@react-freyja/style-engine": "workspace:*",
     "@react-freyja/theme": "workspace:*",
     "react": "18.0.0",
     "react-native": "0.69.1"
