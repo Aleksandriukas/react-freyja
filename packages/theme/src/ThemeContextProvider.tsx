@@ -4,10 +4,10 @@ import type {
     ExecutedTheme,
     ExecutedThemeComponents,
     Modifiers,
-    UknownThemeContextType,
+    UnknownThemeContextType,
 } from "@react-freyja/types";
 
-export const ThemeContext = createSafeContext<UknownThemeContextType>();
+export const ThemeContext = createSafeContext<UnknownThemeContextType>();
 
 export type ThemeContextProviderProps<
     TModifiers extends Modifiers,

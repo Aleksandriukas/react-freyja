@@ -1,17 +1,17 @@
-import { ThemeComponent, useThemeContext } from "@react-freyja/theme";
-import React from "react";
-import { Text } from "react-native";
+import {ThemeComponent, useThemeContext} from '@react-freyja/theme';
+import React from 'react';
+import {Text} from 'react-native';
 
 const collectStyles = (
     component: ThemeComponent<object>,
-    props: Record<string, unknown>
+    props: Record<string, unknown>,
 ) => {
     const tokens = [];
 
     for (const key of Object.keys(props)) {
-        if (key in component.modifiersMap) {
+        if (key in component.variants) {
             const modifierToken: object =
-                component.modifiersMap[key][props[key] as string];
+                component.variants[key][props[key] as string];
 
             tokens.push(modifierToken);
         }
@@ -23,8 +23,8 @@ const collectStyles = (
 
     // eslint-disable-next-line unicorn/no-array-reduce
     return tokens.reduce(
-        (accumulator, token) => ({ ...accumulator, ...token }),
-        {}
+        (accumulator, token) => ({...accumulator, ...token}),
+        {},
     );
 };
 
@@ -34,7 +34,7 @@ const useButton = (props: ButtonProps) => {
 
     const rawStyles = collectStyles(
         buttonComponent as ThemeComponent<object>,
-        props
+        props,
     );
 
     // TODO inject variables in styles
@@ -46,12 +46,12 @@ const useButton = (props: ButtonProps) => {
 };
 
 export type ButtonProps = {
-    color: "primary" | "secondary";
-    variant: "text" | "outlined";
+    color: 'primary' | 'secondary';
+    variant: 'text' | 'outlined';
 };
 
 export const Button = (props: ButtonProps) => {
-    const { style } = useButton(props);
+    const {style} = useButton(props);
 
     return <Text style={style}>hello</Text>;
 };

@@ -47,7 +47,7 @@ export const materialTheme = createTheme({
     components: (staticTokens, modifiers) => ({
         Button: {
             tokens: [staticTokens.buttonText],
-            modifiersMap: {
+            variants: {
                 variant: {
                     text: staticTokens.buttonText,
                     outlined: staticTokens.buttonOutlined,

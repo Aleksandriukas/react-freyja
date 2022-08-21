@@ -1,6 +1,6 @@
 export type ThemeComponent<TCompiledToken> = {
     tokens: TCompiledToken[];
-    modifiersMap: Record<string, Record<string, TCompiledToken>>;
+    variants: Record<string, Record<string, TCompiledToken>>;
 };
 
 export type ThemeComponents<TCompiledToken> = Record<
