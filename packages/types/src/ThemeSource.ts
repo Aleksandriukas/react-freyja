@@ -7,12 +7,8 @@ import {
     TokenUniqueSymbol,
     TokenModifierUniqueSymbol,
     uniqueKey,
-    tokenModifierUniqueSymbol,
 } from "./uniqueSymbols";
-
-/* UTILS */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type AnyFunction = (...arguments_: any[]) => any;
+import { AnyFunction } from "./utils";
 
 /* TOKENS */
 export type Token = Partial<StyleProperties>;
@@ -25,6 +21,7 @@ export type Tokens<TModifiers> = Record<
     Token | TokenGenerator<TModifiers>
 >;
 
+/* MARKED TOKENS */
 export type MarkedToken = Token & {
     [uniqueKey]: TokenUniqueSymbol;
 };
@@ -48,8 +45,8 @@ export type Component<TModifiers> = {
 };
 export type Components<TModifiers> = Record<string, Component<TModifiers>>;
 
-/* PARSING TOKENS */
-export type ParseTokens<TTokens> = {
+/* CONVERT TOKENS */
+export type ConvertTokens<TTokens> = {
     [TKey in keyof TTokens]: (TTokens[TKey] extends AnyFunction
         ? ReturnType<TTokens[TKey]>
         : TTokens[TKey]) & {
@@ -57,7 +54,7 @@ export type ParseTokens<TTokens> = {
     };
 };
 
-export type ParseModifiers<TModifiers extends SourceModifiers> = {
+export type ConvertModifiers<TModifiers extends SourceModifiers> = {
     [TTokenKey in keyof TModifiers]: {
         [TPropertyKey in ExtractVariableNamesFromToken<
             TModifiers[TTokenKey]
@@ -81,8 +78,8 @@ export type ThemeSource<
         constant: (definitions: TDefinitions) => TTokens;
     };
     components: (
-        tokens: ParseTokens<TTokens> &
-            ParseModifiers<ReturnType<TModifiersGenerator>>
+        tokens: ConvertTokens<TTokens> &
+            ConvertModifiers<ReturnType<TModifiersGenerator>>
     ) => TComponents;
 };
 
@@ -92,12 +89,3 @@ export type UnknownThemeSource = ThemeSource<
     Tokens<ReturnType<ModifiersGenerator<Record<string, unknown>>>>,
     Components<ReturnType<ModifiersGenerator<Record<string, unknown>>>>
 >;
-
-export const isModifierToken = <TModifiers>(
-    token:
-        | MarkedToken
-        | MarkedTokenModifier<TModifiers>
-        | TokenGenerator<TModifiers>
-): token is MarkedTokenModifier<TModifiers> =>
-    typeof token !== "function" &&
-    token[uniqueKey] === tokenModifierUniqueSymbol;
