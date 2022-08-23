@@ -1,4 +1,4 @@
-import { ConvertAllVariableNames, SourceModifiers } from "@react-freyja/types";
+import { SourceModifiers } from "@react-freyja/types";
 
 export const convertVariableNames = (modifiers: SourceModifiers) => {
     const result = {} as ConvertAllVariableNames<SourceModifiers>;

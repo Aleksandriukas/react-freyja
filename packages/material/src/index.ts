@@ -44,17 +44,17 @@ export const materialTheme = createTheme({
             },
         }),
     },
-    components: (staticTokens, modifiers) => ({
+    components: (tokens) => ({
         Button: {
-            tokens: [staticTokens.buttonText],
+            tokens: [tokens.buttonText],
             variants: {
                 variant: {
-                    text: staticTokens.buttonText,
-                    outlined: staticTokens.buttonOutlined,
+                    text: tokens.buttonText,
+                    outlined: tokens.buttonOutlined,
                 },
                 color: {
-                    primary: modifiers.primaryColor,
-                    secondary: modifiers.secondaryColor,
+                    primary: tokens.primaryColor,
+                    secondary: tokens.secondaryColor,
                 },
             },
         },

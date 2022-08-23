@@ -1,10 +1,9 @@
 import { StyleProperties } from "./StyleProperties";
-import { SourceModifiers } from "./ThemeSource";
 
 type ExtractPropertyName<K extends string | number | symbol> =
     K extends `$${infer T}` ? T : K;
 
-type ExtractVariableNamesFromToken<TToken> = {
+export type ExtractVariableNamesFromToken<TToken> = {
     [TPropertyKey in keyof TToken]: TPropertyKey extends keyof StyleProperties
         ? never
         : ExtractPropertyName<TPropertyKey>;
@@ -16,16 +15,19 @@ type ExtractAllVariableNames<TModifiers> = {
     >;
 }[keyof TModifiers];
 
-export type ExtractVariables<TModifiers> = {
-    [TKey in ExtractAllVariableNames<TModifiers>]: symbol;
-};
+type ExtractAllVariableTypes<TModifiers, TKey> = TKey extends string
+    ? {
+          [TTokenKey in keyof TModifiers]: {
+              [TPropertyKey in keyof TModifiers[TTokenKey]]: TPropertyKey extends `$${TKey}`
+                  ? TModifiers[TTokenKey][TPropertyKey]
+                  : never;
+          }[keyof TModifiers[TTokenKey]];
+      }[keyof TModifiers]
+    : never;
 
-export type ConvertAllVariableNames<TModifiers extends SourceModifiers> = {
-    [TTokenKey in keyof TModifiers]: {
-        [TPropertyKey in ExtractVariableNamesFromToken<
-            TModifiers[TTokenKey]
-        >]: TPropertyKey extends string
-            ? TModifiers[TTokenKey][`$${TPropertyKey}`]
-            : never;
-    };
+export type ExtractVariables<TModifiers> = {
+    [TKey in ExtractAllVariableNames<TModifiers>]: ExtractAllVariableTypes<
+        TModifiers,
+        TKey
+    >;
 };

@@ -1,6 +1,8 @@
 import { computeComponents } from "./computeComponents";
 import { convertVariableNames } from "./convertVariableNames";
 import { getAllVariables } from "./getAllVariables";
+import { getSourceModifiers } from "./getSourceModifiers";
+import { markTokens } from "./markTokens";
 import type {
     ModifiersGenerator,
     Tokens,
@@ -8,7 +10,6 @@ import type {
     ThemeSource,
     ExecutedTheme,
     ExecutedThemeComponents,
-    ConvertAllVariableNames,
     Modifiers,
 } from "@react-freyja/types";
 
@@ -28,24 +29,20 @@ export const createTheme = <
     ReturnType<TModifiersGenerator>,
     ExecutedThemeComponents<ReturnType<TModifiersGenerator>>
 > => {
-    const { definitions, components, tokens } = themeSource;
+    const {
+        definitions,
+        components: componentsGenerator,
+        tokens: { constant: tokensGenerator, modifiers: modifiersGenerator },
+    } = themeSource;
 
-    const modifiers = tokens.modifiers(definitions);
-    const convertedModifiers = convertVariableNames(modifiers);
+    const tokens = markTokens(tokensGenerator(definitions));
+    const components = componentsGenerator(tokens as TTokens);
 
-    const constant = tokens.constant(definitions);
-
-    const executedComponents = components(
-        constant,
-        convertedModifiers as ConvertAllVariableNames<
-            ReturnType<TModifiersGenerator>
-        >
-    );
-
-    const variables = getAllVariables(convertedModifiers);
+    const sourceModifiers = getSourceModifiers(tokens);
+    const variables = getAllVariables(convertVariableNames(sourceModifiers));
 
     const computedComponents = computeComponents(
-        executedComponents as Components<Modifiers>,
+        components as Components<Modifiers>,
         variables
     );
 

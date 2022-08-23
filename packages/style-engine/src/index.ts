@@ -6,7 +6,7 @@ import type {
 import type { ImageStyle, TextStyle, ViewStyle } from "react-native";
 
 export interface StyleEngineResult<TCompiledStyles> {
-    (component: string, variant: object): TCompiledStyles;
+    (component: string, variant: Record<string, unknown>): TCompiledStyles;
 }
 
 export interface StyleEngine<

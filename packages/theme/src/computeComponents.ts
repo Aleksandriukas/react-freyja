@@ -33,11 +33,9 @@ const replaceModifiers = (
         component.variants
     )) {
         result[componentName].variants[propertyName] = {};
-        for (const [propertyValue, modifier] of Object.entries(
-            propertyValues
-        )) {
+        for (const [propertyValue, token] of Object.entries(propertyValues)) {
             result[componentName].variants[propertyName][propertyValue] =
-                typeof modifier === "function" ? modifier(variables) : modifier;
+                typeof token === "function" ? token(variables) : token;
         }
     }
 };

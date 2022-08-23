@@ -1,14 +1,18 @@
-import { ExtractVariables } from "./ExtractVariables";
-import { Token } from "./ThemeSource";
+import { MarkedToken, MarkedTokenModifier } from "./ThemeSource";
+
+export type SymbolizeToken<TToken> = {
+    [K in keyof TToken]: TToken[K] | symbol;
+};
+
+export type TokenOrModifier<TModifiers> =
+    | SymbolizeToken<MarkedToken>
+    | MarkedTokenModifier<TModifiers>;
 
 export type Modifiers = Record<string, Record<string, unknown>>;
 
 export type ExecutedThemeComponent<TModifiers> = {
-    tokens: Token[];
-    variants: Record<
-        string,
-        Record<string, Token | Partial<ExtractVariables<TModifiers>>>
-    >;
+    tokens: TokenOrModifier<TModifiers>[];
+    variants: Record<string, Record<string, TokenOrModifier<TModifiers>>>;
 };
 
 export type ExecutedThemeComponents<TModifiers> = Record<
