@@ -1,14 +1,25 @@
 import React, {useMemo} from 'react';
-import {View} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import {getComponentStyles} from '../App';
 
 export type ButtonProps = {
     color: 'primary' | 'secondary';
-    variant: 'text' | 'outlined';
+    onPress?: () => void;
 };
 
-export const Button = (props: ButtonProps) => {
-    const style = useMemo(() => getComponentStyles('Button', props), [props]);
+export const Button = ({onPress, ...variant}: ButtonProps) => {
+    const style = useMemo(
+        () =>
+            getComponentStyles(
+                'Button',
+                variant as unknown as Record<string, string>,
+            ),
+        [variant],
+    );
 
-    return <View style={style} />;
+    return (
+        <TouchableOpacity style={style} onPress={onPress}>
+            <Text>Click me</Text>
+        </TouchableOpacity>
+    );
 };

@@ -4,8 +4,7 @@ import {
     ExecutedThemeComponents,
     Modifiers,
 } from '@react-freyja/style-engine';
-import {ThemeContextProvider} from '@react-freyja/theme';
-import React from 'react';
+import React, {useState} from 'react';
 import {View} from 'react-native';
 import {Button} from './src/Button';
 
@@ -16,12 +15,19 @@ export const getComponentStyles = engine.compile(
 );
 
 const App = () => {
+    const [color, setColor] = useState<'primary' | 'secondary'>('primary');
+
     return (
-        <ThemeContextProvider theme={materialTheme}>
-            <View>
-                <Button color="primary" variant="text" />
-            </View>
-        </ThemeContextProvider>
+        <View>
+            <Button
+                color={color}
+                onPress={() => {
+                    setColor(old =>
+                        old === 'primary' ? 'secondary' : 'primary',
+                    );
+                }}
+            />
+        </View>
     );
 };
 

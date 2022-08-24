@@ -1,18 +1,19 @@
+import { TokenOrModifier } from "./ExecutedTheme";
+import { MarkedToken, MarkedTokenModifier } from "./ThemeSource";
 import {
-    MarkedToken,
-    MarkedTokenModifier,
-    TokenGenerator,
-} from "./ThemeSource";
-import { uniqueKey, tokenModifierUniqueSymbol } from "./uniqueSymbols";
+    uniqueKey,
+    tokenModifierUniqueSymbol,
+    tokenUniqueSymbol,
+} from "./uniqueSymbols";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyFunction = (...arguments_: any[]) => any;
 
 export const isModifierToken = <TModifiers>(
-    token:
-        | MarkedToken
-        | MarkedTokenModifier<TModifiers>
-        | TokenGenerator<TModifiers>
+    token: TokenOrModifier<TModifiers>
 ): token is MarkedTokenModifier<TModifiers> =>
-    typeof token !== "function" &&
     token[uniqueKey] === tokenModifierUniqueSymbol;
+
+export const isToken = <TModifiers>(
+    token: TokenOrModifier<TModifiers>
+): token is MarkedToken => token[uniqueKey] === tokenUniqueSymbol;

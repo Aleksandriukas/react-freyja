@@ -1,4 +1,5 @@
 import { combineTokens } from "./combineTokens";
+import { convertVariableNames } from "./convertVariableNames";
 import { executeTokenGenerators } from "./executeTokenGenerators";
 import { getAllVariables } from "./getAllVariables";
 import { markModifierTokens, markTokens } from "./markTokens";
@@ -36,7 +37,9 @@ export const createTheme = <
         tokens: { constant: tokensGenerator, modifiers: modifiersGenerator },
     } = themeSource;
 
-    const modifierTokens = modifiersGenerator(definitions);
+    const modifierTokens = convertVariableNames(
+        modifiersGenerator(definitions)
+    );
     const variables = getAllVariables(modifierTokens);
     const constantTokens = executeTokenGenerators(
         tokensGenerator(definitions) as Tokens<SourceModifiers>,
