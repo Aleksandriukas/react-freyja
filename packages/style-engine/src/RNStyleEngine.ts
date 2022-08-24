@@ -2,9 +2,6 @@ import {
     Modifiers,
     ExecutedThemeComponents,
     ExecutedTheme,
-    Token,
-    ExtractVariables,
-    ExecutedThemeComponent,
 } from "@react-freyja/types";
 import { ViewStyle } from "react-native";
 import { StyleEngine, StyleEngineResult } from ".";

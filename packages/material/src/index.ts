@@ -35,7 +35,7 @@ export const materialTheme = createTheme({
             buttonOutlined: (variables) => ({
                 color: variables.color,
                 borderColor: variables.color,
-                fontSize: variables.color,
+                fontSize: variables.asdf,
                 borderWidth: definitions.numbers.md,
             }),
             buttonStatic: {
