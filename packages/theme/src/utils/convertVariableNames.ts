@@ -1,4 +1,4 @@
-import { Modifiers, SourceModifiers } from "@react-freyja/types";
+import { Modifiers, SourceModifiers } from "../types/Theme";
 
 export const convertVariableNames = (modifiers: SourceModifiers): Modifiers => {
     const result = {} as Modifiers;

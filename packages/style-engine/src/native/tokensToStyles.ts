@@ -1,4 +1,4 @@
-import { Token } from "@react-freyja/types";
+import { Token } from "@react-freyja/theme";
 import { RNStyles } from "./RNStyleEngine";
 
 export const tokensToStyles = (tokens: Token[]): RNStyles =>

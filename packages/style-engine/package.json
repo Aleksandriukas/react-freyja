@@ -12,7 +12,7 @@
         "@babel/core": "^7.18.9",
         "@babel/runtime": "^7.18.9",
         "@react-freyja/eslint-config": "workspace:*",
-        "@react-freyja/types": "workspace:*",
+        "@react-freyja/theme": "workspace:*",
         "@types/jest": "^26.0.23",
         "@types/react-native": "^0.69.1",
         "aqu": "^0.3.2",

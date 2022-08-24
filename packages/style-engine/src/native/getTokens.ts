@@ -1,4 +1,5 @@
-import { Modifiers, Token, isToken, Component } from "@react-freyja/types";
+import { Modifiers, Token, Component } from "@react-freyja/theme";
+import { isToken } from "../typeGuards";
 import { injectVariablesInToken } from "./injectVariablesInToken";
 
 export const getTokens = (

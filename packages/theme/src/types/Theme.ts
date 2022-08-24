@@ -1,14 +1,18 @@
 import {
+    TokenUniqueSymbol,
+    TokenModifierUniqueSymbol,
+    uniqueKey,
+} from "../utils/uniqueSymbols";
+import {
     ExtractVariableNamesFromToken,
     ExtractVariables,
 } from "./ExtractVariables";
 import { StyleProperties } from "./StyleProperties";
-import {
-    TokenUniqueSymbol,
-    TokenModifierUniqueSymbol,
-    uniqueKey,
-} from "./uniqueSymbols";
-import { AnyFunction } from "./utils";
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AnyFunction = (...arguments_: any[]) => any;
+
+export type Modifiers = Record<string, Record<string, unknown>>;
 
 export type SymbolizeToken<TToken> = {
     [K in keyof TToken]: TToken[K] | symbol;

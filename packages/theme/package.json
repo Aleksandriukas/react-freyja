@@ -16,8 +16,5 @@
         "@types/jest": "^26.0.24",
         "aqu": "^0.3.2",
         "typescript": "^4.7.4"
-    },
-    "dependencies": {
-        "@react-freyja/style-engine": "workspace:*"
     }
 }

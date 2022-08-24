@@ -1,4 +1,4 @@
-import { SourceModifiers } from "@react-freyja/types";
+import { SourceModifiers } from "../types/Theme";
 
 export const getAllVariables = (
     modifiers: SourceModifiers

@@ -1,10 +1,8 @@
 import {
-    ModifiersGenerator,
-    Tokens,
     ExtractSymbolizedVariables,
-    Token,
     ExtractVariables,
-} from "@react-freyja/types";
+} from "../types/ExtractVariables";
+import { ModifiersGenerator, Tokens, Token } from "../types/Theme";
 
 export const executeTokenGenerators = <
     TDefinitions extends Record<string, unknown>,

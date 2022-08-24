@@ -1,9 +1,5 @@
-import {
-    Component,
-    Modifiers,
-    MarkedTokenModifier,
-    isModifierToken,
-} from "@react-freyja/types";
+import { Component, Modifiers, MarkedTokenModifier } from "@react-freyja/theme";
+import { isModifierToken } from "../typeGuards";
 
 export const getVariables = (
     { tokens, variants }: Component<Modifiers>,

@@ -4,7 +4,7 @@ import {
     ConvertTokens,
     ModifiersGenerator,
     Tokens,
-} from "@react-freyja/types";
+} from "../types/Theme";
 
 export const combineTokens = <
     TDefinitions extends Record<string, unknown>,

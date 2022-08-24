@@ -1,4 +1,4 @@
-import { SymbolizeToken, MarkedToken, Token } from "@react-freyja/types";
+import { SymbolizeToken, MarkedToken, Token } from "@react-freyja/theme";
 
 export const injectVariablesInToken = (
     token: SymbolizeToken<MarkedToken>,

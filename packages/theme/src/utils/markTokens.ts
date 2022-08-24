@@ -3,10 +3,12 @@ import {
     MarkedToken,
     Modifiers,
     Token,
-    tokenModifierUniqueSymbol,
-    tokenUniqueSymbol,
+} from "../types/Theme";
+import {
     uniqueKey,
-} from "@react-freyja/types";
+    tokenUniqueSymbol,
+    tokenModifierUniqueSymbol,
+} from "./uniqueSymbols";
 
 export const markTokens = (
     tokens: Record<string, Token>

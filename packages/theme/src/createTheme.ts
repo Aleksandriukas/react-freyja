@@ -1,18 +1,17 @@
-import { combineTokens } from "./combineTokens";
-import { convertVariableNames } from "./convertVariableNames";
-import { executeTokenGenerators } from "./executeTokenGenerators";
-import { getAllVariables } from "./getAllVariables";
-import { markModifierTokens, markTokens } from "./markTokens";
-import type {
+import {
     ModifiersGenerator,
     Tokens,
     Components,
     ThemeSource,
-    ExecutedTheme,
     SourceModifiers,
     ConvertTokens,
     ConvertModifiers,
-} from "@react-freyja/types";
+} from "./types/Theme";
+import { combineTokens } from "./utils/combineTokens";
+import { convertVariableNames } from "./utils/convertVariableNames";
+import { executeTokenGenerators } from "./utils/executeTokenGenerators";
+import { getAllVariables } from "./utils/getAllVariables";
+import { markTokens, markModifierTokens } from "./utils/markTokens";
 
 export const createTheme = <
     TDefinitions extends Record<string, unknown>,
@@ -26,7 +25,7 @@ export const createTheme = <
         TTokens,
         TComponents
     >
-): ExecutedTheme<ReturnType<TModifiersGenerator>, TComponents> => {
+): TComponents => {
     const {
         definitions,
         components: componentsGenerator,
