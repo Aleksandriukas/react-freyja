@@ -1,3 +1,4 @@
+import { TokenOrModifier } from "./ExecutedTheme";
 import {
     ExtractVariableNamesFromToken,
     ExtractVariables,
@@ -40,8 +41,8 @@ export type ModifiersGenerator<TDefinitions> = (
 
 /* COMPONENTS */
 export type Component<TModifiers> = {
-    tokens: (Token | TokenModifier<TModifiers>)[];
-    variants: Record<string, Record<string, Token | TokenModifier<TModifiers>>>;
+    tokens: TokenOrModifier<TModifiers>[];
+    variants: Record<string, Record<string, TokenOrModifier<TModifiers>>>;
 };
 export type Components<TModifiers> = Record<string, Component<TModifiers>>;
 
@@ -53,7 +54,6 @@ export type ConvertTokens<TTokens> = {
         [uniqueKey]: TokenUniqueSymbol;
     };
 };
-
 export type ConvertModifiers<TModifiers extends SourceModifiers> = {
     [TTokenKey in keyof TModifiers]: {
         [TPropertyKey in ExtractVariableNamesFromToken<
@@ -65,11 +65,18 @@ export type ConvertModifiers<TModifiers extends SourceModifiers> = {
         [uniqueKey]: TokenModifierUniqueSymbol;
     };
 };
+export type ConvertedTokens<
+    TTokens,
+    TModifiers extends SourceModifiers
+> = ConvertTokens<TTokens> & ConvertModifiers<TModifiers>;
 
 export type ThemeSource<
     TDefinitions extends Record<string, unknown>,
     TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
-    TTokens extends Tokens<ReturnType<TModifiersGenerator>>,
+    TTokens extends Record<
+        string,
+        Token | TokenGenerator<ReturnType<TModifiersGenerator>>
+    >,
     TComponents extends Components<ReturnType<TModifiersGenerator>>
 > = {
     definitions: TDefinitions;
@@ -78,14 +85,13 @@ export type ThemeSource<
         constant: (definitions: TDefinitions) => TTokens;
     };
     components: (
-        tokens: ConvertTokens<TTokens> &
-            ConvertModifiers<ReturnType<TModifiersGenerator>>
+        tokens: ConvertedTokens<TTokens, ReturnType<TModifiersGenerator>>
     ) => TComponents;
 };
 
 export type UnknownThemeSource = ThemeSource<
     Record<string, unknown>,
     ModifiersGenerator<Record<string, unknown>>,
-    Tokens<ReturnType<ModifiersGenerator<Record<string, unknown>>>>,
+    Record<string, Token | TokenGenerator<SourceModifiers>>,
     Components<ReturnType<ModifiersGenerator<Record<string, unknown>>>>
 >;

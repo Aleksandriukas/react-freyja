@@ -31,3 +31,7 @@ export type ExtractVariables<TModifiers> = {
         TKey
     >;
 };
+
+export type ExtractSymbolizedVariables<TModifiers> = {
+    [TKey in ExtractAllVariableNames<TModifiers>]: symbol;
+};

@@ -7,7 +7,7 @@ export const getAllVariables = (
 
     for (const modifier of Object.values(modifiers)) {
         for (const property of Object.keys(modifier)) {
-            variables[property] = Symbol(property);
+            variables[property.slice(1)] = Symbol(property);
         }
     }
 
