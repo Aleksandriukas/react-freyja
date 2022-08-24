@@ -1,4 +1,3 @@
-import { TokenOrModifier } from "./ExecutedTheme";
 import {
     ExtractVariableNamesFromToken,
     ExtractVariables,
@@ -10,6 +9,14 @@ import {
     uniqueKey,
 } from "./uniqueSymbols";
 import { AnyFunction } from "./utils";
+
+export type SymbolizeToken<TToken> = {
+    [K in keyof TToken]: TToken[K] | symbol;
+};
+
+export type TokenOrModifier<TModifiers> =
+    | SymbolizeToken<MarkedToken>
+    | MarkedTokenModifier<TModifiers>;
 
 /* TOKENS */
 export type Token = Partial<StyleProperties>;

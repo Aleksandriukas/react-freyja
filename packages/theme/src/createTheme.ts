@@ -9,7 +9,6 @@ import type {
     Components,
     ThemeSource,
     ExecutedTheme,
-    ExecutedThemeComponents,
     SourceModifiers,
     ConvertTokens,
     ConvertModifiers,
@@ -27,10 +26,7 @@ export const createTheme = <
         TTokens,
         TComponents
     >
-): ExecutedTheme<
-    ReturnType<TModifiersGenerator>,
-    ExecutedThemeComponents<ReturnType<TModifiersGenerator>>
-> => {
+): ExecutedTheme<ReturnType<TModifiersGenerator>, TComponents> => {
     const {
         definitions,
         components: componentsGenerator,

@@ -1,12 +1,12 @@
 import {
-    ExecutedThemeComponent,
+    Component,
     Modifiers,
     MarkedTokenModifier,
     isModifierToken,
 } from "@react-freyja/types";
 
 export const getVariables = (
-    { tokens, variants }: ExecutedThemeComponent<Modifiers>,
+    { tokens, variants }: Component<Modifiers>,
     variant: Record<string, string>
 ): Record<string, unknown> => {
     const variables = {} as Record<string, unknown>;

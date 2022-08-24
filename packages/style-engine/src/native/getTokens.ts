@@ -1,13 +1,8 @@
-import {
-    ExecutedThemeComponent,
-    Modifiers,
-    Token,
-    isToken,
-} from "@react-freyja/types";
+import { Modifiers, Token, isToken, Component } from "@react-freyja/types";
 import { injectVariablesInToken } from "./injectVariablesInToken";
 
 export const getTokens = (
-    { tokens, variants }: ExecutedThemeComponent<Modifiers>,
+    { tokens, variants }: Component<Modifiers>,
     variables: Record<string, unknown>,
     variant: Record<string, string>
 ): Token[] => {

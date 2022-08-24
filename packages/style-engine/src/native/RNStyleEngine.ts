@@ -1,8 +1,4 @@
-import {
-    Modifiers,
-    ExecutedThemeComponents,
-    ExecutedTheme,
-} from "@react-freyja/types";
+import { Modifiers, Components, ExecutedTheme } from "@react-freyja/types";
 import { ViewStyle } from "react-native";
 import { StyleEngine, StyleEngineResult } from "..";
 import { getTokens } from "./getTokens";
@@ -13,7 +9,7 @@ export type RNStyles = ViewStyle;
 
 export class RNStyleEngine<
     TModifiers extends Modifiers,
-    TComponents extends ExecutedThemeComponents<TModifiers>
+    TComponents extends Components<TModifiers>
 > implements StyleEngine<RNStyles, TModifiers, TComponents>
 {
     compile(

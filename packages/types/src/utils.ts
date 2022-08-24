@@ -1,5 +1,8 @@
-import { TokenOrModifier } from "./ExecutedTheme";
-import { MarkedToken, MarkedTokenModifier } from "./ThemeSource";
+import {
+    MarkedToken,
+    MarkedTokenModifier,
+    TokenOrModifier,
+} from "./ThemeSource";
 import {
     uniqueKey,
     tokenModifierUniqueSymbol,

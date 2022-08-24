@@ -1,7 +1,7 @@
 {
     "dtsBundleGeneratorOptions": {
         "libraries": {
-            "importedLibraries": ["react"],
+            "importedLibraries": ["@react-freyja/types"],
             "allowedTypesLibraries": []
         }
     }
