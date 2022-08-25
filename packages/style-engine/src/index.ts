@@ -1,8 +1,9 @@
 import type { Components, Modifiers } from "@react-freyja/theme";
 
-export interface StyleEngineResult<TCompiledStyles> {
-    (component: string, variant: Record<string, string>): TCompiledStyles;
-}
+export type StyleEngineResult<TCompiledStyles> = (
+    component: string,
+    variant: Record<string, string>
+) => TCompiledStyles;
 
 export interface StyleEngine<
     TCompiledStyles,
