@@ -34,9 +34,7 @@ jobs:
               uses: actions/setup-node@v1
               with:
                   node-version: 16.x
-
-            - name: Install pnpm 7.x
-              run: npm i -g pnpm@latest
+                  cache: 'pnpm'
 
             - name: Installing dependencies
               run: pnpm install
@@ -66,9 +64,7 @@ jobs:
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node }}
-
-            - name: Install pnpm 7.x
-              run: npm i -g pnpm@latest
+                  cache: 'pnpm'
 
             - name: Installing dependencies
               run: pnpm install
