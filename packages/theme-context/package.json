@@ -1,0 +1,23 @@
+{
+    "name": "@react-freyja/theme-context",
+    "main": "./dist/index.js",
+    "types": "./dist/theme-context.d.ts",
+    "module": "./dist/theme-context.esm.js",
+    "scripts": {
+        "build": "aqu build",
+        "start": "aqu watch",
+        "test:watch": "aqu test --watch"
+    },
+    "dependencies": {
+        "@sirse-dev/safe-context": "^0.3.0",
+        "react": "18.0.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.18.13",
+        "@react-freyja/eslint-config": "workspace:*",
+        "@react-freyja/style-engine": "workspace:*",
+        "@types/react": "^18.0.14",
+        "aqu": "^0.3.2",
+        "typescript": "^4.7.4"
+    }
+}

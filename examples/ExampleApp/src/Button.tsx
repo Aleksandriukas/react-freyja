@@ -1,6 +1,6 @@
+import {useThemeContext} from '@react-freyja/theme-context';
 import React, {useMemo} from 'react';
-import {Text, TouchableOpacity} from 'react-native';
-import {getComponentStyles} from '../App';
+import {Text, TouchableOpacity, ViewStyle} from 'react-native';
 
 export type ButtonProps = {
     color: 'primary' | 'secondary';
@@ -8,13 +8,15 @@ export type ButtonProps = {
 };
 
 export const Button = ({onPress, ...variant}: ButtonProps) => {
+    const getComponentStyles = useThemeContext<ViewStyle>();
+
     const style = useMemo(
         () =>
             getComponentStyles(
                 'Button',
                 variant as unknown as Record<string, string>,
             ),
-        [variant],
+        [getComponentStyles, variant],
     );
 
     return (
