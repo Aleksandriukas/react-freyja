@@ -22,8 +22,7 @@
     "homepage": "https://github.com/Aleksandriukas/react-freyja#readme",
     "workspaces": [
         "packages/*",
-        "examples/*",
-        "docs/*"
+        "tools/*"
     ],
     "devDependencies": {
         "turbo": "^1.3.4"
