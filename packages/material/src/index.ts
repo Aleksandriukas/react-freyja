@@ -4,13 +4,14 @@ import { createTheme } from "@react-freyja/theme";
 export const materialTheme = createTheme({
     definitions: {
         palette: {
-            primary: "#dad",
-            secondary: "#add",
+            primary: "blue",
+            secondary: "red",
         },
-        numbers: {
-            lg: 10,
-            md: 5,
-            xs: 2,
+        hello: {
+            width: 120,
+            height: 40,
+            borderWidth: 1,
+            borderStyle: "solid" as const,
         },
     },
     tokens: {
@@ -21,40 +22,26 @@ export const materialTheme = createTheme({
             secondaryColor: {
                 $color: definitions.palette.secondary,
             },
-            fakeToken: {
-                $asdf: 123,
-            },
         }),
         constant: (definitions) => ({
-            buttonText: (variables) => ({
-                color: variables.color,
-                borderWidth: definitions.numbers.xs,
-                borderStyle: "dashed",
-                fontSize: 36,
-            }),
-            buttonOutlined: (variables) => ({
-                color: variables.color,
+            buttonDefault: (variables) => ({
+                width: definitions.hello.width,
+                height: definitions.hello.height,
+                borderWidth: definitions.hello.borderWidth,
                 borderColor: variables.color,
-                fontSize: variables.color,
-                borderWidth: definitions.numbers.md,
+                borderStyle: definitions.hello.borderStyle,
+                alignItems: "center",
+                justifyContent: "center",
             }),
-            buttonStatic: {
-                color: definitions.palette.primary,
-                fontSize: definitions.numbers.lg,
-            },
         }),
     },
-    components: (staticTokens, modifiers) => ({
+    components: (tokens) => ({
         Button: {
-            tokens: [staticTokens.buttonText],
-            modifiersMap: {
-                variant: {
-                    text: staticTokens.buttonText,
-                    outlined: staticTokens.buttonOutlined,
-                },
+            tokens: [tokens.buttonDefault],
+            variants: {
                 color: {
-                    primary: modifiers.primaryColor,
-                    secondary: modifiers.secondaryColor,
+                    primary: tokens.primaryColor,
+                    secondary: tokens.secondaryColor,
                 },
             },
         },

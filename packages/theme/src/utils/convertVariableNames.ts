@@ -1,7 +1,7 @@
-import { ConvertAllVariableNames, SourceModifiers } from "@react-freyja/types";
+import { Modifiers, SourceModifiers } from "../types/Theme";
 
-export const convertVariableNames = (modifiers: SourceModifiers) => {
-    const result = {} as ConvertAllVariableNames<SourceModifiers>;
+export const convertVariableNames = (modifiers: SourceModifiers): Modifiers => {
+    const result = {} as Modifiers;
 
     for (const modifierName of Object.keys(modifiers)) {
         result[modifierName] = {};

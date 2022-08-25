@@ -1,22 +1,23 @@
-import { computeComponents } from "./computeComponents";
-import { convertVariableNames } from "./convertVariableNames";
-import { getAllVariables } from "./getAllVariables";
-import type {
+import {
     ModifiersGenerator,
     Tokens,
-    FreyjaComponents,
+    Components,
     ThemeSource,
-    ExecutedTheme,
-    ExecutedThemeComponents,
-    ConvertAllVariableNames,
-    Modifiers,
-} from "@react-freyja/types";
+    SourceModifiers,
+    ConvertTokens,
+    ConvertModifiers,
+} from "./types/Theme";
+import { combineTokens } from "./utils/combineTokens";
+import { convertVariableNames } from "./utils/convertVariableNames";
+import { executeTokenGenerators } from "./utils/executeTokenGenerators";
+import { getAllVariables } from "./utils/getAllVariables";
+import { markTokens, markModifierTokens } from "./utils/markTokens";
 
 export const createTheme = <
     TDefinitions extends Record<string, unknown>,
     TModifiersGenerator extends ModifiersGenerator<TDefinitions>,
     TTokens extends Tokens<ReturnType<TModifiersGenerator>>,
-    TComponents extends FreyjaComponents<ReturnType<TModifiersGenerator>>
+    TComponents extends Components<ReturnType<TModifiersGenerator>>
 >(
     themeSource: ThemeSource<
         TDefinitions,
@@ -24,29 +25,33 @@ export const createTheme = <
         TTokens,
         TComponents
     >
-): ExecutedTheme<
-    ReturnType<TModifiersGenerator>,
-    ExecutedThemeComponents<ReturnType<TModifiersGenerator>>
-> => {
-    const { definitions, components, tokens } = themeSource;
+): TComponents => {
+    const {
+        definitions,
+        components: componentsGenerator,
+        tokens: { constant: tokensGenerator, modifiers: modifiersGenerator },
+    } = themeSource;
 
-    const modifiers = tokens.modifiers(definitions);
-    const convertedModifiers = convertVariableNames(modifiers);
-    const constant = tokens.constant(definitions);
+    const modifierTokens = convertVariableNames(
+        modifiersGenerator(definitions)
+    );
+    const variables = getAllVariables(modifierTokens);
+    const constantTokens = executeTokenGenerators(
+        tokensGenerator(definitions) as Tokens<SourceModifiers>,
+        variables
+    );
 
-    const executedComponents = components(
-        constant,
-        convertedModifiers as ConvertAllVariableNames<
+    const markedTokens = markTokens(constantTokens);
+    const markedModifierTokens = markModifierTokens(modifierTokens);
+
+    const allTokens = combineTokens<TDefinitions, TModifiersGenerator, TTokens>(
+        markedTokens as ConvertTokens<TTokens>,
+        markedModifierTokens as ConvertModifiers<
             ReturnType<TModifiersGenerator>
         >
     );
 
-    const variables = getAllVariables(modifiers);
+    const components = componentsGenerator(allTokens);
 
-    const computedComponents = computeComponents(
-        executedComponents as FreyjaComponents<Modifiers>,
-        variables
-    );
-
-    return computedComponents;
+    return components;
 };

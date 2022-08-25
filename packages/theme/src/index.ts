@@ -1,5 +1,5 @@
-export * from "./ThemeContextProvider";
 export * from "./createTheme";
 
-// Hooks
-export * from "./hooks/useThemeContext";
+export * from "./types/Theme";
+
+export * from "./utils/uniqueSymbols";
