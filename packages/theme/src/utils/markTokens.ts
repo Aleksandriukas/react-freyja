@@ -4,11 +4,7 @@ import {
     Modifiers,
     Token,
 } from "../types/Theme";
-import {
-    uniqueKey,
-    tokenUniqueSymbol,
-    tokenModifierUniqueSymbol,
-} from "./uniqueSymbols";
+import { tokenUniqueSymbol, tokenModifierUniqueSymbol } from "./uniqueSymbols";
 
 export const markTokens = (
     tokens: Record<string, Token>
@@ -18,7 +14,7 @@ export const markTokens = (
     for (const [tokenName, token] of Object.entries(tokens)) {
         result[tokenName] = {
             ...token,
-            [uniqueKey]: tokenUniqueSymbol,
+            _type: tokenUniqueSymbol,
         };
     }
 
@@ -33,7 +29,7 @@ export const markModifierTokens = (
     for (const tokenName of Object.keys(modifiers)) {
         result[tokenName] = {
             ...modifiers[tokenName],
-            [uniqueKey]: tokenModifierUniqueSymbol,
+            _type: tokenModifierUniqueSymbol,
         };
     }
 

@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { createTheme } from "@react-freyja/theme";
 
-// TODO fix d.ts build
 export const materialTheme = createTheme({
     definitions: {
         palette: {

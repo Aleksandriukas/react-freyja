@@ -1,7 +1,6 @@
 import {
     TokenUniqueSymbol,
     TokenModifierUniqueSymbol,
-    uniqueKey,
 } from "../utils/uniqueSymbols";
 import {
     ExtractVariableNamesFromToken,
@@ -35,10 +34,10 @@ export type Tokens<TModifiers> = Record<
 
 /* MARKED TOKENS */
 export type MarkedToken = Token & {
-    [uniqueKey]: TokenUniqueSymbol;
+    _type: TokenUniqueSymbol;
 };
 export type MarkedTokenModifier<TModifiers> = TokenModifier<TModifiers> & {
-    [uniqueKey]: TokenModifierUniqueSymbol;
+    _type: TokenModifierUniqueSymbol;
 };
 export type MarkedTokenGenerator = <TModifiers>(
     variables: ExtractVariables<TModifiers>
@@ -62,7 +61,7 @@ export type ConvertTokens<TTokens> = {
     [TKey in keyof TTokens]: (TTokens[TKey] extends AnyFunction
         ? ReturnType<TTokens[TKey]>
         : TTokens[TKey]) & {
-        [uniqueKey]: TokenUniqueSymbol;
+        _type: TokenUniqueSymbol;
     };
 };
 export type ConvertModifiers<TModifiers extends SourceModifiers> = {
@@ -73,7 +72,7 @@ export type ConvertModifiers<TModifiers extends SourceModifiers> = {
             ? TModifiers[TTokenKey][`$${TPropertyKey}`]
             : never;
     } & {
-        [uniqueKey]: TokenModifierUniqueSymbol;
+        _type: TokenModifierUniqueSymbol;
     };
 };
 export type ConvertedTokens<

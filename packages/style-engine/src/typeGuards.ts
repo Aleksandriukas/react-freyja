@@ -1,7 +1,6 @@
 import {
     TokenOrModifier,
     MarkedTokenModifier,
-    uniqueKey,
     tokenModifierUniqueSymbol,
     MarkedToken,
     tokenUniqueSymbol,
@@ -10,8 +9,8 @@ import {
 export const isModifierToken = <TModifiers>(
     token: TokenOrModifier<TModifiers>
 ): token is MarkedTokenModifier<TModifiers> =>
-    token[uniqueKey] === tokenModifierUniqueSymbol;
+    token._type === tokenModifierUniqueSymbol;
 
 export const isToken = <TModifiers>(
     token: TokenOrModifier<TModifiers>
-): token is MarkedToken => token[uniqueKey] === tokenUniqueSymbol;
+): token is MarkedToken => token._type === tokenUniqueSymbol;
