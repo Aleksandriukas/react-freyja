@@ -6,7 +6,10 @@
     "scripts": {
         "build": "aqu build",
         "start": "aqu watch",
-        "test:watch": "aqu test --watch"
+        "lint": "eslint .",
+        "test": "aqu test --passWithNoTests",
+        "test:watch": "aqu test --watch",
+        "test:coverage": "aqu test --coverage --json --silent --ci --passWithNoTests --outputFile=\"report.json\""
     },
     "dependencies": {
         "@sirse-dev/safe-context": "^0.3.0",

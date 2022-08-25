@@ -5,7 +5,11 @@
     "module": "./dist/material.esm.js",
     "scripts": {
         "build": "aqu build",
-        "start": "aqu watch"
+        "start": "aqu watch",
+        "lint": "eslint .",
+        "test": "aqu test --passWithNoTests",
+        "test:watch": "aqu test --watch",
+        "test:coverage": "aqu test --coverage --json --silent --ci --passWithNoTests --outputFile=\"report.json\""
     },
     "devDependencies": {
         "@babel/core": "^7.18.9",
