@@ -19,36 +19,6 @@ jobs:
             - name: Find changed packages
               id: changed_packages
               uses: alexshukel/get-changed-workspaces-action@v1.0.0
-    coverage:
-        name: Coverage report
-        if: ${{ !fromJson(needs.generate_matrix.outputs.empty) }}
-        needs: [generate_matrix]
-        runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                path: ${{ fromJson(needs.generate_matrix.outputs.paths) }}
-        steps:
-            - uses: actions/checkout@v1
-
-            - uses: pnpm/action-setup@v2.2.2
-              with:
-                  version: 7.9.5
-
-            - name: Use Node 16.x
-              uses: actions/setup-node@v1
-              with:
-                  node-version: 16.x
-                  cache: 'pnpm'
-
-            - name: Installing dependencies
-              run: pnpm install
-
-            - uses: artiomtr/jest-coverage-report-action@v2.0-rc.2
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  skip-step: install
-                  working-directory: ${{ matrix.path }}
-                  test-script: pnpm run test:coverage
     build:
         needs: [generate_matrix]
         if: ${{ !fromJson(needs.generate_matrix.outputs.empty) }}
@@ -64,7 +34,8 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
-            - uses: pnpm/action-setup@v2.2.2
+            - name: Install pnpm
+              uses: pnpm/action-setup@v2.2.2
               with:
                   version: 7.9.5
 
