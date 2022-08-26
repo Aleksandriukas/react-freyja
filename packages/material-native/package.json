@@ -9,7 +9,7 @@
         "src/"
     ],
     "scripts": {
-        "prepare": "bob build"
+        "build": "bob build"
     },
     "devDependencies": {
         "@babel/core": "^7.18.13",
