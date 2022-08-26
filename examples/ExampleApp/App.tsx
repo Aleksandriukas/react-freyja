@@ -1,9 +1,8 @@
-import {materialTheme} from '@react-freyja/material';
+import {materialTheme, Button} from '@react-freyja/material';
 import {RNStyleEngine} from '@react-freyja/style-engine';
 import {ThemeContextProvider} from '@react-freyja/theme-context';
 import React, {useState} from 'react';
 import {View} from 'react-native';
-import {Button} from './src/Button';
 
 const engine = new RNStyleEngine();
 const getComponentStyles = engine.compile(materialTheme);

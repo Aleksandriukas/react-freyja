@@ -1,3 +1,21 @@
 {
-    "extends": ["@react-freyja/eslint-config"]
+    "extends": ["@react-freyja/eslint-config"],
+    "overrides": [
+        {
+            "files": ["./src/**"],
+            "rules": {
+                "unicorn/prevent-abbreviations": [
+                    "error",
+                    {
+                        "replacements": {
+                            "props": {
+                                "properties": false
+                            }
+                        }
+                    }
+                ],
+                "@typescript-eslint/naming-convention": "off"
+            }
+        }
+    ]
 }
