@@ -15,19 +15,9 @@
         "@babel/core": "^7.18.9",
         "@babel/preset-env": "7.2.0",
         "@react-freyja/eslint-config": "workspace:*",
-        "@types/react": "^18.0.14",
-        "@types/react-native": "^0.69.1",
-        "aqu": "^0.3.2",
-        "react": "18.0.0",
-        "react-native": "0.69.1"
+        "aqu": "^0.3.2"
     },
     "dependencies": {
-        "@react-freyja/base": "workspace:*",
-        "@react-freyja/theme": "workspace:*",
-        "@react-freyja/theme-context": "workspace:*"
-    },
-    "peerDependencies": {
-        "react": "18.0.0",
-        "react-native": "0.69.1"
+        "@react-freyja/theme": "workspace:*"
     }
 }

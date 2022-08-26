@@ -1,11 +1,14 @@
 import { ButtonBase } from "@react-freyja/base";
 import { useThemeContext } from "@react-freyja/theme-context";
-import React, { useMemo } from "react";
+import React, { PropsWithChildren, useMemo } from "react";
 import {
     Button as NativeButton,
     ButtonProps as NativeButtonProps,
 } from "react-native";
-import { ButtonProps } from "./ButtonProps";
+
+export type ButtonProps = PropsWithChildren<{
+    color: "primary" | "secondary";
+}>;
 
 export const Button = ({
     children,
