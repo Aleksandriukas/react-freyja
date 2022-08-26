@@ -15,15 +15,9 @@ export const Button = ({
     const getComponentStyles = useThemeContext();
 
     const style = useMemo(
-        () =>
-            getComponentStyles("Button", { color } as unknown as Record<
-                string,
-                string
-            >),
+        () => getComponentStyles("Button", { color }),
         [getComponentStyles, color]
     );
-
-    console.log(style)
 
     return (
         <ButtonBase Root={NativeButton} props={{ style, ...other }}>
