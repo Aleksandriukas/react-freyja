@@ -10,11 +10,7 @@
     ],
     "scripts": {
         "build": "bob build",
-        "start": "aqu watch",
-        "lint": "eslint .",
-        "test": "aqu test --passWithNoTests",
-        "test:watch": "aqu test --watch",
-        "test:coverage": "aqu test --coverage --json --silent --ci --passWithNoTests --outputFile=\"report.json\""
+        "lint": "eslint ."
     },
     "devDependencies": {
         "@babel/core": "^7.18.9",
@@ -23,7 +19,6 @@
         "@react-freyja/eslint-config": "workspace:*",
         "@types/react": "^18.0.14",
         "@types/react-native": "^0.69.1",
-        "aqu": "^0.3.2",
         "react-native-builder-bob": "^0.18.3",
         "typescript": "^4.8.2"
     },
