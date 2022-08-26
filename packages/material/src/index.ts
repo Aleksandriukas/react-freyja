@@ -1,4 +1,4 @@
 export * from "./materialTheme";
 
-// FIXME aqu build fails - use bob build for react-native
+// FIXME make build script to identify components for web and native
 export * from "./components/Button";
