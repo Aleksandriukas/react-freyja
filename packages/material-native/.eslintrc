@@ -1,4 +1,0 @@
-{
-    "extends": ["@react-freyja/eslint-config"],
-    "root": false
-}

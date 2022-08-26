@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@react-freyja/material": "workspace:*",
-    "@react-freyja/material-native": "workspace:*",
     "@react-freyja/style-engine": "workspace:*",
     "@react-freyja/theme-context": "workspace:*",
     "react": "18.0.0",
