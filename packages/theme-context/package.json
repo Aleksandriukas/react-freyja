@@ -12,8 +12,7 @@
         "test:coverage": "aqu test --coverage --json --silent --ci --passWithNoTests --outputFile=\"report.json\""
     },
     "dependencies": {
-        "@sirse-dev/safe-context": "^0.3.0",
-        "react": "18.0.0"
+        "@sirse-dev/safe-context": "^0.3.0"
     },
     "devDependencies": {
         "@babel/core": "^7.18.13",
@@ -21,6 +20,10 @@
         "@react-freyja/style-engine": "workspace:*",
         "@types/react": "^18.0.14",
         "aqu": "^0.3.2",
+        "react": "18.0.0",
         "typescript": "^4.7.4"
+    },
+    "peerDependencies": {
+        "react": "18.0.0"
     }
 }
