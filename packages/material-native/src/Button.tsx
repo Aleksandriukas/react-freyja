@@ -26,6 +26,8 @@ export const Button = ({
         [getComponentStyles, color]
     );
 
+    console.log(style);
+
     return (
         <ButtonBase Root={NativeButton} props={{ style, ...other }}>
             {children}

@@ -1,5 +1,4 @@
-import {materialTheme} from '@react-freyja/material';
-import {Button} from '@react-freyja/material-native';
+import {materialTheme, Button} from '@react-freyja/material';
 import {RNStyleEngine} from '@react-freyja/style-engine';
 import {ThemeContextProvider} from '@react-freyja/theme-context';
 import React, {useState} from 'react';

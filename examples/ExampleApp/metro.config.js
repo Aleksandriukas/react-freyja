@@ -13,7 +13,7 @@ const config = makeMetroConfig({
     projectRoot: __dirname,
     resolver: {
         resolveRequest: MetroSymlinksResolver(),
-        // ResolverMainFields: ['react-native', 'browser', 'main'],
+        resolverMainFields: ['react-native', 'browser', 'main'],
     },
 });
 

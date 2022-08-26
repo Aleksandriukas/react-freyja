@@ -13,6 +13,7 @@
     },
     "devDependencies": {
         "@babel/core": "^7.18.13",
+        "@babel/runtime": "^7.18.9",
         "@react-freyja/eslint-config": "workspace:*",
         "@types/react": "^18.0.14",
         "aqu": "^0.3.2",
