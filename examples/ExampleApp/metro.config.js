@@ -5,7 +5,7 @@ const config = makeMetroConfig({
     transformer: {
         getTransformOptions: async () => ({
             transform: {
-                experimentalImportSupport: false,
+                experimentalImportSupport: true,
                 inlineRequires: true,
             },
         }),

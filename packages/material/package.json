@@ -1,22 +1,49 @@
 {
     "name": "@react-freyja/material",
-    "main": "./dist/index.js",
-    "types": "./dist/material.d.ts",
-    "module": "./dist/material.esm.js",
+    "main": "lib/commonjs/index.js",
+    "module": "lib/module/index.js",
+    "react-native": "src/index.ts",
+    "types": "lib/typescript/index.d.ts",
+    "files": [
+        "lib/",
+        "src/"
+    ],
     "scripts": {
-        "build": "aqu build",
-        "start": "aqu watch",
-        "lint": "eslint .",
-        "test": "aqu test --passWithNoTests",
-        "test:watch": "aqu test --watch",
-        "test:coverage": "aqu test --coverage --json --silent --ci --passWithNoTests --outputFile=\"report.json\""
+        "build": "bob build",
+        "lint": "eslint ."
     },
     "devDependencies": {
         "@babel/core": "^7.18.9",
+        "@babel/preset-env": "7.2.0",
+        "@babel/runtime": "^7.18.9",
         "@react-freyja/eslint-config": "workspace:*",
-        "aqu": "^0.3.2"
+        "@react-freyja/style-engine": "workspace:*",
+        "@types/react": "^18.0.14",
+        "@types/react-native": "^0.69.1",
+        "react-native-builder-bob": "^0.18.3",
+        "typescript": "^4.8.2"
     },
     "dependencies": {
-        "@react-freyja/theme": "workspace:*"
+        "@react-freyja/base": "workspace:*",
+        "@react-freyja/theme": "workspace:*",
+        "@sirse-dev/safe-context": "^0.3.0"
+    },
+    "peerDependencies": {
+        "react": ">=18.0.0",
+        "react-native": ">=0.69.1"
+    },
+    "react-native-builder-bob": {
+        "source": "src",
+        "output": "lib",
+        "targets": [
+            [
+                "commonjs",
+                {
+                    "copyFlow": true
+                }
+            ],
+            "module",
+            "typescript"
+        ]
     }
 }

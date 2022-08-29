@@ -1,9 +1,11 @@
-import {materialTheme} from '@react-freyja/material';
+import {
+    materialTheme,
+    Button,
+    ThemeContextProvider,
+} from '@react-freyja/material';
 import {RNStyleEngine} from '@react-freyja/style-engine';
-import {ThemeContextProvider} from '@react-freyja/theme-context';
 import React, {useState} from 'react';
-import {View} from 'react-native';
-import {Button} from './src/Button';
+import {Text, View} from 'react-native';
 
 const engine = new RNStyleEngine();
 const getComponentStyles = engine.compile(materialTheme);
@@ -14,14 +16,16 @@ const App = () => {
     return (
         <ThemeContextProvider value={getComponentStyles}>
             <View>
-                <Button
-                    color={color}
-                    onPress={() => {
-                        setColor(old =>
-                            old === 'primary' ? 'secondary' : 'primary',
-                        );
-                    }}
-                />
+                <Button color={color}>
+                    <Text
+                        onPress={() => {
+                            setColor(old =>
+                                old === 'primary' ? 'secondary' : 'primary',
+                            );
+                        }}>
+                        asdf
+                    </Text>
+                </Button>
             </View>
         </ThemeContextProvider>
     );
