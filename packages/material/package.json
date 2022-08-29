@@ -17,6 +17,7 @@
         "@babel/preset-env": "7.2.0",
         "@babel/runtime": "^7.18.9",
         "@react-freyja/eslint-config": "workspace:*",
+        "@react-freyja/style-engine": "workspace:*",
         "@types/react": "^18.0.14",
         "@types/react-native": "^0.69.1",
         "react-native-builder-bob": "^0.18.3",
@@ -25,7 +26,7 @@
     "dependencies": {
         "@react-freyja/base": "workspace:*",
         "@react-freyja/theme": "workspace:*",
-        "@react-freyja/theme-context": "workspace:*"
+        "@sirse-dev/safe-context": "^0.3.0"
     },
     "peerDependencies": {
         "react": ">=18.0.0",

@@ -1,7 +1,7 @@
 import { ButtonBase } from "@react-freyja/base";
-import { useThemeContext } from "@react-freyja/theme-context";
 import React, { useMemo } from "react";
 import { View } from "react-native";
+import { useThemeContext } from "../../ThemeContext";
 import { ButtonProps } from "./ButtonProps";
 
 export const Button = ({ children, color, ...other }: ButtonProps) => {
