@@ -2,7 +2,7 @@
     "extends": ["@react-freyja/eslint-config"],
     "overrides": [
         {
-            "files": ["./src/*"],
+            "files": ["*.tsx"],
             "rules": {
                 "@typescript-eslint/naming-convention": "off"
             }

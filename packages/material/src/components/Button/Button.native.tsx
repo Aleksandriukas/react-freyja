@@ -4,7 +4,7 @@ import { View } from "react-native";
 import { useThemeContext } from "../../ThemeContext";
 import { ButtonProps } from "./ButtonProps";
 
-export const Button = ({ children, color, ...other }: ButtonProps) => {
+export const Button = ({ children, color }: ButtonProps) => {
     const getComponentStyles = useThemeContext();
 
     const style = useMemo(
@@ -13,7 +13,7 @@ export const Button = ({ children, color, ...other }: ButtonProps) => {
     );
 
     return (
-        <ButtonBase Root={View} props={{ style, ...other }}>
+        <ButtonBase Root={View} props={{ style }}>
             {children}
         </ButtonBase>
     );
