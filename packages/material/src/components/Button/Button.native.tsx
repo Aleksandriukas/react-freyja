@@ -1,17 +1,10 @@
 import { ButtonBase } from "@react-freyja/base";
 import { useThemeContext } from "@react-freyja/theme-context";
 import React, { useMemo } from "react";
-import {
-    Button as NativeButton,
-    ButtonProps as NativeButtonProps,
-} from "react-native";
+import { View } from "react-native";
 import { ButtonProps } from "./ButtonProps";
 
-export const Button = ({
-    children,
-    color,
-    ...other
-}: ButtonProps & NativeButtonProps) => {
+export const Button = ({ children, color, ...other }: ButtonProps) => {
     const getComponentStyles = useThemeContext();
 
     const style = useMemo(
@@ -20,7 +13,7 @@ export const Button = ({
     );
 
     return (
-        <ButtonBase Root={NativeButton} props={{ style, ...other }}>
+        <ButtonBase Root={View} props={{ style, ...other }}>
             {children}
         </ButtonBase>
     );

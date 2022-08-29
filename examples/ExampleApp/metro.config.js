@@ -17,6 +17,4 @@ const config = makeMetroConfig({
     },
 });
 
-console.log(config);
-
 module.exports = config;

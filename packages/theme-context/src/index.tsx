@@ -1,16 +1,16 @@
 import { createSafeContext, useSafeContext } from "@sirse-dev/safe-context";
 import React, { PropsWithChildren } from "react";
-import type { StyleEngineResult } from "@react-freyja/style-engine";
+import type { StylesGenerator } from "@react-freyja/style-engine";
 
-export const ThemeContext = createSafeContext<StyleEngineResult<unknown>>();
+export const ThemeContext = createSafeContext<StylesGenerator<unknown>>();
 
 export const useThemeContext = <
     TCompiledStyles,
->(): StyleEngineResult<TCompiledStyles> =>
-    useSafeContext(ThemeContext) as StyleEngineResult<TCompiledStyles>;
+>(): StylesGenerator<TCompiledStyles> =>
+    useSafeContext(ThemeContext) as StylesGenerator<TCompiledStyles>;
 
 export type ThemeContextProviderProps<TCompiledStyles> = PropsWithChildren<{
-    value: StyleEngineResult<TCompiledStyles>;
+    value: StylesGenerator<TCompiledStyles>;
 }>;
 
 export const ThemeContextProvider = <TCompiledStyles,>({
