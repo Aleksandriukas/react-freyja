@@ -4,7 +4,6 @@ const path = require("path");
 const config = {
     entry: {
         web: "./src/index.web.ts",
-        native: "./src/index.native.ts",
     },
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -19,12 +18,6 @@ const config = {
             commonjs: "react",
             commonjs2: "react",
             amd: "react",
-            root: "_",
-        },
-        ["react-native"]: {
-            commonjs: "react-native",
-            commonjs2: "react-native",
-            amd: "react-native",
             root: "_",
         },
     },
