@@ -16,6 +16,13 @@
                 ],
                 "@typescript-eslint/naming-convention": "off"
             }
+        },
+        {
+            "files": ["./scripts/*"],
+            "rules": {
+                "unicorn/prefer-module": "off",
+                "unicorn/prefer-node-protocol": "off"
+            }
         }
     ]
 }
