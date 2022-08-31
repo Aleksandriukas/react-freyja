@@ -20,7 +20,7 @@ export class WebStyleEngine<
 
             const variables = getVariables(component, variant);
 
-            const tokens = getTokens(component, variables, variant);
+            getTokens(component, variables, variant);
 
             return {
                 color: "red",
