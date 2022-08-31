@@ -1,0 +1,3 @@
+- bob build takes web components in the bundle
+- fix react dependency in the workspace root for webpack bundle - there must be no dependencies
+- fix webpack build

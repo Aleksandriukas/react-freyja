@@ -10,6 +10,10 @@ const config = {
     },
     resolve: {
         extensions: [".ts", ".tsx", "..."],
+        alias: {
+            // React does not exists in the lib. Installing via npm will not cause this problem.
+            react: path.resolve(__dirname, "node_modules", "react"),
+        },
     },
     mode: "development",
     module: {

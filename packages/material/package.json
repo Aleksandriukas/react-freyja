@@ -1,10 +1,16 @@
 {
     "name": "@react-freyja/material",
     "main": "./dist/web.bundle.js",
+    "react-native": "./dist/native/commonjs/index.native.js",
     "types": "./dist/index.d.ts",
-    "react-native": "./dist/native.bundle.js",
+    "files": [
+        "dist/",
+        "src/"
+    ],
     "scripts": {
-        "build": "webpack && pnpm run generate-declarations",
+        "build": "pnpm run build:web && pnpm run build:native",
+        "build:web": "webpack && pnpm run generate-declarations",
+        "build:native": "bob build && pnpm run generate-declarations",
         "generate-declarations": "zxpp ./scripts/generateDeclarations.ts"
     },
     "devDependencies": {
@@ -18,8 +24,7 @@
         "@types/react-native": "^0.69.1",
         "@types/webpack": "^5.28.0",
         "dts-bundle-generator": "^6.12.0",
-        "react": "^18.2.0",
-        "react-native": "0.69.1",
+        "react-native-builder-bob": "^0.18.3",
         "ts-loader": "^9.3.1",
         "typescript": "^4.8.2",
         "webpack": "^5.74.0",
@@ -34,5 +39,14 @@
     "peerDependencies": {
         "react": "^18.2.0",
         "react-native": "0.69.1"
-    }
+    },
+    "react-native-builder-bob": {
+        "source": "src",
+        "output": "dist/native",
+        "targets": [
+          ["commonjs", {"copyFlow": true}],
+          "module",
+          "typescript"
+        ]
+      }
 }
