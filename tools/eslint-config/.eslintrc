@@ -4,7 +4,8 @@
         {
             "files": ["*.config.js"],
             "rules": {
-                "@typescript-eslint/naming-convention": "off"
+                "@typescript-eslint/naming-convention": "off",
+                "unicorn/prefer-node-protocol": "off"
             }
         }
     ]

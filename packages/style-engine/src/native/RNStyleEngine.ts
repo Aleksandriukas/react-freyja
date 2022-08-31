@@ -1,8 +1,8 @@
 import { Modifiers, Components } from "@react-freyja/theme";
 import { ViewStyle } from "react-native";
 import { StyleEngine, StylesGenerator } from "..";
-import { getTokens } from "./getTokens";
-import { getVariables } from "./getVariables";
+import { getTokens } from "../utils/getTokens";
+import { getVariables } from "../utils/getVariables";
 import { tokensToStyles } from "./tokensToStyles";
 
 export type RNStyles = ViewStyle;

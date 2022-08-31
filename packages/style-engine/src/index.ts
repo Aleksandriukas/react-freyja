@@ -14,3 +14,4 @@ export interface StyleEngine<
 }
 
 export * from "./native/RNStyleEngine";
+export * from "./web/WebStyleEngine";
