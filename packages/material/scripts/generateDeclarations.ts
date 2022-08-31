@@ -30,6 +30,9 @@ generateDtsBundle([
                 "@react-freyja/theme",
             ],
         },
+        output: {
+            exportReferencedTypes: false,
+        },
     },
 ]).map((bundle) => safeWriteFileSync(outputFile, bundle));
 

@@ -1,0 +1,11 @@
+{
+    "dtsBundleGeneratorOptions": {
+        "libraries": {
+            "importedLibraries": ["react", "react-native"],
+            "allowedTypesLibraries": []
+        },
+        "output": {
+            "exportReferencedTypes": false
+        }
+    }
+}

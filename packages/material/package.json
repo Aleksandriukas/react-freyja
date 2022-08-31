@@ -11,7 +11,8 @@
         "build": "pnpm run build:web && pnpm run build:native",
         "build:web": "webpack && pnpm run generate-declarations",
         "build:native": "bob build && pnpm run generate-declarations",
-        "generate-declarations": "zxpp ./scripts/generateDeclarations.ts"
+        "generate-declarations": "zxpp ./scripts/generateDeclarations.ts",
+        "watch:web": "webpack watch"
     },
     "devDependencies": {
         "@babel/core": "^7.18.9",
@@ -48,5 +49,5 @@
           "module",
           "typescript"
         ]
-      }
+    }
 }
