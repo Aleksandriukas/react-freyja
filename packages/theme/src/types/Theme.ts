@@ -77,7 +77,7 @@ export type ConvertModifiers<TModifiers extends SourceModifiers> = {
 };
 export type ConvertedTokens<
     TTokens,
-    TModifiers extends SourceModifiers
+    TModifiers extends Modifiers
 > = ConvertTokens<TTokens> & ConvertModifiers<TModifiers>;
 
 export type ThemeSource<
