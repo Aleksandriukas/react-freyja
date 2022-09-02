@@ -277,13 +277,20 @@ importers:
       '@babel/runtime': ^7.18.9
       '@react-freyja/eslint-config': workspace:*
       '@types/jest': ^26.0.24
+      '@types/lodash': ^4.14.184
       aqu: ^0.3.2
+      lodash: ^4.17.21
+      lodash-es: ^4.17.21
       typescript: ^4.7.4
+    dependencies:
+      lodash: 4.17.21
+      lodash-es: 4.17.21
     devDependencies:
       '@babel/core': 7.18.9
       '@babel/runtime': 7.18.9
       '@react-freyja/eslint-config': link:../../tools/eslint-config
       '@types/jest': 26.0.24
+      '@types/lodash': 4.14.184
       aqu: 0.3.2_@babel+core@7.18.9
       typescript: 4.7.4
 
@@ -4211,7 +4218,7 @@ packages:
     engines: {node: '>= 10.14.2'}
     dependencies:
       '@jest/types': 26.6.2
-      '@types/node': 18.0.5
+      '@types/node': 18.7.13
       chalk: 4.1.2
       jest-message-util: 26.6.2
       jest-util: 26.6.2
@@ -4239,7 +4246,7 @@ packages:
       '@jest/test-result': 26.6.2
       '@jest/transform': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 18.0.5
+      '@types/node': 18.7.13
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       exit: 0.1.2
@@ -4282,7 +4289,7 @@ packages:
     dependencies:
       '@jest/fake-timers': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 18.0.5
+      '@types/node': 18.7.13
       jest-mock: 26.6.2
     dev: true
 
@@ -4292,7 +4299,7 @@ packages:
     dependencies:
       '@jest/types': 26.6.2
       '@sinonjs/fake-timers': 6.0.1
-      '@types/node': 18.0.5
+      '@types/node': 18.7.13
       jest-message-util: 26.6.2
       jest-mock: 26.6.2
       jest-util: 26.6.2
@@ -12422,7 +12429,7 @@ packages:
       '@jest/environment': 26.6.2
       '@jest/fake-timers': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 18.0.5
+      '@types/node': 18.7.13
       jest-mock: 26.6.2
       jest-util: 26.6.2
       jsdom: 16.7.0
@@ -12440,7 +12447,7 @@ packages:
       '@jest/environment': 26.6.2
       '@jest/fake-timers': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 18.0.5
+      '@types/node': 18.7.13
       jest-mock: 26.6.2
       jest-util: 26.6.2
     dev: true
@@ -12455,7 +12462,7 @@ packages:
     dependencies:
       '@jest/types': 26.6.2
       '@types/graceful-fs': 4.1.5
-      '@types/node': 18.0.5
+      '@types/node': 18.7.13
       anymatch: 3.1.2
       fb-watchman: 2.0.1
       graceful-fs: 4.2.10
@@ -12500,7 +12507,7 @@ packages:
       '@jest/source-map': 26.6.2
       '@jest/test-result': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 18.0.5
+      '@types/node': 18.7.13
       chalk: 4.1.2
       co: 4.6.0
       expect: 26.6.2
@@ -12574,7 +12581,7 @@ packages:
     engines: {node: '>= 10.14.2'}
     dependencies:
       '@jest/types': 26.6.2
-      '@types/node': 18.0.5
+      '@types/node': 18.7.13
     dev: true
 
   /jest-pnp-resolver/1.2.2_jest-resolve@26.6.2:
@@ -12631,7 +12638,7 @@ packages:
       '@jest/environment': 26.6.2
       '@jest/test-result': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 18.0.5
+      '@types/node': 18.7.13
       chalk: 4.1.2
       emittery: 0.7.2
       exit: 0.1.2
@@ -12699,7 +12706,7 @@ packages:
     resolution: {integrity: sha512-S5wqyz0DXnNJPd/xfIzZ5Xnp1HrJWBczg8mMfMpN78OJ5eDxXyf+Ygld9wX1DnUWbIbhM1YDY95NjR4CBXkb2g==}
     engines: {node: '>= 10.14.2'}
     dependencies:
-      '@types/node': 18.0.5
+      '@types/node': 18.7.13
       graceful-fs: 4.2.10
     dev: true
 
@@ -12790,7 +12797,7 @@ packages:
     dependencies:
       '@jest/test-result': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 18.0.5
+      '@types/node': 18.7.13
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       jest-util: 26.6.2
@@ -12822,7 +12829,7 @@ packages:
     resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 18.0.5
+      '@types/node': 18.7.13
       merge-stream: 2.0.0
       supports-color: 7.2.0
     dev: true
@@ -13176,7 +13183,6 @@ packages:
 
   /lodash-es/4.17.21:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
-    dev: true
 
   /lodash.debounce/4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}

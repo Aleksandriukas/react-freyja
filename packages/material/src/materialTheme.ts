@@ -16,6 +16,7 @@ export const materialTheme = createTheme({
     tokens: {
         modifiers: (definitions) => ({
             primaryColor: {
+                // TODO type error does not appear when variable name does not start with $
                 $color: definitions.palette.primary,
             },
             secondaryColor: {

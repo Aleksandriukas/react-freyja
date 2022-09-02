@@ -1,18 +1,18 @@
-// if you use expo remove this line
+// If you use expo remove this line
+import {withKnobs} from '@storybook/addon-knobs';
+import {getStorybookUI, configure, addDecorator} from '@storybook/react-native';
 import {AppRegistry} from 'react-native';
 
-import {getStorybookUI, configure, addDecorator} from '@storybook/react-native';
-import {withKnobs} from '@storybook/addon-knobs';
 import {name as appName} from './app.json';
 
 import './storybook/rn-addons';
 
-// enables knobs for all stories
+// Enables knobs for all stories
 addDecorator(withKnobs);
 
-// import stories
+// Import stories
 configure(() => {
-  require('./storybook/stories');
+    require('./storybook/stories');
 }, module);
 
 // Refer to https://github.com/storybookjs/react-native/tree/master/app/react-native#getstorybookui-options

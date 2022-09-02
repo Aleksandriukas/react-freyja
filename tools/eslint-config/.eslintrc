@@ -7,6 +7,12 @@
                 "@typescript-eslint/naming-convention": "off",
                 "unicorn/prefer-node-protocol": "off"
             }
+        },
+        {
+            "files": ["*.test.ts", "*.test.tsx"],
+            "rules": {
+                "@typescript-eslint/naming-convention": "off"
+            }
         }
     ]
 }
