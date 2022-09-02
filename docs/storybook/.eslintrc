@@ -4,7 +4,7 @@
         {
             "files": ["storybook/**"],
             "rules": {
-                "unicorn/prefer-module": "off",
+                "unicorn/prefer-module": "off"
             },
             "env": {
                 "node": true
