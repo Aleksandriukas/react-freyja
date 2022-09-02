@@ -99,9 +99,10 @@ export type ThemeSource<
     ) => TComponents;
 };
 
+// TODO fix this type - it is not assignable to regular ThemeSource
 export type UnknownThemeSource = ThemeSource<
     Record<string, unknown>,
     ModifiersGenerator<Record<string, unknown>>,
     Record<string, Token | TokenGenerator<SourceModifiers>>,
-    Components<ReturnType<ModifiersGenerator<Record<string, unknown>>>>
+    Components<SourceModifiers>
 >;

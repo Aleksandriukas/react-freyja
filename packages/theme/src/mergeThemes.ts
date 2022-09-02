@@ -1,9 +1,9 @@
 import merge from "lodash/merge";
+import mergeWith from "lodash/mergeWith";
 import {
     Components,
     ConvertedTokens,
     Modifiers,
-    SourceModifiers,
     Token,
     UnknownThemeSource,
 } from "./types/Theme";
@@ -11,6 +11,7 @@ import { combineTokens } from "./utils/combineTokens";
 import { convertVariableNames } from "./utils/convertVariableNames";
 import { executeTokenGenerators } from "./utils/executeTokenGenerators";
 import { getAllVariables } from "./utils/getAllVariables";
+import { markModifierTokens, markTokens } from "./utils/markTokens";
 
 const mergeDefinitions = (
     definitions: Record<string, unknown>[]
@@ -25,7 +26,7 @@ const mergeDefinitions = (
 };
 
 type MergedTokens = {
-    modifierTokens: SourceModifiers;
+    modifierTokens: Modifiers;
     tokens: Record<string, Token>;
 };
 
@@ -60,6 +61,12 @@ const mergeTokens = (
     return result;
 };
 
+const customArrayMerge = (objectValue: unknown, sourceValue: unknown) => {
+    if (Array.isArray(objectValue) && Array.isArray(sourceValue)) {
+        return [...objectValue, ...sourceValue];
+    }
+};
+
 const mergeComponents = (
     componentsSource: UnknownThemeSource["components"][],
     tokens: ConvertedTokens<Record<string, Token>, Modifiers>
@@ -69,13 +76,13 @@ const mergeComponents = (
     for (const componentsGenerator of componentsSource) {
         const components = componentsGenerator(tokens);
 
-        merge(result, components);
+        mergeWith(result, components, customArrayMerge);
     }
 
     return result;
 };
 
-export const mergeThemes = (themes: UnknownThemeSource[]) => {
+export const mergeThemes = (...themes: UnknownThemeSource[]) => {
     const definitions = mergeDefinitions(
         themes.map(({ definitions }) => definitions)
     );
@@ -85,6 +92,15 @@ export const mergeThemes = (themes: UnknownThemeSource[]) => {
         definitions
     );
 
-    // TODO solve issue with _type marking - it is nor safe nor readable
-    const combinedTokens = combineTokens(tokens, modifierTokens);
+    const markedTokens = markTokens(tokens);
+    const markedModifierTokens = markModifierTokens(modifierTokens);
+
+    const combinedTokens = combineTokens(markedTokens, markedModifierTokens);
+
+    const components = mergeComponents(
+        themes.map(({ components }) => components),
+        combinedTokens
+    );
+
+    return components;
 };
