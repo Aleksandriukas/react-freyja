@@ -79,7 +79,6 @@ describe("merging multiple source theme objects", () => {
             },
             components: (tokens) => ({
                 Button: {
-                    // FIXME this token overrides previous
                     tokens: [tokens.c2],
                     variants: {
                         color: {

@@ -14,7 +14,7 @@ export const App = () => {
                         );
                     }}
                 >
-                    helo
+                    heloo
                 </span>
             </Button>
         </div>

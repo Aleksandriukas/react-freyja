@@ -1,4 +1,4 @@
-import { materialTheme, ThemeContextProvider } from "@react-freyja/material";
+import { ThemeContextProvider, materialTheme } from "@react-freyja/material";
 import { WebStyleEngine } from "@react-freyja/style-engine";
 import React from "react";
 import { createRoot } from "react-dom/client";
