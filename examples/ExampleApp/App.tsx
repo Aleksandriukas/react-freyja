@@ -16,15 +16,14 @@ const App = () => {
     return (
         <ThemeContextProvider value={getComponentStyles}>
             <View>
-                <Button color={color}>
-                    <Text
-                        onPress={() => {
-                            setColor(old =>
-                                old === 'primary' ? 'secondary' : 'primary',
-                            );
-                        }}>
-                        asdf
-                    </Text>
+                <Button
+                    color={color}
+                    onClick={() => {
+                        setColor(old =>
+                            old === 'primary' ? 'secondary' : 'primary',
+                        );
+                    }}>
+                    <Text>asdf</Text>
                 </Button>
             </View>
         </ThemeContextProvider>

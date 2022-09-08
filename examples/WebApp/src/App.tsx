@@ -6,16 +6,15 @@ export const App = () => {
 
     return (
         <div>
-            <Button color={color}>
-                <span
-                    onClick={() => {
-                        setColor((old) =>
-                            old === "primary" ? "secondary" : "primary"
-                        );
-                    }}
-                >
-                    heloo
-                </span>
+            <Button
+                color={color}
+                onClick={() => {
+                    setColor((old) =>
+                        old === "primary" ? "secondary" : "primary"
+                    );
+                }}
+            >
+                hello
             </Button>
         </div>
     );

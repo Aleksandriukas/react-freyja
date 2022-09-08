@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "react";
 
 export type ButtonProps = PropsWithChildren<{
-    color: "primary" | "secondary";
+    color?: "primary" | "secondary";
+    onClick?: () => void;
 }>;
