@@ -3,6 +3,7 @@
     "main": "./dist/index.js",
     "types": "./dist/style-engine.d.ts",
     "module": "./dist/style-engine.esm.js",
+    "sideEffects": false,
     "scripts": {
         "build": "aqu build",
         "start": "aqu watch",
@@ -16,10 +17,13 @@
         "@babel/runtime": "^7.18.9",
         "@react-freyja/eslint-config": "workspace:*",
         "@types/jest": "^26.0.23",
+        "@types/node": "^18.7.13",
         "@types/react": "^18.0.14",
         "@types/react-native": "^0.69.1",
         "aqu": "^0.3.2",
-        "typescript": "^4.7.4"
+        "esbuild": "^0.15.7",
+        "typescript": "^4.7.4",
+        "zxpp": "^0.2.1"
     },
     "dependencies": {
         "@react-freyja/theme": "workspace:*"
