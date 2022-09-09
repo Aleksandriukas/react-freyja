@@ -1,36 +1,10 @@
-import { Modifiers, Components, Token } from "@react-freyja/theme";
+import { Modifiers, Components } from "@react-freyja/theme";
 import { StyleEngine } from "..";
 import { getTokens } from "../utils/getTokens";
 
 import { getVariables } from "../utils/getVariables";
-import type { CSSProperties } from "react";
-
-const tokensToCSSProperties = (tokens: Token[]): CSSProperties => {
-    const styles = {};
-
-    for (const token of tokens) {
-        for (const [key, value] of Object.entries(token)) {
-            (styles as Record<string, unknown>)[key] = value;
-        }
-    }
-
-    return styles;
-};
-
-const styleToCss = (style: CSSProperties) => {
-    return Object.keys(style).reduce(
-        (accumulator, key) =>
-            accumulator +
-            key
-                .split(/(?=[A-Z])/)
-                .join("-")
-                .toLowerCase() +
-            ":" +
-            style[key as keyof CSSProperties] +
-            ";",
-        ""
-    );
-};
+import { styleObjectToCss } from "./styleObjectToCss";
+import { tokensToStyleObject } from "./tokensToStyleObject";
 
 export class WebStyleEngine<
     TModifiers extends Modifiers,
@@ -48,9 +22,9 @@ export class WebStyleEngine<
 
             const tokens = getTokens(component, variables, variant);
 
-            const styleObject = tokensToCSSProperties(tokens);
+            const styleObject = tokensToStyleObject(tokens);
 
-            const css = styleToCss(styleObject);
+            const css = styleObjectToCss(styleObject);
             const className = "Freyja--" + componentName;
 
             const style =
