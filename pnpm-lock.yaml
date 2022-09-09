@@ -210,7 +210,6 @@ importers:
       '@babel/core': ^7.18.9
       '@babel/preset-env': 7.2.0
       '@babel/runtime': ^7.18.9
-      '@react-freyja/base': workspace:*
       '@react-freyja/eslint-config': workspace:*
       '@react-freyja/style-engine': workspace:*
       '@react-freyja/theme': workspace:*
@@ -229,7 +228,6 @@ importers:
       webpack-merge: ^5.8.0
       zxpp: ^0.2.1
     dependencies:
-      '@react-freyja/base': link:../base
       '@react-freyja/theme': link:../theme
       '@sirse-dev/safe-context': 0.3.0
     devDependencies:

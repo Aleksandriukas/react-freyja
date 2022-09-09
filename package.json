@@ -1,29 +1,10 @@
 {
-    "name": "react-freyja",
-    "version": "1.0.0",
+    "name": "@react-freyja/monorepo",
     "description": "React component framework",
     "private": true,
-    "files": [
-        "dist"
-    ],
     "scripts": {
         "build": "turbo run build --filter=./packages/*"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Aleksandriukas/react-freyja.git"
-    },
-    "keywords": [],
-    "author": "Aleksandras Bogdanovas",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/Aleksandriukas/react-freyja/issues"
-    },
-    "homepage": "https://github.com/Aleksandriukas/react-freyja#readme",
-    "workspaces": [
-        "packages/*",
-        "tools/*"
-    ],
     "devDependencies": {
         "turbo": "^1.3.4"
     }
