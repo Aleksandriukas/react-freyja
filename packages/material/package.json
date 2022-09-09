@@ -37,7 +37,6 @@
         "zxpp": "^0.2.1"
     },
     "dependencies": {
-        "@react-freyja/base": "workspace:*",
         "@react-freyja/theme": "workspace:*",
         "@sirse-dev/safe-context": "^0.3.0"
     },

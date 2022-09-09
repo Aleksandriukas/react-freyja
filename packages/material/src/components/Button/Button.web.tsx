@@ -1,4 +1,3 @@
-import { ButtonBase } from "@react-freyja/base";
 import React, { CSSProperties, useMemo } from "react";
 import { useThemeContext } from "../../ThemeContext";
 import { ButtonProps } from "./ButtonProps";
@@ -16,8 +15,8 @@ export const Button = ({
     );
 
     return (
-        <ButtonBase Root="button" props={{ style, onClick }}>
+        <button style={style} onClick={onClick}>
             {children}
-        </ButtonBase>
+        </button>
     );
 };
