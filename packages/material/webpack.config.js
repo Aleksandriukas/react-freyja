@@ -1,38 +1,4 @@
-const path = require("path");
+const nativeConfig = require("./webpack.native.config");
+const webConfig = require("./webpack.web.config");
 
-/** @type {import('webpack').Configuration} */
-const config = {
-    entry: {
-        web: "./src/index.web.ts",
-    },
-    output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "[name].bundle.js",
-        library: {
-            name: "react-freyja",
-            type: "umd",
-        },
-    },
-    externals: {
-        react: {
-            commonjs: "react",
-            commonjs2: "react",
-            amd: "react",
-            root: "_",
-        },
-    },
-    resolve: {
-        extensions: [".ts", ".tsx", "..."],
-    },
-    mode: "development",
-    module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                loader: "ts-loader",
-            },
-        ],
-    },
-};
-
-module.exports = config;
+module.exports = [nativeConfig, webConfig];

@@ -1,2 +1,0 @@
-- bob build takes web components in the bundle
-- isModifierToken does not work correctly on the web

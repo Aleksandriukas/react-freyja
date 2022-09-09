@@ -19,7 +19,7 @@ const outputFile = path.resolve(__dirname, "..", "dist", "index.d.ts");
 
 generateDtsBundle([
     {
-        filePath: path.resolve(__dirname, "..", "src", "index.web.ts"),
+        filePath: path.resolve(__dirname, "..", "src", "index.ts"),
         libraries: {
             importedLibraries: [
                 "react",

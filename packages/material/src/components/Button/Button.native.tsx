@@ -1,11 +1,15 @@
 import { ButtonBase } from "@react-freyja/base";
 import { RNStyles } from "@react-freyja/style-engine";
 import React, { useMemo } from "react";
-import { View } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { useThemeContext } from "../../ThemeContext";
 import { ButtonProps } from "./ButtonProps";
 
-export const Button = ({ children, color }: ButtonProps) => {
+export const Button = ({
+    children,
+    color = "primary",
+    onClick,
+}: ButtonProps) => {
     const getComponentStyles = useThemeContext<RNStyles>();
 
     const style = useMemo(
@@ -14,7 +18,7 @@ export const Button = ({ children, color }: ButtonProps) => {
     );
 
     return (
-        <ButtonBase Root={View} props={{ style }}>
+        <ButtonBase Root={TouchableOpacity} props={{ style, onPress: onClick }}>
             {children}
         </ButtonBase>
     );

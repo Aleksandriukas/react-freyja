@@ -11,11 +11,8 @@ export const markTokens = (
 ): Record<string, MarkedToken> => {
     const result = {} as Record<string, MarkedToken>;
 
-    for (const [tokenName, token] of Object.entries(tokens)) {
-        result[tokenName] = {
-            ...token,
-            _type: tokenUniqueSymbol,
-        };
+    for (const tokenName of Object.keys(tokens)) {
+        result[tokenName] = { ...tokens[tokenName], _type: tokenUniqueSymbol };
     }
 
     return result;
