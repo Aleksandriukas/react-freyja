@@ -17,11 +17,25 @@ const tokensToCSSProperties = (tokens: Token[]): CSSProperties => {
     return styles;
 };
 
-// TODO implement CSS generation
+const styleToCss = (style: CSSProperties) => {
+    return Object.keys(style).reduce(
+        (accumulator, key) =>
+            accumulator +
+            key
+                .split(/(?=[A-Z])/)
+                .join("-")
+                .toLowerCase() +
+            ":" +
+            style[key as keyof CSSProperties] +
+            ";",
+        ""
+    );
+};
+
 export class WebStyleEngine<
     TModifiers extends Modifiers,
     TComponents extends Components<TModifiers>
-> implements StyleEngine<CSSProperties, TModifiers, TComponents>
+> implements StyleEngine<string, TModifiers, TComponents>
 {
     public compile = (components: TComponents) => {
         const getComponentClassName = <P extends Record<string, string>>(
@@ -34,7 +48,22 @@ export class WebStyleEngine<
 
             const tokens = getTokens(component, variables, variant);
 
-            return tokensToCSSProperties(tokens);
+            const styleObject = tokensToCSSProperties(tokens);
+
+            const css = styleToCss(styleObject);
+            const className = "Freyja--" + componentName;
+
+            const style =
+                document.querySelector("style") ||
+                document.createElement("style");
+
+            style.textContent = `
+                .${className} {${css}}
+            `;
+
+            document.head.append(style);
+
+            return className;
         };
 
         return getComponentClassName;

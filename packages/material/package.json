@@ -12,8 +12,8 @@
         "build:web": "webpack --config webpack.web.config.js && pnpm run generate-declarations",
         "build:native": "webpack --config webpack.native.config.js && pnpm run generate-declarations",
         "watch": "webpack watch",
-        "watch:web": "webpack --config webpack.web.config.js watch",
-        "watch:native": "webpack --config webpack.native.config.js watch",
+        "watch:web": "webpack watch --config webpack.web.config.js",
+        "watch:native": "webpack watch --config webpack.native.config.js",
         "generate-declarations": "zxpp ./scripts/generateDeclarations.ts"
     },
     "devDependencies": {
