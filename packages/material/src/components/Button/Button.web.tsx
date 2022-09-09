@@ -1,5 +1,4 @@
-import { ButtonBase } from "@react-freyja/base";
-import React, { CSSProperties, useMemo } from "react";
+import React, { useMemo } from "react";
 import { useThemeContext } from "../../ThemeContext";
 import { ButtonProps } from "./ButtonProps";
 
@@ -8,16 +7,16 @@ export const Button = ({
     children,
     onClick,
 }: ButtonProps) => {
-    const getComponentStyles = useThemeContext<CSSProperties>();
+    const getComponentClassName = useThemeContext<string>();
 
-    const style = useMemo(
-        () => getComponentStyles("Button", { color }),
-        [color, getComponentStyles]
+    const className = useMemo(
+        () => getComponentClassName("Button", { color }),
+        [color, getComponentClassName]
     );
 
     return (
-        <ButtonBase Root="button" props={{ style, onClick }}>
+        <button className={className} onClick={onClick}>
             {children}
-        </ButtonBase>
+        </button>
     );
 };

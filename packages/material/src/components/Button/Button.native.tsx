@@ -1,4 +1,3 @@
-import { ButtonBase } from "@react-freyja/base";
 import { RNStyles } from "@react-freyja/style-engine";
 import React, { useMemo } from "react";
 import { TouchableOpacity } from "react-native";
@@ -18,8 +17,8 @@ export const Button = ({
     );
 
     return (
-        <ButtonBase Root={TouchableOpacity} props={{ style, onPress: onClick }}>
+        <TouchableOpacity style={style} onPress={onClick}>
             {children}
-        </ButtonBase>
+        </TouchableOpacity>
     );
 };
