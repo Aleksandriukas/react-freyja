@@ -7,5 +7,6 @@
         "output": {
             "exportReferencedTypes": false
         }
-    }
+    },
+    "outdir": "dist/commonjs"
 }

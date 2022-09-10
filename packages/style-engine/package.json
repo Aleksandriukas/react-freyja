@@ -1,27 +1,26 @@
 {
     "name": "@react-freyja/style-engine",
-    "main": "./dist/index.js",
-    "types": "./dist/style-engine.d.ts",
-    "module": "./dist/style-engine.esm.js",
+    "main": "./dist/commonjs/index.js",
+    "types": "./dist/commonjs/style-engine.d.ts",
+    "module": "./dist/esm/index.js",
     "sideEffects": false,
     "scripts": {
-        "build": "aqu build",
-        "start": "aqu watch",
-        "lint": "eslint .",
-        "test": "aqu test --passWithNoTests",
-        "test:watch": "aqu test --watch",
-        "test:coverage": "aqu test --coverage --json --silent --ci --passWithNoTests --outputFile=\"report.json\""
+        "build": "pnpm run build-esm && pnpm run build-aqu",
+        "build-esm": "rollup -c rollup.config.js",
+        "build-aqu": "aqu build",
+        "lint": "eslint ."
     },
     "devDependencies": {
         "@babel/core": "^7.18.9",
         "@babel/runtime": "^7.18.9",
         "@react-freyja/eslint-config": "workspace:*",
+        "@rollup/plugin-typescript": "^8.5.0",
         "@types/jest": "^26.0.23",
         "@types/node": "^18.7.13",
         "@types/react": "^18.0.14",
         "@types/react-native": "^0.69.1",
         "aqu": "^0.3.2",
-        "esbuild": "^0.15.7",
+        "rollup": "^2.79.0",
         "typescript": "^4.7.4",
         "zxpp": "^0.2.1"
     },
