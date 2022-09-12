@@ -8,5 +8,6 @@
             "exportReferencedTypes": false
         }
     },
-    "outdir": "dist/commonjs"
+    "outdir": "dist/commonjs",
+    "format": ["cjs"]
 }

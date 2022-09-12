@@ -5,9 +5,7 @@
     "module": "./dist/esm/index.js",
     "sideEffects": false,
     "scripts": {
-        "build": "pnpm run build-esm && pnpm run build-aqu",
-        "build-esm": "rollup -c rollup.config.js",
-        "build-aqu": "aqu build",
+        "build": "rollup -c rollup.config.js && aqu build",
         "lint": "eslint ."
     },
     "devDependencies": {
