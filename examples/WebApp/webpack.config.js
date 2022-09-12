@@ -6,12 +6,11 @@ const config = {
     entry: path.resolve(__dirname, "src", "index.tsx"),
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "[name].bundle.js",
+        filename: "index.bundle.js",
     },
     resolve: {
         extensions: [".ts", ".tsx", "..."],
         alias: {
-            // React does not exists in the lib. Installing via npm will not cause this problem.
             react: path.resolve(__dirname, "node_modules", "react"),
         },
     },
@@ -24,11 +23,17 @@ const config = {
             },
         ],
     },
+    optimization: {
+        usedExports: true,
+        innerGraph: true,
+        sideEffects: true,
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: "./src/index.html",
         }),
     ],
+    devtool: false,
 };
 
 module.exports = config;
