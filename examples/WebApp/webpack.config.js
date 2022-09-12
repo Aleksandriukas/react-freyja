@@ -33,6 +33,7 @@ const config = {
             template: "./src/index.html",
         }),
     ],
+    devtool: false,
 };
 
 module.exports = config;
