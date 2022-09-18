@@ -6,7 +6,9 @@ export const tokensToStyleObject = (tokens: Token[]): CSSProperties => {
 
     for (const token of tokens) {
         for (const [key, value] of Object.entries(token)) {
-            (styles as Record<string, unknown>)[key] = value;
+            if (key !== "_type") {
+                (styles as Record<string, unknown>)[key] = value;
+            }
         }
     }
 

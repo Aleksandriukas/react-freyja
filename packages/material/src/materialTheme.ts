@@ -3,47 +3,27 @@ import { createTheme } from "@react-freyja/theme";
 export const materialTheme = createTheme({
     definitions: {
         palette: {
-            primary: "blue",
-            secondary: "red",
-        },
-        hello: {
-            width: 120,
-            height: 40,
-            borderWidth: 1,
-            borderStyle: "solid" as const,
+            primary: "#6750A4",
+            secondary: "#625B71",
         },
     },
     tokens: {
-        modifiers: (definitions) => ({
-            primaryColor: {
-                // TODO type error does not appear when variable name does not start with $
-                $color: definitions.palette.primary,
-            },
-            secondaryColor: {
-                $color: definitions.palette.secondary,
-            },
-        }),
+        modifiers: (definitions) => ({}),
         constant: (definitions) => ({
-            buttonDefault: (variables) => ({
-                width: definitions.hello.width,
-                height: definitions.hello.height,
-                borderWidth: definitions.hello.borderWidth,
-                borderColor: variables.color,
-                borderStyle: definitions.hello.borderStyle,
-                alignItems: "center",
-                justifyContent: "center",
+            button: (variables) => ({
+                minWidth: 64,
+                borderRadius: 4,
+                backgroundColor: definitions.palette.primary,
+                border: 0,
+                margin: 0,
+                cursor: "pointer",
             }),
         }),
     },
     components: (tokens) => ({
         Button: {
-            tokens: [tokens.buttonDefault],
-            variants: {
-                color: {
-                    primary: tokens.primaryColor,
-                    secondary: tokens.secondaryColor,
-                },
-            },
+            tokens: [tokens.button],
+            variants: {},
         },
     }),
 });

@@ -6,6 +6,8 @@
     "sideEffects": false,
     "scripts": {
         "build": "rollup -c rollup.config.js && aqu build",
+        "start-rollup": "rollup --watch -c rollup.config.js",
+        "start-aqu": "aqu watch",
         "lint": "eslint ."
     },
     "devDependencies": {

@@ -5,7 +5,7 @@ export type StylesGenerator<TCompiledStyles> = (
     variant: Record<string, string>
 ) => TCompiledStyles;
 
-export interface StyleEngine<
+export interface IStyleEngine<
     TCompiledStyles,
     TModifiers extends Modifiers,
     TComponents extends Components<TModifiers>

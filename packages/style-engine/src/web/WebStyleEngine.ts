@@ -1,5 +1,5 @@
 import { Modifiers, Components } from "@react-freyja/theme";
-import { StyleEngine } from "..";
+import { IStyleEngine } from "..";
 import { getTokens } from "../utils/getTokens";
 
 import { getVariables } from "../utils/getVariables";
@@ -9,7 +9,7 @@ import { tokensToStyleObject } from "./tokensToStyleObject";
 export class WebStyleEngine<
     TModifiers extends Modifiers,
     TComponents extends Components<TModifiers>
-> implements StyleEngine<string, TModifiers, TComponents>
+> implements IStyleEngine<string, TModifiers, TComponents>
 {
     public compile = (components: TComponents) => {
         const getComponentClassName = <P extends Record<string, string>>(

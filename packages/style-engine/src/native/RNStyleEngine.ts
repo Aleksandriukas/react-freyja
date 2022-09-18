@@ -1,6 +1,6 @@
 import { Modifiers, Components } from "@react-freyja/theme";
 import { ViewStyle } from "react-native";
-import { StyleEngine, StylesGenerator } from "..";
+import { IStyleEngine, StylesGenerator } from "..";
 import { getTokens } from "../utils/getTokens";
 import { getVariables } from "../utils/getVariables";
 import { tokensToStyles } from "./tokensToStyles";
@@ -10,7 +10,7 @@ export type RNStyles = ViewStyle;
 export class RNStyleEngine<
     TModifiers extends Modifiers,
     TComponents extends Components<TModifiers>
-> implements StyleEngine<RNStyles, TModifiers, TComponents>
+> implements IStyleEngine<RNStyles, TModifiers, TComponents>
 {
     compile(components: TComponents): StylesGenerator<RNStyles> {
         const getComponentStyles = <P extends Record<string, string>>(
